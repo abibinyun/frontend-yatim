@@ -1,39 +1,36 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
-export default function Checkout() {
-  const [amount, setAmount] = useState(10000);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+export default function Home() {
+  const [id, setId] = useState(null);
+  const [amount, setAmount] = useState(null);
+  const router = useRouter();
 
-  async function handlePayment() {
-    const response = await fetch('/api/checkout', {
+  async function handleClick() {
+    const response = await fetch('/api/pay', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ amount, name, email }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        amount: amount,
+        order_id: id,
+      }),
     });
-
     const data = await response.json();
-    console.log('Payment Response:', data);
+    router.push(data.redirect_url);
 
-    window.snap.pay(data.token);
+    console.log('data : ', data);
   }
 
+  console.log(id, amount);
   return (
     <div>
-      <h1>Checkout</h1>
-      <div>
-        <label>Jumlah Pembayaran:</label>
-        <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} />
-      </div>
-      <div>
-        <label>Nama:</label>
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-      </div>
-      <div>
-        <label>Email:</label>
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-      </div>
-      <button onClick={handlePayment}>Bayar Sekarang</button>
+      <h1>Welcome to My Store</h1>
+      <p>Find your favorite products here</p>
+      <input placeholder="order id" value={id} onChange={(e) => setId(e.target.value)} />
+      <input placeholder="amount" value={amount} onChange={(e) => setAmount(e.target.value)} />
+      <button onClick={handleClick}>Checkout Now</button>
     </div>
   );
 }
