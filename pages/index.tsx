@@ -6,6 +6,7 @@ import CustomCard from '../customComp/customCard';
 import Link from 'next/link';
 import CarArComp from '../components/CarArticle';
 import { StatsComp } from '../components/Stats';
+import CardGalery from '../components/CardDisplay';
 
 const useStyle = createStyles((theme) => ({
   root: {
@@ -124,6 +125,9 @@ export default function HomePage({ data, dataHero, dataImgGalery }: any) {
               imgArr={datas}
             />
           </div>
+          {/* <div>
+            <CardGalery data={datar} />
+          </div> */}
 
           <Center>
             <Link href="/galery">

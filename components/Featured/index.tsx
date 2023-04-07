@@ -61,21 +61,20 @@ function Feature({ icon: Icon, title, description, className, ...others }: Featu
 const mockdata = [
   {
     icon: IconTruck,
-    title: 'Free Worldwide shipping',
+    title: 'VISI',
     description:
-      'As electricity builds up inside its body, it becomes more aggressive. One theory is that the electricity.',
+      'Terciptanya masyarakat yang berperikemanusiaan, berkeadilan dan berpendidikan menuju masyarakat yang beradab.',
   },
   {
     icon: IconCertificate,
-    title: 'Best Quality Product',
+    title: 'MISI',
     description:
-      'Slakoth’s heart beats just once a minute. Whatever happens, it is content to loaf around motionless.',
+      '1.Menjadi sarana yang dituju para penggiat kemanusiaan \n 2.Menjadi pendorong terciptanya masyarakat berpendidikan. \n 3.Melakukan rutinitas kemanusiaan untuk terciptanya masyarakat yang kokoh dan berkemandirian.',
   },
   {
     icon: IconCoin,
-    title: 'Very Affordable Pricing',
-    description:
-      'Thought to have gone extinct, Relicanth was given a name that is a variation of the name of the person who discovered.',
+    title: 'MOTO',
+    description: 'MENJADI TAMAN BAGI KEHIDUPAN',
   },
 ];
 
