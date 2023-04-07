@@ -6,14 +6,13 @@ import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core
 import { Notifications } from '@mantine/notifications';
 import { NavbarComp } from '../components/Navbar';
 import { FooterComp } from '../components/Footer';
-import Script from 'next/script';
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;
   const [colorScheme, setColorScheme] = useState<ColorScheme>(props.colorScheme);
 
   const toggleColorScheme = (value?: ColorScheme) => {
-    const nextColorScheme = value || (colorScheme === 'dark' ? 'light' : 'dark');
+    const nextColorScheme = value || (colorScheme === 'light' ? 'dark' : 'light');
     setColorScheme(nextColorScheme);
     setCookie('mantine-color-scheme', nextColorScheme, { maxAge: 60 * 60 * 24 * 30 });
   };
@@ -21,6 +20,10 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
     {
       link: '/',
       label: 'Home',
+    },
+    {
+      link: '/donasi',
+      label: 'Program Donasi',
     },
     {
       link: '/galery',
@@ -38,7 +41,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   return (
     <>
       <Head>
-        <title>Mantine next example</title>
+        <title>Yathim.or.id | Yayasan Taman Harapan Insan Mulia</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         <link rel="shortcut icon" href="/favicon.svg" />
       </Head>

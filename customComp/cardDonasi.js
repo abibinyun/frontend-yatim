@@ -33,7 +33,8 @@ function CardDonasi() {
       }),
     });
     const data = await response.json();
-    router.push(data.redirect_url);
+    // router.push(data.redirect_url);
+    window.open(data.redirect_url, '_blank');
 
     console.log('data : ', data);
     console.log(value);

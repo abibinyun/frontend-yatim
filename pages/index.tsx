@@ -1,14 +1,16 @@
-// import { Welcome } from '../components/Welcome/Welcome';
-// import { ColorSchemeToggle } from '../components/ColorSchemeToggle/ColorSchemeToggle';
-
-import { Center, Space, Button, createStyles  } from '@mantine/core';
+import { Center, Space, Button, createStyles } from '@mantine/core';
 import { FaqComp } from '../components/FAQ';
 import { FeaturedComp } from '../components/Featured';
 import { HeroComp } from '../components/Hero';
 import CustomCard from '../customComp/customCard';
-import CardDonasi from '../customComp/cardDonasi';
+import Link from 'next/link';
+import CarArComp from '../components/CarArticle';
+import { StatsComp } from '../components/Stats';
 
-const useStyle = createStyles ((theme) => ({
+const useStyle = createStyles((theme) => ({
+  root: {
+    overflow: 'hidden',
+  },
   control: {
     marginTop: `calc(${theme.spacing.xl} * 1)`,
     marginBottom: '100px',
@@ -17,77 +19,164 @@ const useStyle = createStyles ((theme) => ({
       width: '100%',
     },
   },
-}))
+  hero: {
+    // marginTop: -100,
+    // overflow: 'auto',
+  },
+  wrapper: {
+    display: 'flex',
+    // marginLeft: 120,
+    // marginRight: 120,
+    [theme.fn.smallerThan('sm')]: {
+      flexDirection: 'column',
+    },
+  },
+  beritaArtikel: {
+    marginLeft: 10,
+    marginRight: 10,
+    width: '50%',
+    [theme.fn.smallerThan('sm')]: {
+      width: '100%',
+    },
+  },
+}));
 
-export default function HomePage({ data, dataHero }: any) {
-const {classes} = useStyle()
-console.log(dataHero)
+const statsData = [
+  {
+    stats: '17.123',
+    title: 'Tersalurkan',
+    description:
+      'Yathim.or.id telah menyalurkan semua hasil yang diperoleh kepada yang membutuhkan',
+  },
+  {
+    stats: '1.123',
+    title: 'Relawan',
+    description: 'Kami juga telah bekerja sama dengan relawan untuk menyebarkan kebaikan',
+  },
+  {
+    stats: '123',
+    title: 'Cabang',
+    description: 'Tersebar di segala penjuru',
+  },
+];
+
+export default function HomePage({ data, dataHero, dataImgGalery }: any) {
+  const { classes } = useStyle();
+  const rawDtKurban = dataImgGalery.data[0].attributes.img_kurban.data;
+  const datas = rawDtKurban.map((item: { attributes: any }) => item.attributes);
+  const datar = datas.map((item: { url: any }) => item.url);
+
+  console.log('img datar', datar);
   return (
-    <>
-    <div>
-
-      <div className='hero-section'>
-          <HeroComp data={dataHero} />
-          <Space h={100} />
-      {/* <div style={{ width: 300, zIndex:5 , marginTop: -650, marginBottom: 250, marginLeft: 1000 }}>
+    <div className={classes.root}>
+      <div className={classes.hero}>
+        <HeroComp data={dataHero} />
+        <Space h={100} />
+        {/* <div style={{ width: 300, zIndex:5 , marginTop: -650, marginBottom: 250, marginLeft: 1000 }}>
         <CardDonasi />
       </div> */}
       </div>
 
-    </div>
+      <div className="feature-section" style={{ marginTop: -50 }}>
+        <FeaturedComp />
+        <Space h={100} />
+      </div>
+      <div style={{ marginLeft: 50, marginRight: 50, marginBottom: 100 }}>
+        <StatsComp data={statsData} />
+      </div>
+      <div className="program-donasi">
+        <Center>
+          <h1 style={{ textDecoration: 'underline' }}>Program Donasi</h1>
+        </Center>
 
-          <div  className='feature-section'>
-            <FeaturedComp />
-            <Space h={100} />
-          </div>
-      
-          <div className='program-donasi'>
-              <Center>
-                <h1 style={{ textDecoration:'underline' }}>Program Donasi</h1>
-              </Center>
+        <CustomCard data={data} />
 
-                <CustomCard data={data} />
-            
-              <Center>
-                <Button className={classes.control} radius="xl" size="xl" variant="gradient" gradient={{ from: 'teal', to: 'lime', deg: 105 }}>
-                  Lihat semua donasi
-                </Button>
-              </Center>
-            <Space h="md" />
-          </div>
-      
-          <div className='kegiatan'>
-              <Center>
-                <h1 style={{ textDecoration:'underline' }}>Kegiatan</h1>
-              </Center>
-          
-                <CustomCard data={data} />
-            
-              <Center>
-                <Button className={classes.control} radius="xl" size="xl" variant="gradient" gradient={{ from: 'teal', to: 'lime', deg: 105 }}>
-                  Lihat semua kegiatan
-                </Button>
-              </Center>
-            <Space h="md" />
-          </div>
+        <Center>
+          <Link href="/donasi">
+            <Button
+              className={classes.control}
+              radius="xl"
+              size="xl"
+              variant="gradient"
+              gradient={{ from: 'teal', to: 'lime', deg: 105 }}
+            >
+              Lihat semua donasi
+            </Button>
+          </Link>
+        </Center>
+        <Space h="md" />
+      </div>
 
-          <div className='berita-artikel'>
-            <Center>
-                <h1 style={{ textDecoration:'underline' }}>Berita & Artikel Terbaru</h1>
-            </Center>
-                
-                <CustomCard data={data} />
+      <div className={classes.wrapper}>
+        <div className="kegiatan" style={{ marginLeft: 10, marginRight: 10 }}>
+          <Center>
+            <h1 style={{ textDecoration: 'underline' }}>Kegiatan</h1>
+          </Center>
 
-                <Center>
-                  <Button className={classes.control} radius="xl" size="xl" variant="gradient" gradient={{ from: 'teal', to: 'lime', deg: 105 }}>
-                    Lihat semua berita dan artikel
-                  </Button>
-                </Center>
-              <Space h="md" />
+          {/* <CustomCard data={data} /> */}
+          <div>
+            <CarArComp
+              height={440}
+              controlOffSet={'xs'}
+              orientation={'vertical'}
+              slideGap={'xl'}
+              slideSize={'30%'}
+              imgArr={datas}
+            />
           </div>
 
+          <Center>
+            <Link href="/galery">
+              <Button
+                className={classes.control}
+                radius="xl"
+                size="xl"
+                variant="gradient"
+                gradient={{ from: 'teal', to: 'lime', deg: 105 }}
+              >
+                Lihat semua kegiatan
+              </Button>
+            </Link>
+          </Center>
+          <Space h="md" />
+        </div>
+
+        <Space w="md" />
+
+        <div className={classes.beritaArtikel}>
+          <Center>
+            <h1 style={{ textDecoration: 'underline' }}>Berita & Artikel Terbaru</h1>
+          </Center>
+
+          {/* <CustomCard data={data} /> */}
+          <div>
+            <CarArComp
+              height={440}
+              controlOffSet={'xs'}
+              orientation={'horizontal'}
+              slideGap={'xl'}
+              slideSize={'50%'}
+              imgArr={datas}
+            />
+          </div>
+
+          <Center>
+            <Link href="/blog">
+              <Button
+                className={classes.control}
+                radius="xl"
+                size="xl"
+                variant="gradient"
+                gradient={{ from: 'teal', to: 'lime', deg: 105 }}
+              >
+                Lihat semua berita dan artikel
+              </Button>
+            </Link>
+          </Center>
+        </div>
+      </div>
       <FaqComp />
-    </>
+    </div>
   );
 }
 
@@ -96,15 +185,18 @@ export async function getServerSideProps() {
   const data = await res.json();
   const resHero = await fetch('http://localhost:1337/api/home-pages?populate=*');
   const dataHero = await resHero.json();
-  if (!data || !dataHero){
-    return{
-      notFound: true
-    }
+  const resImgGalery = await fetch('http://localhost:1337/api/galeries?populate=*');
+  const dataImgGalery = await resImgGalery.json();
+  if (!data || !dataHero) {
+    return {
+      notFound: true,
+    };
   }
   return {
     props: {
       data: data.data,
       dataHero,
+      dataImgGalery,
     },
   };
 }

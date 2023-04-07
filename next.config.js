@@ -1,7 +1,6 @@
 // const withBundleAnalyzer = require('@next/bundle-analyzer')({
 //   enabled: process.env.ANALYZE === 'true',
 // });
-
 // module.exports = withBundleAnalyzer({
 //   reactStrictMode: false,
 //   eslint: {
@@ -24,15 +23,25 @@
 //     domains: ['localhost:1337'],
 //   },
 // };
-module.exports = {
+/**
+ * @type {import('next').NextConfig}
+ */
+const nextConfig = {
+  /* config options here */
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'http://localhost',
+        protocol: 'http',
+        hostname: 'localhost',
         port: '1337',
-        pathname: '/uploads/**',
+        pathname: '/**',
       },
     ],
   },
 };
+
+module.exports = nextConfig;
+
+// module.exports = {
+
+// };

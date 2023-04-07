@@ -9,12 +9,15 @@ import {
   Transition,
   rem,
   px,
+  em,
+  Space,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
-import logo from '../../public/asset/LOGO-YATHIM.png';
+import Image from 'next/legacy/image';
 import { ColorSchemeToggle } from '../ColorSchemeToggle/ColorSchemeToggle';
+import { MouseEvent } from 'react';
+import Link from 'next/link';
 
 const HEADER_HEIGHT = rem(80);
 
@@ -39,7 +42,32 @@ const useStyles = createStyles((theme) => ({
       display: 'none',
     },
   },
-
+  togle: {
+    [`@media (max-width: ${em(1400)})`]: {
+      marginRight: -100,
+    },
+    [`@media (max-width: ${em(1044)})`]: {
+      marginRight: -10,
+    },
+  },
+  icon: {
+    [`@media (max-width: ${em(1400)})`]: {
+      marginLeft: -60,
+    },
+    [`@media (max-width: ${em(1044)})`]: {
+      marginLeft: -10,
+    },
+    [`@media (max-width: ${em(850)})`]: {
+      width: '30%',
+    },
+    [`@media (max-width: ${em(500)})`]: {
+      width: '50%',
+    },
+    [`@media (max-width: ${em(285)})`]: {
+      width: '55%',
+      marginLeft: -5,
+    },
+  },
   header: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -53,10 +81,10 @@ const useStyles = createStyles((theme) => ({
       display: 'none',
     },
   },
-  
-  togle: {
+
+  togleBurger: {
     marginLeft: -80,
-    zIndex:1,
+    zIndex: 1,
     display: 'inline-flex',
   },
 
@@ -91,7 +119,7 @@ const useStyles = createStyles((theme) => ({
   linkActive: {
     '&, &:hover': {
       backgroundColor: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).background,
-      color: theme.fn.variant({ variant: 'light', color: '#6DE20B' }).color,
+      color: theme.fn.variant({ variant: 'light', color: 'green' }).color,
     },
   },
 }));
@@ -121,35 +149,42 @@ export function NavbarComp({ links }: HeaderResponsiveProps) {
       {link.label}
     </a>
   ));
-
+  const logoClick = (e: MouseEvent<HTMLImageElement, MouseEvent>) => {
+    e.preventDefault;
+    router.push('/');
+  };
   return (
-    <Header height={HEADER_HEIGHT} mb={120} className={classes.root}>
+    <Header height={HEADER_HEIGHT} className={classes.root}>
       <Container className={classes.header}>
-        {/* <MantineLogo size={28} />
-         */}
-        <Image
-          style={{ backgroundColor: 'green', borderRadius: '5px', padding: '5px' }}
-          src={logo}
-          height={50}
-          width={110}
-          alt="logo yathim.or.id"
-        />
+        <Link href={'/'}>
+          <Image
+            className={classes.icon}
+            style={{ borderRadius: '5px' }}
+            src="/favicon.svg"
+            height={150}
+            width={250}
+            alt="logo yathim.or.id"
+          />
+        </Link>
+        {/* <Center> */}
         <Group spacing={5} className={classes.links}>
           {items}
         </Group>
+        {/* </Center> */}
+        <div className={classes.togleBurger}>
           <div className={classes.togle}>
-
-          <ColorSchemeToggle  />
-        <Burger opened={opened} onClick={toggle} className={classes.burger} size="sm" />
-
-        <Transition transition="pop-top-right" duration={200} mounted={opened}>
-          {(styles) => (
-            <Paper className={classes.dropdown} withBorder style={styles}>
-              {items}
-            </Paper>
-          )}
-        </Transition>
+            <ColorSchemeToggle />
           </div>
+          <Space w="md" />
+          <Burger opened={opened} onClick={toggle} className={classes.burger} size="sm" />
+          <Transition transition="pop-top-right" duration={200} mounted={opened}>
+            {(styles) => (
+              <Paper className={classes.dropdown} withBorder style={styles}>
+                {items}
+              </Paper>
+            )}
+          </Transition>
+        </div>
       </Container>
     </Header>
   );

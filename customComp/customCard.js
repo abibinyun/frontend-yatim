@@ -1,12 +1,19 @@
 import React from 'react';
 import { CardComp } from '../components/Card';
 
-function CustomCard({ data }) {
-  console.log(data);
+function CustomCard(data) {
+  const { data: source } = data;
   return (
     <div>
-     <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' , alignItems:'stretch' }}>
-        {data.map((item) => (
+      <div
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          alignItems: 'stretch',
+        }}
+      >
+        {source.map((item) => (
           <CardComp
             key={item.id}
             image={`http://localhost:1337${item.attributes.thumbnail.data.attributes.url}`}
@@ -21,25 +28,25 @@ function CustomCard({ data }) {
             style={{ margin: '40px' }}
           />
         ))}
-     </div>
+      </div>
     </div>
   );
 }
 
 export default CustomCard;
 
-export async function getServerSideProps() {
-  const res = await fetch('http://localhost:1337/api/donasis?populate=*');
-  const data = await res.json();
-
-  if(!data){
-    return {
-      notFound: true
-    }
-  }
-  return {
-    props: {
-      data: data.data,
-    },
-  };
-}
+// export async function getServerSideProps() {
+//   const res = await fetch('http://localhost:1337/api/donasis?populate=*');
+//   const data = await res.json();
+//   console.log('data: ', data);
+//   if (!data) {
+//     return {
+//       notFound: true,
+//     };
+//   }
+//   return {
+//     props: {
+//       data: data.data,
+//     },
+//   };
+// }
