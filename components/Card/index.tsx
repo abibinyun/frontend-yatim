@@ -1,25 +1,12 @@
-import { IconBookmark, IconHeart, IconShare } from '@tabler/icons-react';
-import {
-  Card,
-  Image,
-  Text,
-  ActionIcon,
-  Badge,
-  Group,
-  Center,
-  Avatar,
-  createStyles,
-  rem,
-  em,
-} from '@mantine/core';
+import { Card, Image, Text, ActionIcon, Badge, Group, createStyles, rem, em } from '@mantine/core';
 import Link from 'next/link';
+import { WhatsappShareButton, FacebookShareButton, FacebookIcon, WhatsappIcon } from 'react-share';
 
 const useStyles = createStyles((theme) => ({
   card: {
     position: 'relative',
     backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
     width: '35%',
-    // height: '40%'
     [`@media (max-width: ${em(1550)})`]: {
       width: '25%',
     },
@@ -74,6 +61,7 @@ interface ArticleCardProps {
     name: string;
     image: string;
   };
+  slugTitle: string;
 }
 
 export function CardComp({
@@ -84,9 +72,10 @@ export function CardComp({
   description,
   author,
   rating,
+  slugTitle,
   ...others
 }: ArticleCardProps & Omit<React.ComponentPropsWithoutRef<'div'>, keyof ArticleCardProps>) {
-  const { classes, cx, theme } = useStyles();
+  const { classes, cx } = useStyles();
   const linkProps = { href: link };
 
   return (
@@ -101,7 +90,7 @@ export function CardComp({
         {rating}
       </Badge>
 
-      <Link {...linkProps} style={{ textDecoration: "none" }}>
+      <Link {...linkProps} style={{ textDecoration: 'none' }}>
         <Text className={classes.title} fw={500}>
           {title}
         </Text>
@@ -112,23 +101,17 @@ export function CardComp({
       </Text>
 
       <Group position="apart" className={classes.footer}>
-        <Center>
-          <Avatar src={author.image} size={24} radius="xl" mr="xs" />
-          <Text fz="sm" inline>
-            {author.name}
-          </Text>
-        </Center>
-
-        <Group spacing={8} mr={0}>
-          <ActionIcon className={classes.action}>
-            <IconHeart size="1rem" color={theme.colors.red[6]} />
-          </ActionIcon>
-          <ActionIcon className={classes.action}>
-            <IconBookmark size="1rem" color={theme.colors.yellow[7]} />
-          </ActionIcon>
-          <ActionIcon className={classes.action}>
-            <IconShare size="1rem" />
-          </ActionIcon>
+        <Group spacing={8} mr={0} color="green">
+          {/* <ActionIcon className={classes.action}> */}
+          <WhatsappShareButton url={slugTitle}>
+            <WhatsappIcon size={32} round={true} />
+          </WhatsappShareButton>
+          {/* </ActionIcon> */}
+          {/* <ActionIcon className={classes.action}> */}
+          <FacebookShareButton url={slugTitle}>
+            <FacebookIcon size={32} round={true} />
+          </FacebookShareButton>
+          {/* </ActionIcon>  */}
         </Group>
       </Group>
     </Card>

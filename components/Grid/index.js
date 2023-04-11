@@ -40,7 +40,7 @@ const useStyles = createStyles((theme) => ({
 
 export function ArticlesCardsGrid({ data }) {
   const { classes } = useStyles();
-  const cards = mockdata.map((article) => (
+  const cards = mockdata.map((article, idx) => (
     // <Flex
     //   mih={50}
     //   bg="rgba(0, 0, 0, .3)"
@@ -51,9 +51,9 @@ export function ArticlesCardsGrid({ data }) {
     //   wrap="wrap"
     // >
     //   <div style={{ height: 100, width: 500 }}>
-    <Card key={article.title} p="md" radius="md" component="a" href="#" className={classes.card}>
+    <Card key={idx} p="md" radius="md" component="a" href="#" className={classes.card}>
       <AspectRatio ratio={1920 / 1080}>
-        <Image src={`http://localhost:1337${data}`} />
+        <Image src={`http://strapi.yathim.or.id${data}`} />
       </AspectRatio>
       <Text color="dimmed" size="xs" transform="uppercase" weight={700} mt="md">
         {article.date}

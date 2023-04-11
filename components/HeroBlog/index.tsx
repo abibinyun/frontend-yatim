@@ -6,7 +6,7 @@ const useStyles = createStyles((theme) => ({
     paddingTop: rem(180),
     paddingBottom: rem(130),
     backgroundImage:
-      'url(http://localhost:1337/uploads/IMG_20210905_114423_1024x769_0c6b127636.jpg)',
+      'url(http://strapi.yathim.or.id/uploads/IMG_20210905_114423_1024x769_0c6b127636.jpg)',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
 

@@ -1,12 +1,11 @@
 import { Center, Space, Button, createStyles } from '@mantine/core';
+import Link from 'next/link';
 import { FaqComp } from '../components/FAQ';
 import { FeaturedComp } from '../components/Featured';
 import { HeroComp } from '../components/Hero';
 import CustomCard from '../customComp/customCard';
-import Link from 'next/link';
 import CarArComp from '../components/CarArticle';
 import { StatsComp } from '../components/Stats';
-import CardGalery from '../components/CardDisplay';
 
 const useStyle = createStyles((theme) => ({
   root: {
@@ -20,14 +19,8 @@ const useStyle = createStyles((theme) => ({
       width: '100%',
     },
   },
-  hero: {
-    // marginTop: -100,
-    // overflow: 'auto',
-  },
   wrapper: {
     display: 'flex',
-    // marginLeft: 120,
-    // marginRight: 120,
     [theme.fn.smallerThan('sm')]: {
       flexDirection: 'column',
     },
@@ -67,21 +60,18 @@ export default function HomePage({ data, dataHero, dataImgGalery }: any) {
   const datas = rawDtKurban.map((item: { attributes: any }) => item.attributes);
   const datar = datas.map((item: { url: any }) => item.url);
 
-  console.log('img datar', datar);
   return (
     <div className={classes.root}>
-      <div className={classes.hero}>
+      <div>
         <HeroComp data={dataHero} />
         <Space h={100} />
-        {/* <div style={{ width: 300, zIndex:5 , marginTop: -650, marginBottom: 250, marginLeft: 1000 }}>
-        <CardDonasi />
-      </div> */}
       </div>
-
-      <div className="feature-section" style={{ marginTop: -50 }}>
-        <FeaturedComp />
-        <Space h={100} />
-      </div>
+      <Center>
+        <div className="feature-section" style={{ marginTop: -50 }}>
+          <FeaturedComp />
+          <Space h={100} />
+        </div>
+      </Center>
       <div style={{ marginLeft: 50, marginRight: 50, marginBottom: 100 }}>
         <StatsComp data={statsData} />
       </div>
@@ -114,7 +104,6 @@ export default function HomePage({ data, dataHero, dataImgGalery }: any) {
             <h1 style={{ textDecoration: 'underline' }}>Kegiatan</h1>
           </Center>
 
-          {/* <CustomCard data={data} /> */}
           <div>
             <CarArComp
               height={440}
@@ -125,9 +114,6 @@ export default function HomePage({ data, dataHero, dataImgGalery }: any) {
               imgArr={datas}
             />
           </div>
-          {/* <div>
-            <CardGalery data={datar} />
-          </div> */}
 
           <Center>
             <Link href="/galery">
@@ -152,7 +138,6 @@ export default function HomePage({ data, dataHero, dataImgGalery }: any) {
             <h1 style={{ textDecoration: 'underline' }}>Berita & Artikel Terbaru</h1>
           </Center>
 
-          {/* <CustomCard data={data} /> */}
           <div>
             <CarArComp
               height={440}
@@ -185,11 +170,11 @@ export default function HomePage({ data, dataHero, dataImgGalery }: any) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch('http://localhost:1337/api/donasis?populate=*');
+  const res = await fetch('http://strapi.yathim.or.id/api/donasis?populate=*');
   const data = await res.json();
-  const resHero = await fetch('http://localhost:1337/api/home-pages?populate=*');
+  const resHero = await fetch('http://strapi.yathim.or.id/api/home-pages?populate=*');
   const dataHero = await resHero.json();
-  const resImgGalery = await fetch('http://localhost:1337/api/galeries?populate=*');
+  const resImgGalery = await fetch('http://strapi.yathim.or.id/api/galeries?populate=*');
   const dataImgGalery = await resImgGalery.json();
   if (!data || !dataHero) {
     return {

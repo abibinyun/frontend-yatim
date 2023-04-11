@@ -1,14 +1,19 @@
-import { Card, Button, SegmentedControl, NumberInput, Textarea } from '@mantine/core';
+import { Card, Button, SegmentedControl, NumberInput, Textarea, createStyles } from '@mantine/core';
 import { useState } from 'react';
 import { useForm } from '@mantine/form';
 import { useFocusWithin } from '@mantine/hooks';
-import { useRouter } from 'next/router';
 
-function CardDonasi() {
+const useStyles = createStyles((theme) => ({
+  img: {
+    color: theme.colors[theme.primaryColor][4],
+  },
+}));
+
+export function CardDonasi() {
+  const { classes } = useStyles();
   const [value, setValue] = useState('');
   const [valueInput, setValueInput] = useState('');
   const { ref, focused } = useFocusWithin();
-  const router = useRouter();
   const id = new Date().valueOf();
   const form = useForm({
     initialValues: {
@@ -35,19 +40,17 @@ function CardDonasi() {
     const data = await response.json();
     // router.push(data.redirect_url);
     window.open(data.redirect_url, '_blank');
-
-    console.log('data : ', data);
-    console.log(value);
   }
 
   return (
     <>
-      <Card shadow="sm" padding="lg" radius="md" withBorder style={{ height: 400 }}>
+      <Card shadow="sm" padding="lg" radius="md" withBorder style={{ height: 400, color: 'green' }}>
         <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
           {!focused || !form.values.amount ? (
             <Card.Section>
               <div style={{ marginLeft: 5, marginRight: 5 }}>
                 <SegmentedControl
+                  className={classes.img}
                   value={value}
                   onChange={setValue}
                   data={[
@@ -58,7 +61,7 @@ function CardDonasi() {
                   ]}
                   size="md"
                   fullWidth
-                  color="cyan"
+                  color="green"
                   {...form.getInputProps('amount')}
                 />
               </div>

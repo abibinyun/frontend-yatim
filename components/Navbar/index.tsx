@@ -15,7 +15,6 @@ import {
 import { useDisclosure } from '@mantine/hooks';
 import { useRouter } from 'next/router';
 import Image from 'next/legacy/image';
-import { ColorSchemeToggle } from '../ColorSchemeToggle/ColorSchemeToggle';
 import { MouseEvent } from 'react';
 import Link from 'next/link';
 
@@ -58,13 +57,17 @@ const useStyles = createStyles((theme) => ({
       marginLeft: -10,
     },
     [`@media (max-width: ${em(850)})`]: {
-      width: '30%',
+      width: '85%',
     },
     [`@media (max-width: ${em(500)})`]: {
-      width: '50%',
+      width: '80%',
     },
     [`@media (max-width: ${em(285)})`]: {
-      width: '55%',
+      width: '80%',
+      marginLeft: -5,
+    },
+    [`@media (max-width: ${em(250)})`]: {
+      width: '70%',
       marginLeft: -5,
     },
   },
@@ -157,14 +160,16 @@ export function NavbarComp({ links }: HeaderResponsiveProps) {
     <Header height={HEADER_HEIGHT} className={classes.root}>
       <Container className={classes.header}>
         <Link href={'/'}>
-          <Image
-            className={classes.icon}
-            style={{ borderRadius: '5px' }}
-            src="/favicon.svg"
-            height={150}
-            width={250}
-            alt="logo yathim.or.id"
-          />
+          <div className={classes.icon}>
+            <Image
+              style={{ borderRadius: '5px' }}
+              src="/favicon.svg"
+              height={150}
+              width={250}
+              // layout="fill"
+              alt="logo yathim.or.id"
+            />
+          </div>
         </Link>
         {/* <Center> */}
         <Group spacing={5} className={classes.links}>
@@ -172,9 +177,7 @@ export function NavbarComp({ links }: HeaderResponsiveProps) {
         </Group>
         {/* </Center> */}
         <div className={classes.togleBurger}>
-          <div className={classes.togle}>
-            <ColorSchemeToggle />
-          </div>
+          <div className={classes.togle}></div>
           <Space w="md" />
           <Burger opened={opened} onClick={toggle} className={classes.burger} size="sm" />
           <Transition transition="pop-top-right" duration={200} mounted={opened}>

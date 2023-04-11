@@ -1,21 +1,19 @@
 import { createStyles, Overlay, Container, Title, Button, Text, rem, em } from '@mantine/core';
 import { useState } from 'react';
 import CardDonasi from '../../customComp/cardDonasi';
-import { useMediaQuery } from '@mantine/hooks';
-import Image from 'next/legacy/image';
 
 const useStyles = createStyles((theme) => ({
   hero: {
     position: 'relative',
     backgroundImage:
-      'url(http://localhost:1337/uploads/sido_muncul_20180525_102729_001718b8f6.webp)',
+      'url(http://strapi.yathim.or.id/uploads/sido_muncul_20180525_102729_001718b8f6.webp)',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   },
 
   container: {
     marginLeft: 50,
-    // marginTop: rem(-120),
+    marginTop: rem(-120),
     height: rem(700),
     display: 'flex',
     flexDirection: 'column',
@@ -103,32 +101,17 @@ export function HeroComp(props: {
   data: { data: { attributes: { title: any; headline: any; txtButton: any; imageHero: any } }[] };
 }) {
   const { classes } = useStyles();
-  console.log('hero comp', props.data.data[0].attributes);
-  const { title, headline, txtButton, imageHero } = props.data.data[0].attributes;
-  const { url } = imageHero.data.attributes;
-  // const imgHero = `http://localhost:1337${url}`;
+  const { title, headline, txtButton } = props.data.data[0].attributes;
   const [open, setOpen] = useState(false);
 
   const clickBtn = (e: any) => {
     e.preventDefault();
     setOpen(!open);
-    console.log('cek open : ', open);
   };
-
-  // const myStyle = {
-  //   position: 'relative',
-  //   backgroundImage: `http://localhost:1337/uploads/sido_muncul_20180525_102729_001718b8f6.webp`,
-  //   backgroundSize: 'cover',
-  //   backgroundPosition: 'center',
-  // };
 
   return (
     <>
-      {/* <Image src={url} style={{ zIndex: 1 }} layout="fill" /> */}
-      <div
-        className={classes.hero}
-        // style={myStyle}
-      >
+      <div className={classes.hero}>
         <Overlay
           gradient="linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, .65) 40%)"
           opacity={1}

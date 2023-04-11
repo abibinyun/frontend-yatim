@@ -16,7 +16,7 @@ function CustomCard(data) {
         {source.map((item) => (
           <CardComp
             key={item.id}
-            image={`http://localhost:1337${item.attributes.thumbnail.data.attributes.url}`}
+            image={`http://strapi.yathim.or.id${item.attributes.thumbnail.data.attributes.url}`}
             link={`donasi/${item.attributes.slugTitle}`}
             title={item.attributes.title}
             description={item.attributes.description}
@@ -26,6 +26,7 @@ function CustomCard(data) {
               image: '',
             }}
             style={{ margin: '40px' }}
+            slugTitle={`https://api.yathim.or.id/donasi/${item.attributes.slugTitle}`}
           />
         ))}
       </div>
@@ -34,19 +35,3 @@ function CustomCard(data) {
 }
 
 export default CustomCard;
-
-// export async function getServerSideProps() {
-//   const res = await fetch('http://localhost:1337/api/donasis?populate=*');
-//   const data = await res.json();
-//   console.log('data: ', data);
-//   if (!data) {
-//     return {
-//       notFound: true,
-//     };
-//   }
-//   return {
-//     props: {
-//       data: data.data,
-//     },
-//   };
-// }

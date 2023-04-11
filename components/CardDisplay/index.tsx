@@ -8,7 +8,6 @@ const images = [
 ];
 
 export default function CardGalery({ data }: any) {
-  console.log('carousel', data);
   const slides = images.map((url, idx) => (
     <Carousel.Slide key={idx}>
       <AspectRatio ratio={1080 / 1080}>

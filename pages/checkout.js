@@ -19,11 +19,8 @@ export default function Home() {
     });
     const data = await response.json();
     router.push(data.redirect_url);
-
-    console.log('data : ', data);
   }
 
-  console.log(id, amount);
   return (
     <div>
       <h1>Welcome to My Store</h1>

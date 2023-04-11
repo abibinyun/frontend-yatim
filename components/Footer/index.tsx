@@ -2,7 +2,7 @@ import { createStyles, Anchor, Group, ActionIcon, rem, Container, em } from '@ma
 import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from '@tabler/icons-react';
 import Image from 'next/legacy/image';
 import { useRouter } from 'next/router';
-import { MouseEvent } from 'react';
+// import { MouseEvent } from 'react';
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -69,7 +69,7 @@ export function FooterComp({ links }: FooterCenteredProps) {
       {link.label}
     </Anchor>
   ));
-  const logoClick = (e: MouseEvent<HTMLImageElement, MouseEvent>) => {
+  const logoClick = (e: any) => {
     e.preventDefault;
     router.push('/');
   };
