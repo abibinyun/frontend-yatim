@@ -1,5 +1,6 @@
 export default async function handler(req, res) {
-  const { order_id, amount } = req.body;
+  const { order_id, amount, first_name, params } = req.body;
+  const { name, id } = params;
   const url = 'https://app.sandbox.midtrans.com/snap/v1/transactions';
   const options = {
     method: 'POST',
@@ -11,6 +12,12 @@ export default async function handler(req, res) {
     body: JSON.stringify({
       transaction_details: { order_id: order_id, gross_amount: parseInt(amount) },
       credit_card: { secure: true },
+      customer_details: {
+        first_name,
+        last_name: `${(name, id)}`,
+        email: 'bilal.sayurbox@gmail.com',
+        phone: '085817154959',
+      },
     }),
   };
 

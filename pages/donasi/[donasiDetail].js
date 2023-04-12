@@ -1,14 +1,15 @@
-import { AspectRatio, Container } from '@mantine/core';
+import { AspectRatio, Container, Paper, Text, TypographyStylesProvider } from '@mantine/core';
 import Image from 'next/legacy/image';
 import React from 'react';
 import CardDonasi from '../../customComp/cardDonasi';
 import { useRouter } from 'next/router';
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 
 export default function DonasiDetail({ data }) {
   const { data: datas } = data;
   const { attributes } = datas[0];
   const router = useRouter();
-
+  console.log(attributes.description);
   return (
     <article>
       <Container>
@@ -26,12 +27,16 @@ export default function DonasiDetail({ data }) {
           />
         </AspectRatio>
         <h3>{attributes.title}</h3>
-        <text>{attributes.description}</text>
+        <Paper shadow="md" radius="lg" p="xl">
+          {/* <TypographyStylesProvider>
+            <div dangerouslySetInnerHTML={{ __html: `${attributes.description}` }} />
+          </TypographyStylesProvider> */}
+          <ReactMarkdown>{attributes.description}</ReactMarkdown>
+        </Paper>
         <div style={{ marginTop: 50 }}>
           <h3>Berbagi Kebaikan</h3>
           <CardDonasi />
         </div>
-        <p>{router.asPath}</p>
       </Container>
     </article>
   );

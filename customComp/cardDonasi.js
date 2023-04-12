@@ -2,6 +2,7 @@ import { Card, Button, SegmentedControl, NumberInput, Textarea, createStyles } f
 import { useState } from 'react';
 import { useForm } from '@mantine/form';
 import { useFocusWithin } from '@mantine/hooks';
+import { useRouter } from 'next/router';
 
 const useStyles = createStyles((theme) => ({
   img: {
@@ -14,7 +15,17 @@ export function CardDonasi() {
   const [value, setValue] = useState('');
   const [valueInput, setValueInput] = useState('');
   const { ref, focused } = useFocusWithin();
-  const id = new Date().valueOf();
+  const uniqId = new Date().valueOf();
+  const orderId = `Yathim-Public-${uniqId}`;
+  // const name = 'abi test detail';
+  const router = useRouter();
+  console.log('router : ', router);
+  const params = router.query;
+  console.log('params : ', params);
+  const paramName = params.name;
+  const paramId = params.id;
+  console.log('params name : ', paramName, 'params id : ', paramId);
+
   const form = useForm({
     initialValues: {
       amount: '',
@@ -26,7 +37,7 @@ export function CardDonasi() {
     },
   });
 
-  async function handleSubmit(value) {
+  async function handleSubmit() {
     const response = await fetch('/api/pay', {
       method: 'POST',
       headers: {
@@ -34,7 +45,9 @@ export function CardDonasi() {
       },
       body: JSON.stringify({
         amount: form.values.amount,
-        order_id: id,
+        order_id: orderId,
+        first_name: 'param test',
+        params,
       }),
     });
     const data = await response.json();
