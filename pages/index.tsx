@@ -6,6 +6,7 @@ import { HeroComp } from '../components/Hero';
 import CustomCard from '../customComp/customCard';
 import CarArComp from '../components/CarArticle';
 import { StatsComp } from '../components/Stats';
+import Head from 'next/head';
 
 const useStyle = createStyles((theme) => ({
   root: {
@@ -59,9 +60,28 @@ export default function HomePage({ data, dataHero, dataImgGalery }: any) {
   const rawDtKurban = dataImgGalery.data[0].attributes.img_kurban.data;
   const datas = rawDtKurban.map((item: { attributes: any }) => item.attributes);
   const datar = datas.map((item: { url: any }) => item.url);
+  const {imageHero, headline, title} = dataHero.data[0].attributes
+  const imgHero = imageHero.data.attributes.url
 
   return (
+    <>
+      <Head>
+        <meta property="og:url" content="https://yathim.or.id/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Yathim.or.id | Yayasan Taman Harapan Insan Mulia" />
+        <meta property="og:description" content={`${headline}|${title}`} />
+        <meta property="og:image" content={`https://strapi.yathim.or.id${imgHero}`} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="yathim.or.id" />
+        <meta property="twitter:url" content="https://yathim.or.id/" />
+        <meta name="twitter:title" content="Yathim.or.id | Yayasan Taman Harapan Insan Mulia" />
+        <meta name="twitter:description" content={`${headline}|${title}`} />
+        <meta name="twitter:image" content={`https://strapi.yathim.or.id${imgHero}`} />
+	   </Head>
     <div className={classes.root}>
+    <link itemProp="thumbnailUrl" href={`https://strapi.yathim.or.id${imgHero}`} /> 
+        <span itemProp="thumbnail" itemScope itemType="http://schema.org/ImageObject" /> 
+        <link itemProp="url" href={`https://strapi.yathim.or.id${imgHero}`} />
       <div>
         <HeroComp data={dataHero} />
         <Space h={100} />
@@ -90,7 +110,7 @@ export default function HomePage({ data, dataHero, dataImgGalery }: any) {
               size="xl"
               variant="gradient"
               gradient={{ from: 'teal', to: 'lime', deg: 105 }}
-            >
+              >
               Lihat semua donasi
             </Button>
           </Link>
@@ -112,7 +132,7 @@ export default function HomePage({ data, dataHero, dataImgGalery }: any) {
               slideGap={'xl'}
               slideSize={'30%'}
               imgArr={datas}
-            />
+              />
           </div>
 
           <Center>
@@ -123,7 +143,7 @@ export default function HomePage({ data, dataHero, dataImgGalery }: any) {
                 size="xl"
                 variant="gradient"
                 gradient={{ from: 'teal', to: 'lime', deg: 105 }}
-              >
+                >
                 Lihat semua kegiatan
               </Button>
             </Link>
@@ -146,7 +166,7 @@ export default function HomePage({ data, dataHero, dataImgGalery }: any) {
               slideGap={'xl'}
               slideSize={'50%'}
               imgArr={datas}
-            />
+              />
           </div>
 
           <Center>
@@ -157,7 +177,7 @@ export default function HomePage({ data, dataHero, dataImgGalery }: any) {
                 size="xl"
                 variant="gradient"
                 gradient={{ from: 'teal', to: 'lime', deg: 105 }}
-              >
+                >
                 Lihat semua berita dan artikel
               </Button>
             </Link>
@@ -166,6 +186,7 @@ export default function HomePage({ data, dataHero, dataImgGalery }: any) {
       </div>
       <FaqComp />
     </div>
+  </>
   );
 }
 

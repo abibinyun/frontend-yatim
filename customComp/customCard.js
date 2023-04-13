@@ -26,7 +26,7 @@ function CustomCard(data) {
               image: '',
             }}
             style={{ margin: '40px' }}
-            slugTitle={`https://api.yathim.or.id/donasi/${item.attributes.slugTitle}`}
+            slugTitle={`https://yathim.or.id/donasi/${item.attributes.slugTitle}`}
           />
         ))}
       </div>

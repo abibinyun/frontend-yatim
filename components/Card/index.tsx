@@ -86,9 +86,9 @@ export function CardComp({
         </Link>
       </Card.Section>
 
-      <Badge className={classes.rating} variant="gradient" gradient={{ from: 'yellow', to: 'red' }}>
+      {/* <Badge className={classes.rating} variant="gradient" gradient={{ from: 'yellow', to: 'red' }}>
         {rating}
-      </Badge>
+      </Badge> */}
 
       <Link {...linkProps} style={{ textDecoration: 'none' }}>
         <Text className={classes.title} fw={500}>

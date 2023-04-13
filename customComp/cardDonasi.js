@@ -16,15 +16,9 @@ export function CardDonasi() {
   const [valueInput, setValueInput] = useState('');
   const { ref, focused } = useFocusWithin();
   const uniqId = new Date().valueOf();
-  const orderId = `Yathim-Public-${uniqId}`;
-  // const name = 'abi test detail';
+  const orderId = `Yathim-${uniqId}`;
   const router = useRouter();
-  console.log('router : ', router);
   const params = router.query;
-  console.log('params : ', params);
-  const paramName = params.name;
-  const paramId = params.id;
-  console.log('params name : ', paramName, 'params id : ', paramId);
 
   const form = useForm({
     initialValues: {
@@ -46,7 +40,7 @@ export function CardDonasi() {
       body: JSON.stringify({
         amount: form.values.amount,
         order_id: orderId,
-        first_name: 'param test',
+        message: form.values.message,
         params,
       }),
     });
@@ -57,7 +51,7 @@ export function CardDonasi() {
 
   return (
     <>
-      <Card shadow="sm" padding="lg" radius="md" withBorder style={{ height: 400, color: 'green' }}>
+      <Card shadow="lg" padding="lg" radius="md" withBorder style={{ height: 400, color: 'green' }}>
         <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
           {!focused || !form.values.amount ? (
             <Card.Section>

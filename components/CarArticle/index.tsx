@@ -11,6 +11,8 @@
 import { Carousel } from '@mantine/carousel';
 import { useMediaQuery } from '@mantine/hooks';
 import { createStyles, Paper, Text, Title, Button, useMantineTheme, rem } from '@mantine/core';
+import { useRef } from 'react';
+import Autoplay from 'embla-carousel-autoplay';
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -117,7 +119,12 @@ export default function CarArComp({
   orientation,
   slideGap,
   controlOffSet,
+  // onMouseEnter,
+  // onMouseLeave,
+  // plugins
 }: any) {
+  
+  const autoplay = useRef(Autoplay({ delay: 2000 }));
   const theme = useMantineTheme();
   const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
   const slides = data.map((item) => (
@@ -135,6 +142,9 @@ export default function CarArComp({
       controlsOffset={controlOffSet}
       align="start"
       slidesToScroll={mobile ? 1 : 2}
+      plugins={[autoplay.current]}
+      onMouseEnter={autoplay.current.stop}
+      onMouseLeave={autoplay.current.reset}
     >
       {slides}
     </Carousel>
