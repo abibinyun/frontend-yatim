@@ -1,13 +1,3 @@
-// import { Carousel } from '@mantine/carousel';
-
-// function Demo() {
-//   return (
-//     <Carousel slideSize="70%" height={200} orientation="vertical" slideGap="xl" controlsOffset="xs">
-//       {/* ...slides */}
-//     </Carousel>
-//   );
-// }
-
 import { Carousel } from '@mantine/carousel';
 import { useMediaQuery } from '@mantine/hooks';
 import { createStyles, Paper, Text, Title, Button, useMantineTheme, rem } from '@mantine/core';
@@ -119,12 +109,9 @@ export default function CarArComp({
   orientation,
   slideGap,
   controlOffSet,
-  // onMouseEnter,
-  // onMouseLeave,
-  // plugins
 }: any) {
   
-  const autoplay = useRef(Autoplay({ delay: 2000 }));
+  const autoplay = useRef(Autoplay({ delay: 3000 }));
   const theme = useMantineTheme();
   const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
   const slides = data.map((item) => (

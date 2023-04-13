@@ -1,17 +1,17 @@
 export default async function handler(req, res) {
   const { order_id, amount, params, message } = req.body;
   const { relawan, donatur, email } = params;
-  const userName = !donatur ? '' : donatur;
-  const userContact = !email ? '' : email;
-  const nameRelawan = !relawan ? '' : relawan;
+  const userName = !donatur ? null : donatur;
+  const userContact = !email ? null : email;
+  const nameRelawan = !relawan ? null : relawan;
 
-  const url = 'https://app.sandbox.midtrans.com/snap/v1/transactions';
+  const url = 'https://app.midtrans.com/snap/v1/transactions';
   const options = {
     method: 'POST',
     headers: {
       accept: 'application/json',
       'content-type': 'application/json',
-      authorization: 'Basic U0ItTWlkLXNlcnZlci1xcTExRDhUd0JTc05XbzRadG92bHRpM3g6',
+      authorization: 'Basic TWlkLXNlcnZlci1JcFlKV1dSWDZnajFOMTNZV3VSeTRlZlM6',
     },
     body: JSON.stringify({
       transaction_details: { order_id: order_id, gross_amount: parseInt(amount) },
@@ -20,7 +20,7 @@ export default async function handler(req, res) {
         first_name: userName,
         last_name: nameRelawan,
         email: userContact,
-        phone: '085817154959',
+        phone: '',
       },
       custom_field1: message,
     }),

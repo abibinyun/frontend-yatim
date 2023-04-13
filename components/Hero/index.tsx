@@ -1,6 +1,7 @@
 import { createStyles, Overlay, Container, Title, Button, Text, rem, em } from '@mantine/core';
 import { useState } from 'react';
 import CardDonasi from '../../customComp/cardDonasi';
+import Link from 'next/link';
 
 const useStyles = createStyles((theme) => ({
   hero: {
@@ -102,12 +103,6 @@ export function HeroComp(props: {
 }) {
   const { classes } = useStyles();
   const { title, headline, txtButton } = props.data.data[0].attributes;
-  const [open, setOpen] = useState(false);
-
-  const clickBtn = (e: any) => {
-    e.preventDefault();
-    setOpen(!open);
-  };
 
   return (
     <>
@@ -122,16 +117,17 @@ export function HeroComp(props: {
           <Text className={classes.description} size="xl" mt="xl">
             {headline}
           </Text>
+          <Link href='/berbagi#card-donasi'>
           <Button
-            onClick={clickBtn}
             variant="gradient"
             gradient={{ from: 'teal', to: 'lime', deg: 105 }}
             size="xl"
             radius="xl"
             className={classes.control}
-          >
+            >
             {txtButton}
           </Button>
+          </Link>
         </Container>
       </div>
       <div className={classes.card2}>

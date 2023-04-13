@@ -32,7 +32,7 @@ export default function berbagi() {
       </div>
       {/* </Center> */}
       <Space h={50} />
-      <div style={{ marginLeft: 20, marginRight: 20 }}>
+      <div id="card-donasi" style={{ marginLeft: 20, marginRight: 20, paddingTop: 10 }}>
         <CardDonasi />
       </div>
     </div>
