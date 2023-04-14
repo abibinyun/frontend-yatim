@@ -1,5 +1,6 @@
-import { Card, Image, Text, ActionIcon, Badge, Group, createStyles, rem, em } from '@mantine/core';
+import { Card, Text, ActionIcon, Badge, Group, createStyles, rem, em } from '@mantine/core';
 import Link from 'next/link';
+import Image from 'next/legacy/image';
 import { WhatsappShareButton, FacebookShareButton, FacebookIcon, WhatsappIcon } from 'react-share';
 
 const useStyles = createStyles((theme) => ({
@@ -62,6 +63,8 @@ interface ArticleCardProps {
     image: string;
   };
   slugTitle: string;
+  height: any;
+  width: any
 }
 
 export function CardComp({
@@ -73,16 +76,21 @@ export function CardComp({
   author,
   rating,
   slugTitle,
+  height,
+  width,
   ...others
 }: ArticleCardProps & Omit<React.ComponentPropsWithoutRef<'div'>, keyof ArticleCardProps>) {
   const { classes, cx } = useStyles();
   const linkProps = { href: link };
+  const myLoader=({src, width}:any)=>{
+    return `http://strapi.yathim.or.id/${src}?w=${width}`;
+  }
 
   return (
     <Card withBorder radius="md" className={cx(classes.card, className)} {...others}>
       <Card.Section>
         <Link {...linkProps}>
-          <Image src={image} height={250} />
+          <Image loader={myLoader} src={`${image}`} height={height} width={width} />
         </Link>
       </Card.Section>
 
@@ -115,5 +123,5 @@ export function CardComp({
         </Group>
       </Group>
     </Card>
-  );
+  )
 }

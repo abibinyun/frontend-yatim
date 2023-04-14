@@ -1,13 +1,12 @@
-import { createStyles, Overlay, Container, Title, Button, Text, rem, em } from '@mantine/core';
+import { createStyles, Overlay, Container, Title, Button, Text, rem, em, Box } from '@mantine/core';
 import { useState } from 'react';
 import CardDonasi from '../../customComp/cardDonasi';
 import Link from 'next/link';
+import { Carousel } from '@mantine/carousel';
 
 const useStyles = createStyles((theme) => ({
   hero: {
     position: 'relative',
-    backgroundImage:
-      'url(http://strapi.yathim.or.id/uploads/sido_muncul_20180525_102729_001718b8f6.webp)',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   },
@@ -98,23 +97,45 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
+function carouselCard({image}:any) {
+  return(
+    <>
+      <Carousel
+      maw={320}
+      mx="auto"
+      withIndicators
+      height={200}
+      dragFree
+      slideGap="md"
+      align="start"
+    >
+      <Carousel.Slide>{image}</Carousel.Slide>
+    </Carousel>
+    </>
+  )
+}
+
 export function HeroComp(props: {
-  data: { data: { attributes: { title: any; headline: any; txtButton: any; imageHero: any } }[] };
+  data: { data: { attributes: { title: any; headline: any; txtButton: any; imageHero: any; showcase:any } }[] };
 }) {
   const { classes } = useStyles();
-  const { title, headline, txtButton } = props.data.data[0].attributes;
+  const { title, headline, txtButton, imageHero, showcase } = props.data.data[0].attributes;
+  const {url} = imageHero.data.attributes
+  const {data: urlShowcase} = showcase
+  
+  // console.log('hero', urlImageHero)
 
   return (
     <>
-      <div className={classes.hero}>
+      <Box component='div' className={classes.hero} sx={{ backgroundImage: `url(https://strapi.yathim.or.id/${url})` }}>
         <Overlay
-          gradient="linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, .65) 40%)"
+          gradient="linear-gradient(180deg, rgba(0, 0, 0, 0.25) 60%, rgba(0, 0, 0, .65) 95%)"
           opacity={1}
           zIndex={0}
         />
         <Container className={classes.container}>
           <Title className={classes.title}>{title}</Title>
-          <Text className={classes.description} size="xl" mt="xl">
+          <Text className={classes.description} size="lg" mt="lg">
             {headline}
           </Text>
           <Link href='/berbagi#card-donasi'>
@@ -129,7 +150,7 @@ export function HeroComp(props: {
           </Button>
           </Link>
         </Container>
-      </div>
+      </Box>
       <div className={classes.card2}>
         <CardDonasi />
       </div>

@@ -1,12 +1,13 @@
 import { Carousel } from '@mantine/carousel';
 import { useMediaQuery } from '@mantine/hooks';
 import { createStyles, Paper, Text, Title, Button, useMantineTheme, rem } from '@mantine/core';
-import { useRef } from 'react';
+import { Key, useRef } from 'react';
 import Autoplay from 'embla-carousel-autoplay';
 
 const useStyles = createStyles((theme) => ({
   card: {
     height: rem(440),
+    width: rem(440),
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -57,9 +58,9 @@ function Card({ image, title, category }: CardProps) {
           {title}
         </Title>
       </div>
-      <Button variant="white" color="dark">
+      {/* <Button variant="white" color="dark">
         Read article
-      </Button>
+      </Button> */}
     </Paper>
   );
 }
@@ -109,13 +110,17 @@ export default function CarArComp({
   orientation,
   slideGap,
   controlOffSet,
+  data
 }: any) {
-  
+  const change = data.map((item: any) => ({
+    ...item,
+    image: `https://strapi.yathim.or.id${item}`
+  }))
   const autoplay = useRef(Autoplay({ delay: 3000 }));
   const theme = useMantineTheme();
   const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
-  const slides = data.map((item) => (
-    <Carousel.Slide key={item.title}>
+  const slides = change.map((item: JSX.IntrinsicAttributes & CardProps, idx: Key | null | undefined) => (
+    <Carousel.Slide key={idx}>
       <Card {...item} />
     </Carousel.Slide>
   ));

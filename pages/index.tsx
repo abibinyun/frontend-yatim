@@ -100,7 +100,7 @@ export default function HomePage({ data, dataHero, dataImgGalery }: any) {
           <h1 style={{ textDecoration: 'underline' }}>Program Donasi</h1>
         </Center>
 
-        <CustomCard data={data} />
+        <CustomCard data={data} height={350} width={400} />
 
         <Center>
           <Link href="/donasi">
@@ -118,21 +118,22 @@ export default function HomePage({ data, dataHero, dataImgGalery }: any) {
         <Space h="md" />
       </div>
 
-      <div className={classes.wrapper}>
-        <div className="kegiatan" style={{ marginLeft: 10, marginRight: 10 }}>
+      {/* <div className={classes.wrapper}> */}
+        <Center className={classes.wrapper}>
+        <div className="kegiatan" style={{marginTop:15, marginLeft: 10, marginRight: 10 }}>
           <Center>
             <h1 style={{ textDecoration: 'underline' }}>Kegiatan</h1>
           </Center>
 
           <div>
-            <CarArComp
-              height={440}
-              controlOffSet={'xs'}
-              orientation={'vertical'}
-              slideGap={'xl'}
-              slideSize={'30%'}
-              imgArr={datas}
-              />
+              <CarArComp
+                height={440}
+                controlOffSet={'xs'}
+                orientation={'vertical'}
+                slideGap={'xl'}
+                slideSize={'50%'}
+                data={datar}
+                />
           </div>
 
           <Center>
@@ -165,7 +166,7 @@ export default function HomePage({ data, dataHero, dataImgGalery }: any) {
               orientation={'horizontal'}
               slideGap={'xl'}
               slideSize={'50%'}
-              imgArr={datas}
+              data={datar}
               />
           </div>
 
@@ -183,7 +184,8 @@ export default function HomePage({ data, dataHero, dataImgGalery }: any) {
             </Link>
           </Center>
         </div>
-      </div>
+        </Center>
+      {/* </div> */}
       <FaqComp />
     </div>
   </>
@@ -191,7 +193,7 @@ export default function HomePage({ data, dataHero, dataImgGalery }: any) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch('http://strapi.yathim.or.id/api/donasis?populate=*');
+  const res = await fetch('https://strapi.yathim.or.id/api/donasis?populate=*&pagination[limit]=6');
   const data = await res.json();
   const resHero = await fetch('http://strapi.yathim.or.id/api/home-pages?populate=*');
   const dataHero = await resHero.json();

@@ -20,9 +20,13 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const placeholder =
-  'It can’t help but hear a pin drop from over half a mile away, so it lives deep in the mountains where there aren’t many people or Pokémon.';
-
+const placeholder = {
+  satu : 'satu',
+  dua : 'dua',
+  tiga : 'tiga',
+  empat : 'empat',
+  lima: 'lima'
+}
 export function FaqComp() {
   const { classes } = useStyles();
   return (
@@ -40,29 +44,29 @@ export function FaqComp() {
             <Accordion chevronPosition="right" defaultValue="reset-password" variant="separated">
               <Accordion.Item className={classes.item} value="reset-password">
                 <Accordion.Control>How can I reset my password?</Accordion.Control>
-                <Accordion.Panel>{placeholder}</Accordion.Panel>
+                <Accordion.Panel>{placeholder.satu}</Accordion.Panel>
               </Accordion.Item>
 
               <Accordion.Item className={classes.item} value="another-account">
                 <Accordion.Control>Can I create more that one account?</Accordion.Control>
-                <Accordion.Panel>{placeholder}</Accordion.Panel>
+                <Accordion.Panel>{placeholder.dua}</Accordion.Panel>
               </Accordion.Item>
 
               <Accordion.Item className={classes.item} value="newsletter">
                 <Accordion.Control>How can I subscribe to monthly newsletter?</Accordion.Control>
-                <Accordion.Panel>{placeholder}</Accordion.Panel>
+                <Accordion.Panel>{placeholder.tiga}</Accordion.Panel>
               </Accordion.Item>
 
               <Accordion.Item className={classes.item} value="credit-card">
                 <Accordion.Control>
                   Do you store credit card information securely?
                 </Accordion.Control>
-                <Accordion.Panel>{placeholder}</Accordion.Panel>
+                <Accordion.Panel>{placeholder.empat}</Accordion.Panel>
               </Accordion.Item>
 
               <Accordion.Item className={classes.item} value="payment">
                 <Accordion.Control>What payment systems to you work with?</Accordion.Control>
-                <Accordion.Panel>{placeholder}</Accordion.Panel>
+                <Accordion.Panel>{placeholder.lima}</Accordion.Panel>
               </Accordion.Item>
             </Accordion>
           </Col>

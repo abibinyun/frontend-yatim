@@ -114,13 +114,15 @@ export default function Donasi({ data }) {
       <Center style={{ marginTop: 50, marginBottom: 50 }}>
         <h1>Program Donasi</h1>
       </Center>
-      <CustomCard data={data} />
+      <CustomCard data={data} height={350} width={400} />
     </>
   );
 }
 
 export async function getServerSideProps() {
-  const res = await fetch('http://strapi.yathim.or.id/api/donasis?populate=*');
+  const res = await fetch(
+    'http://strapi.yathim.or.id/api/donasis?pagination[page]=1&pagination[pageSize]=3&populate=*'
+  );
   const data = await res.json();
   // const resHero = await fetch('http://localhost:1337/api/home-pages?populate=*');
   // const dataHero = await resHero.json();

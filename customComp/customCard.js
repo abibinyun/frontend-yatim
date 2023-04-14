@@ -1,8 +1,7 @@
 import React from 'react';
 import { CardComp } from '../components/Card';
 
-function CustomCard(data) {
-  const { data: source } = data;
+function CustomCard({ data: source, height, width }) {
   return (
     <div>
       <div
@@ -16,7 +15,7 @@ function CustomCard(data) {
         {source.map((item) => (
           <CardComp
             key={item.id}
-            image={`http://strapi.yathim.or.id${item.attributes.thumbnail.data.attributes.url}`}
+            image={`${item.attributes.thumbnail.data.attributes.url}`}
             link={`donasi/${item.attributes.slugTitle}`}
             title={item.attributes.title}
             description={item.attributes.description}
@@ -27,6 +26,8 @@ function CustomCard(data) {
             }}
             style={{ margin: '40px' }}
             slugTitle={`https://yathim.or.id/donasi/${item.attributes.slugTitle}`}
+            height={height}
+            width={width}
           />
         ))}
       </div>
