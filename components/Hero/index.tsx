@@ -31,6 +31,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   title: {
+    paddingRight: 100,
     color: theme.white,
     fontSize: rem(60),
     fontWeight: 900,
@@ -97,37 +98,45 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-function carouselCard({image}:any) {
-  return(
+function carouselCard({ image }: any) {
+  return (
     <>
       <Carousel
-      maw={320}
-      mx="auto"
-      withIndicators
-      height={200}
-      dragFree
-      slideGap="md"
-      align="start"
-    >
-      <Carousel.Slide>{image}</Carousel.Slide>
-    </Carousel>
+        maw={320}
+        mx="auto"
+        withIndicators
+        height={200}
+        dragFree
+        slideGap="md"
+        align="start"
+      >
+        <Carousel.Slide>{image}</Carousel.Slide>
+      </Carousel>
     </>
-  )
+  );
 }
 
 export function HeroComp(props: {
-  data: { data: { attributes: { title: any; headline: any; txtButton: any; imageHero: any; showcase:any } }[] };
+  withButton: any;
+  data: {
+    data: {
+      attributes: { title: any; headline: any; txtButton: any; imageHero: any; showcase: any };
+    }[];
+  };
+  seeCardDonasi: any;
 }) {
   const { classes } = useStyles();
   const { title, headline, txtButton, imageHero, showcase } = props.data.data[0].attributes;
-  const {url} = imageHero.data.attributes
-  const {data: urlShowcase} = showcase
-  
-  // console.log('hero', urlImageHero)
+  const { url } = imageHero.data.attributes;
+  const { data: urlShowcase } = showcase;
 
   return (
     <>
-      <Box component='div' className={classes.hero} sx={{ backgroundImage: `url(https://strapi.yathim.or.id/${url})` }}>
+      <Box
+        component="div"
+        className={classes.hero}
+        sx={{ backgroundImage: `url(https://strapi.yathim.or.id/${url})` }}
+      >
         <Overlay
           gradient="linear-gradient(180deg, rgba(0, 0, 0, 0.25) 60%, rgba(0, 0, 0, .65) 95%)"
           opacity={1}
@@ -138,25 +147,31 @@ export function HeroComp(props: {
           <Text className={classes.description} size="lg" mt="lg">
             {headline}
           </Text>
-          <Link href='/berbagi#card-donasi'>
-          <Button
-            variant="gradient"
-            gradient={{ from: 'teal', to: 'lime', deg: 105 }}
-            size="xl"
-            radius="xl"
-            className={classes.control}
-            >
-            {txtButton}
-          </Button>
-          </Link>
+          {props.withButton && (
+            <Link href="/berbagi">
+              <Button
+                variant="gradient"
+                gradient={{ from: 'teal', to: 'lime', deg: 105 }}
+                size="xl"
+                radius="xl"
+                className={classes.control}
+              >
+                {txtButton}
+              </Button>
+            </Link>
+          )}
         </Container>
       </Box>
-      <div className={classes.card2}>
-        <CardDonasi />
-      </div>
-      <div className={classes.card}>
-        <CardDonasi />
-      </div>
+      {props.seeCardDonasi && (
+        <>
+          <div className={classes.card}>
+            <CardDonasi />
+          </div>
+          <div className={classes.card2}>
+            <CardDonasi />
+          </div>
+        </>
+      )}
     </>
   );
 }

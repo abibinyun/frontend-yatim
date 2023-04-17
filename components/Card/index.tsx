@@ -64,7 +64,7 @@ interface ArticleCardProps {
   };
   slugTitle: string;
   height: any;
-  width: any
+  width: any;
 }
 
 export function CardComp({
@@ -82,9 +82,9 @@ export function CardComp({
 }: ArticleCardProps & Omit<React.ComponentPropsWithoutRef<'div'>, keyof ArticleCardProps>) {
   const { classes, cx } = useStyles();
   const linkProps = { href: link };
-  const myLoader=({src, width}:any)=>{
-    return `http://strapi.yathim.or.id/${src}?w=${width}`;
-  }
+  const myLoader = ({ src, width }: any) => {
+    return `https://strapi.yathim.or.id/${src}?w=${width}`;
+  };
 
   return (
     <Card withBorder radius="md" className={cx(classes.card, className)} {...others}>
@@ -123,5 +123,5 @@ export function CardComp({
         </Group>
       </Group>
     </Card>
-  )
+  );
 }

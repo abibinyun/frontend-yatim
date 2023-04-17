@@ -5,7 +5,7 @@ export default async function handler(req, res) {
   const userContact = !email ? null : email;
   const nameRelawan = !relawan ? null : relawan;
 
-  const url = 'https://app.midtrans.com/snap/v1/transactions';
+  const url = `${process.env.NEXT_PUBLIC_MIDTRANS_BASE_URL}/snap/v1/transactions`;
   const options = {
     method: 'POST',
     headers: {

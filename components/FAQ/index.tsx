@@ -1,5 +1,5 @@
-import { createStyles, Image, Accordion, Grid, Col, Container, Title } from '@mantine/core';
-import image from '../../public/asset/faq-image-yathim.or.id.svg';
+import { createStyles, Accordion, Grid, Col, Container, Title } from '@mantine/core';
+import Image from 'next/legacy/image';
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -20,21 +20,24 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const placeholder = {
-  satu : 'satu',
-  dua : 'dua',
-  tiga : 'tiga',
-  empat : 'empat',
-  lima: 'lima'
-}
-export function FaqComp() {
+export function FaqComp({ data }: any) {
   const { classes } = useStyles();
+  const myLoader = ({ src, width, height }: any) => {
+    return `${src}?w=${width}&h=${height}`;
+  };
   return (
     <div className={classes.wrapper}>
       <Container size="lg">
         <Grid id="faq-grid" gutter={50}>
           <Col span={12} md={6}>
-            <Image src={image.src} alt="Frequently Asked Questions" />
+            <Image
+              loader={myLoader}
+              src={`https://ui.mantine.dev/_next/static/media/image.b0c2306b.svg`}
+              width={500}
+              height={400}
+              quality="100"
+              alt="Frequently Asked Questions"
+            />
           </Col>
           <Col span={12} md={6}>
             <Title order={2} ta="left" className={classes.title}>
@@ -43,30 +46,28 @@ export function FaqComp() {
 
             <Accordion chevronPosition="right" defaultValue="reset-password" variant="separated">
               <Accordion.Item className={classes.item} value="reset-password">
-                <Accordion.Control>How can I reset my password?</Accordion.Control>
-                <Accordion.Panel>{placeholder.satu}</Accordion.Panel>
-              </Accordion.Item>
-
-              <Accordion.Item className={classes.item} value="another-account">
-                <Accordion.Control>Can I create more that one account?</Accordion.Control>
-                <Accordion.Panel>{placeholder.dua}</Accordion.Panel>
+                <Accordion.Control>{data[0].question}</Accordion.Control>
+                <Accordion.Panel>{data[0].answer}</Accordion.Panel>
               </Accordion.Item>
 
               <Accordion.Item className={classes.item} value="newsletter">
-                <Accordion.Control>How can I subscribe to monthly newsletter?</Accordion.Control>
-                <Accordion.Panel>{placeholder.tiga}</Accordion.Panel>
+                <Accordion.Control>{data[1].question}</Accordion.Control>
+                <Accordion.Panel>{data[1].answer}</Accordion.Panel>
               </Accordion.Item>
 
               <Accordion.Item className={classes.item} value="credit-card">
-                <Accordion.Control>
-                  Do you store credit card information securely?
-                </Accordion.Control>
-                <Accordion.Panel>{placeholder.empat}</Accordion.Panel>
+                <Accordion.Control>{data[2].question}</Accordion.Control>
+                <Accordion.Panel>{data[2].answer}</Accordion.Panel>
+              </Accordion.Item>
+
+              <Accordion.Item className={classes.item} value="tes">
+                <Accordion.Control>{data[3].question}</Accordion.Control>
+                <Accordion.Panel>{data[3].answer}</Accordion.Panel>
               </Accordion.Item>
 
               <Accordion.Item className={classes.item} value="payment">
-                <Accordion.Control>What payment systems to you work with?</Accordion.Control>
-                <Accordion.Panel>{placeholder.lima}</Accordion.Panel>
+                <Accordion.Control>{data[4].question}</Accordion.Control>
+                <Accordion.Panel>{data[4].answer}</Accordion.Panel>
               </Accordion.Item>
             </Accordion>
           </Col>

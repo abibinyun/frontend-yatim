@@ -12,9 +12,9 @@ function CustomCard({ data: source, height, width }) {
           alignItems: 'stretch',
         }}
       >
-        {source.map((item) => (
+        {source.map((item, idx) => (
           <CardComp
-            key={item.id}
+            key={idx}
             image={`${item.attributes.thumbnail.data.attributes.url}`}
             link={`donasi/${item.attributes.slugTitle}`}
             title={item.attributes.title}

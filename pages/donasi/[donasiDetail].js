@@ -10,12 +10,11 @@ export default function DonasiDetail({ data }) {
   const { data: datas } = data;
   const { attributes } = datas[0];
   const router = useRouter();
-  console.log(attributes);
   return (
     <>
       <Head>
         <title>{` ${attributes.title} | Yathim.or.id | Yayasan Taman Harapan Insan Mulia`}</title>
-        <meta property="og:url" content={`https://yathim.or.id/donasi/${attributes.slugTitle}`} />
+        <meta property="og:url" content={`https://strapi.yathim.or.id/${attributes.slugTitle}`} />
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
@@ -31,7 +30,7 @@ export default function DonasiDetail({ data }) {
         <meta property="twitter:domain" content="yathim.or.id" />
         <meta
           property="twitter:url"
-          content={`https://yathim.or.id/donasi/${attributes.slugTitle}`}
+          content={`https://strapi.yathim.or.id/donasi/${attributes.slugTitle}`}
         />
         <meta
           name="twitter:title"
@@ -105,7 +104,7 @@ export default function DonasiDetail({ data }) {
           <AspectRatio ratio={1080 / 720} maw={900} mx="auto" mb={80}>
             <Image
               alt="donasi-anak-yatim"
-              src={`http://strapi.yathim.or.id${attributes.thumbnail.data.attributes.url}`}
+              src={`https://strapi.yathim.or.id${attributes.thumbnail.data.attributes.url}`}
               layout="fill"
               objectFit="contain"
               unoptimized={true}
@@ -133,7 +132,7 @@ export async function getServerSideProps(context) {
   const { params } = context;
   const { donasiDetail } = params;
   const res = await fetch(
-    `http://strapi.yathim.or.id/api/donasis?filters[slugTitle][$eq]=${donasiDetail}&populate=*`
+    `https://strapi.yathim.or.id/api/donasis?filters[slugTitle][$eq]=${donasiDetail}&populate=*`
   );
   const data = await res.json();
   return {

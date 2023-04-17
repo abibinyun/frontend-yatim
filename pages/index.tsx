@@ -1,4 +1,4 @@
-import { Center, Space, Button, createStyles } from '@mantine/core';
+import { Center, Space, Button, createStyles, rem, Badge } from '@mantine/core';
 import Link from 'next/link';
 import { FaqComp } from '../components/FAQ';
 import { FeaturedComp } from '../components/Featured';
@@ -55,160 +55,185 @@ const statsData = [
   },
 ];
 
-export default function HomePage({ data, dataHero, dataImgGalery }: any) {
-  const { classes } = useStyle();
+export default function HomePage({ data, dataHero, dataImgGalery, dataFAQ }: any) {
+  const { imageHero, headline, title } = dataHero.data[0].attributes;
+  const { data: FAQdata } = dataFAQ;
   const rawDtKurban = dataImgGalery.data[0].attributes.img_kurban.data;
   const datas = rawDtKurban.map((item: { attributes: any }) => item.attributes);
   const datar = datas.map((item: { url: any }) => item.url);
-  const {imageHero, headline, title} = dataHero.data[0].attributes
-  const imgHero = imageHero.data.attributes.url
+  const imgHero = imageHero.data.attributes.url;
+  const mapFAQ = FAQdata.map((item: { attributes: any }) => item.attributes);
+  const { classes } = useStyle();
 
   return (
     <>
       <Head>
-        <meta property="og:url" content="https://yathim.or.id/" />
+        <meta property="og:url" content={`https://strapi.yathim.or.id`} />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Yathim.or.id | Yayasan Taman Harapan Insan Mulia" />
         <meta property="og:description" content={`${headline}|${title}`} />
         <meta property="og:image" content={`https://strapi.yathim.or.id${imgHero}`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content="yathim.or.id" />
-        <meta property="twitter:url" content="https://yathim.or.id/" />
+        <meta property="twitter:url" content={`https://strapi.yathim.or.id`} />
         <meta name="twitter:title" content="Yathim.or.id | Yayasan Taman Harapan Insan Mulia" />
         <meta name="twitter:description" content={`${headline}|${title}`} />
         <meta name="twitter:image" content={`https://strapi.yathim.or.id${imgHero}`} />
-	   </Head>
-    <div className={classes.root}>
-    <link itemProp="thumbnailUrl" href={`https://strapi.yathim.or.id${imgHero}`} /> 
-        <span itemProp="thumbnail" itemScope itemType="http://schema.org/ImageObject" /> 
+      </Head>
+
+      <div className={classes.root}>
+        <link itemProp="thumbnailUrl" href={`https://strapi.yathim.or.id${imgHero}`} />
+        <span itemProp="thumbnail" itemScope itemType="http://schema.org/ImageObject" />
         <link itemProp="url" href={`https://strapi.yathim.or.id${imgHero}`} />
-      <div>
-        <HeroComp data={dataHero} />
-        <Space h={100} />
-      </div>
-      <Center>
-        <div className="feature-section" style={{ marginTop: -50 }}>
-          <FeaturedComp />
+        {/* Hero Component */}
+        <div>
+          <HeroComp data={dataHero} seeCardDonasi={true} withButton={true} />
           <Space h={100} />
         </div>
-      </Center>
-      <div style={{ marginLeft: 50, marginRight: 50, marginBottom: 100 }}>
-        <StatsComp data={statsData} />
-      </div>
-      <div className="program-donasi">
+        {/* Featured Component */}
         <Center>
-          <h1 style={{ textDecoration: 'underline' }}>Program Donasi</h1>
+          <div className="feature-section" style={{ marginTop: -50 }}>
+            <FeaturedComp />
+            <Space h={100} />
+          </div>
         </Center>
-
-        <CustomCard data={data} height={350} width={400} />
-
-        <Center>
-          <Link href="/donasi">
-            <Button
-              className={classes.control}
-              radius="xl"
-              size="xl"
-              variant="gradient"
-              gradient={{ from: 'teal', to: 'lime', deg: 105 }}
-              >
-              Lihat semua donasi
-            </Button>
-          </Link>
-        </Center>
-        <Space h="md" />
-      </div>
-
-      {/* <div className={classes.wrapper}> */}
-        <Center className={classes.wrapper}>
-        <div className="kegiatan" style={{marginTop:15, marginLeft: 10, marginRight: 10 }}>
+        {/* Status Component */}
+        <div style={{ marginLeft: 50, marginRight: 50, marginBottom: 100 }}>
+          <StatsComp data={statsData} />
+        </div>
+        {/* Program Donasi */}
+        <div className="program-donasi">
           <Center>
-            <h1 style={{ textDecoration: 'underline' }}>Kegiatan</h1>
+            <Badge color="teal" size="xl">
+              <h3>Program Donasi</h3>
+            </Badge>
           </Center>
 
-          <div>
-              <CarArComp
-                height={440}
-                controlOffSet={'xs'}
-                orientation={'vertical'}
-                slideGap={'xl'}
-                slideSize={'50%'}
-                data={datar}
-                />
-          </div>
+          <CustomCard data={data} height={350} width={400} />
 
           <Center>
-            <Link href="/galery">
+            <Link href="/donasi">
               <Button
                 className={classes.control}
                 radius="xl"
                 size="xl"
                 variant="gradient"
                 gradient={{ from: 'teal', to: 'lime', deg: 105 }}
-                >
-                Lihat semua kegiatan
+              >
+                Lihat semua donasi
               </Button>
             </Link>
           </Center>
           <Space h="md" />
         </div>
+        <Center className={classes.wrapper}>
+          {/* Kegiatan */}
+          <div className="kegiatan" style={{ marginTop: 17, marginLeft: 10, marginRight: 10 }}>
+            <Center sx={{ marginBottom: 50 }}>
+              <Badge color="teal" size="xl">
+                <h3>Kegiatan</h3>
+              </Badge>
+            </Center>
 
-        <Space w="md" />
-
-        <div className={classes.beritaArtikel}>
-          <Center>
-            <h1 style={{ textDecoration: 'underline' }}>Berita & Artikel Terbaru</h1>
-          </Center>
-
-          <div>
-            <CarArComp
-              height={440}
-              controlOffSet={'xs'}
-              orientation={'horizontal'}
-              slideGap={'xl'}
-              slideSize={'50%'}
-              data={datar}
+            <div>
+              <CarArComp
+                height={400}
+                controlOffSet={'xs'}
+                orientation={'vertical'}
+                slideGap={'xl'}
+                slideSize={'50%'}
+                data={datar}
+                mWidth={rem(400)}
+                mHeight={rem(400)}
+                loop={true}
               />
-          </div>
+            </div>
 
-          <Center>
-            <Link href="/blog">
-              <Button
-                className={classes.control}
-                radius="xl"
-                size="xl"
-                variant="gradient"
-                gradient={{ from: 'teal', to: 'lime', deg: 105 }}
+            <Center>
+              <Link href="/galery">
+                <Button
+                  className={classes.control}
+                  radius="xl"
+                  size="xl"
+                  variant="gradient"
+                  gradient={{ from: 'teal', to: 'lime', deg: 105 }}
                 >
-                Lihat semua berita dan artikel
-              </Button>
-            </Link>
-          </Center>
-        </div>
+                  Lihat semua kegiatan
+                </Button>
+              </Link>
+            </Center>
+            <Space h="md" />
+          </div>
+          <Space w="md" />
+          {/* Berita & Artikel */}
+          <div className={classes.beritaArtikel}>
+            <Center sx={{ marginBottom: 50 }}>
+              <Badge color="teal" size="xl">
+                <h3>Berita dan Artikel</h3>
+              </Badge>
+            </Center>
+
+            <div>
+              <CarArComp
+                height={440}
+                controlOffSet={'xs'}
+                orientation={'horizontal'}
+                slideGap={'xl'}
+                slideSize={'10%'}
+                data={datar}
+                mWidth={rem(280)}
+                mHeight={rem(400)}
+                loop={true}
+                seeButton={true}
+              />
+            </div>
+
+            <Center>
+              <Link href="/blog">
+                <Button
+                  className={classes.control}
+                  sx={{ marginTop: -15 }}
+                  radius="xl"
+                  size="xl"
+                  variant="gradient"
+                  gradient={{ from: 'teal', to: 'lime', deg: 105 }}
+                >
+                  Lihat semua berita dan artikel
+                </Button>
+              </Link>
+            </Center>
+          </div>
         </Center>
-      {/* </div> */}
-      <FaqComp />
-    </div>
-  </>
+        {/* FAQ component */}
+        <FaqComp data={mapFAQ} />
+      </div>
+    </>
   );
 }
 
 export async function getServerSideProps() {
-  const res = await fetch('https://strapi.yathim.or.id/api/donasis?populate=*&pagination[limit]=6');
-  const data = await res.json();
-  const resHero = await fetch('http://strapi.yathim.or.id/api/home-pages?populate=*');
-  const dataHero = await resHero.json();
-  const resImgGalery = await fetch('http://strapi.yathim.or.id/api/galeries?populate=*');
+  const fetchDonasi = await fetch(
+    `https://strapi.yathim.or.id/api/donasis?populate=*&pagination[limit]=6`
+  );
+  const dataDonasi = await fetchDonasi.json();
+  const fetchHero = await fetch(`https://strapi.yathim.or.id/api/home-pages?populate=*`);
+  const dataHero = await fetchHero.json();
+  const resImgGalery = await fetch(`https://strapi.yathim.or.id/api/galeries?populate=*`);
   const dataImgGalery = await resImgGalery.json();
-  if (!data || !dataHero) {
+  const fetchFAQ = await fetch(`https://strapi.yathim.or.id/api/faqs?populate=*`);
+  const dataFAQ = await fetchFAQ.json();
+
+  if (!dataDonasi || !dataHero || !dataImgGalery || !dataFAQ) {
     return {
       notFound: true,
     };
   }
   return {
     props: {
-      data: data.data,
+      data: dataDonasi.data,
       dataHero,
       dataImgGalery,
+      dataFAQ,
     },
   };
 }

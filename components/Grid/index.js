@@ -18,7 +18,7 @@ const useStyles = createStyles((theme) => ({
 export function ArticlesCardsGrid({ data, width, height }) {
   const { classes } = useStyles();
   const myLoader = ({ src, width }) => {
-    return `http://strapi.yathim.or.id/${src}?w=${width}`;
+    return `https://strapi.yathim.or.id/${src}?w=${width}`;
   };
   return (
     <div>

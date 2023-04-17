@@ -1,15 +1,15 @@
 import React from 'react';
 import CustomCard from '../../customComp/customCard';
-import { Center, Image } from '@mantine/core';
-import { Title, Text, Container, Overlay, createStyles, rem } from '@mantine/core';
+import { HeroComp } from '../../components/Hero';
+import { Badge, Center } from '@mantine/core';
+import { createStyles, rem } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
     position: 'relative',
     paddingTop: rem(180),
     paddingBottom: rem(130),
-    backgroundImage:
-      'url(http://strapi.yathim.or.id/uploads/1638774020537_1_1024x768_aeea414878.jpg)',
+    backgroundImage: `url(https://strapi.yathim.or.id/uploads/1638774020537_1_1024x768_aeea414878.jpg)`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
 
@@ -93,26 +93,17 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export default function Donasi({ data }) {
+export default function Donasi({ data, dataHero }) {
   const { classes } = useStyles();
   return (
     <>
-      <div className={classes.wrapper}>
-        <Overlay color="#000" opacity={0.65} zIndex={1} />
-        <div className={classes.inner}>
-          <Title className={classes.title}>
-            <Text component="span" inherit className={classes.highlight}></Text>
-          </Title>
-
-          <Container size={640}>
-            <Text size="lg" className={classes.description}></Text>
-          </Container>
-          <div className={classes.controls}></div>
-        </div>
-        <div></div>
+      <div style={{ marginTop: -200 }}>
+        <HeroComp data={dataHero} seeCardDonasi={false} withButton={false} />
       </div>
-      <Center style={{ marginTop: 50, marginBottom: 50 }}>
-        <h1>Program Donasi</h1>
+      <Center sx={{ marginTop: 50 }}>
+        <Badge color="teal" size="xl">
+          <h2>Program Donasi</h2>
+        </Badge>
       </Center>
       <CustomCard data={data} height={350} width={400} />
     </>
@@ -121,12 +112,14 @@ export default function Donasi({ data }) {
 
 export async function getServerSideProps() {
   const res = await fetch(
-    'http://strapi.yathim.or.id/api/donasis?pagination[page]=1&pagination[pageSize]=3&populate=*'
+    `https://strapi.yathim.or.id/api/donasis?pagination[page]=1&pagination[pageSize]=10&populate=*`
   );
   const data = await res.json();
-  // const resHero = await fetch('http://localhost:1337/api/home-pages?populate=*');
-  // const dataHero = await resHero.json();
-  if (!data) {
+  const fetchHero = await fetch(
+    `http://localhost:1337/api/home-pages?filters[id][$eq]=2&populate=*`
+  );
+  const dataHero = await fetchHero.json();
+  if (!data || !dataHero) {
     return {
       notFound: true,
     };
@@ -134,7 +127,7 @@ export async function getServerSideProps() {
   return {
     props: {
       data: data.data,
-      // dataHero,
+      dataHero,
     },
   };
 }
