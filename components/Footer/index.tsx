@@ -1,8 +1,8 @@
-import { createStyles, Anchor, Group, ActionIcon, rem, Container, em } from '@mantine/core';
-import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from '@tabler/icons-react';
+import { createStyles, Group, ActionIcon, rem, Container, em, Badge } from '@mantine/core';
+import { IconBrandFacebook, IconBrandGmail , IconBrandYoutube, IconBrandInstagram } from '@tabler/icons-react';
 import Image from 'next/legacy/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
-// import { MouseEvent } from 'react';
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -58,16 +58,11 @@ export function FooterComp({ links }: FooterCenteredProps) {
   const { classes } = useStyles();
   const router = useRouter();
   const items = links.map((link) => (
-    <Anchor<'a'>
-      color="dimmed"
-      key={link.label}
-      href={link.link}
-      sx={{ lineHeight: 1 }}
-      onClick={(event) => event.preventDefault()}
-      size="sm"
-    >
-      {link.label}
-    </Anchor>
+    <Link href={link.link}>
+      <Badge color="green" size="x">
+        <p>{link.label}</p>
+      </Badge>
+    </Link>
   ));
   const logoClick = (e: any) => {
     e.preventDefault;
@@ -91,15 +86,24 @@ export function FooterComp({ links }: FooterCenteredProps) {
           <Group className={classes.links}>{items}</Group>
 
           <Group spacing="xs" position="right" noWrap>
-            <ActionIcon size="lg" variant="default" radius="xl">
-              <IconBrandTwitter size="1.05rem" stroke={1.5} />
-            </ActionIcon>
-            <ActionIcon size="lg" variant="default" radius="xl">
-              <IconBrandYoutube size="1.05rem" stroke={1.5} />
-            </ActionIcon>
-            <ActionIcon size="lg" variant="default" radius="xl">
-              <IconBrandInstagram size="1.05rem" stroke={1.5} />
-            </ActionIcon>
+            <Link href={'https://www.facebook.com/thimfoundation/'} target="_blank">
+              <ActionIcon size="lg" variant="default" radius="xl">
+                <IconBrandFacebook size="1.05rem" stroke={1.5} />
+              </ActionIcon>
+            </Link>
+            <Link href={'https://www.youtube.com/@yathimofficial9224/videos'} target="_blank">
+              <ActionIcon size="lg" variant="default" radius="xl">
+                <IconBrandYoutube size="1.05rem" stroke={1.5} />
+              </ActionIcon>
+            </Link>
+            <Link
+              href={'https://www.instagram.com/yathim.official/?igshid=YmMyMTA2M2Y%3D'}
+              target="_blank"
+            >
+              <ActionIcon size="lg" variant="default" radius="xl">
+                <IconBrandInstagram size="1.05rem" stroke={1.5} />
+              </ActionIcon>
+            </Link>
           </Group>
         </div>
       </Container>

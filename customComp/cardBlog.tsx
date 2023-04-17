@@ -25,7 +25,7 @@ export default function Blog({ dataHero, dataBerita }: any) {
   const mapData = data.map((item: any) => item);
   const { classes } = useStyles();
   const myLoader = ({ src, width }: any) => {
-    return `https://localhost:1337${src}?w=${width}`;
+    return `https://strapi.yathim.or.id${src}?w=${width}`;
   };
   console.log('data berita : ', mapData);
   const cards = mapData.map((article: any, idx: any) => (
@@ -68,10 +68,10 @@ export default function Blog({ dataHero, dataBerita }: any) {
 
 export async function getServerSideProps() {
   const fetchHero = await fetch(
-    `http://localhost:1337/api/home-pages?filters[id][$eq]=4&populate=*`
+    `http://strapi.yathim.or.id/api/home-pages?filters[id][$eq]=4&populate=*`
   );
   const dataHero = await fetchHero.json();
-  const fetchBerita = await fetch(`http://localhost:1337/api/beritas?populate=*`);
+  const fetchBerita = await fetch(`http://strapi.yathim.or.id/api/beritas?populate=*`);
   const dataBerita = await fetchBerita.json();
   if (!dataHero || !dataBerita) {
     return {

@@ -1,7 +1,7 @@
 import { Center, Space, Button, createStyles, rem, Badge } from '@mantine/core';
 import Link from 'next/link';
 import { FaqComp } from '../components/FAQ';
-import { FeaturedComp } from '../components/Featured';
+import { FeaturesComp } from '../components/Featured';
 import { HeroComp } from '../components/Hero';
 import CustomCard from '../customComp/customCard';
 import CarArComp from '../components/CarArticle';
@@ -93,7 +93,7 @@ export default function HomePage({ data, dataHero, dataImgGalery, dataFAQ }: any
         {/* Featured Component */}
         <Center>
           <div className="feature-section" style={{ marginTop: -50 }}>
-            <FeaturedComp />
+            <FeaturesComp />
             <Space h={100} />
           </div>
         </Center>
@@ -104,7 +104,7 @@ export default function HomePage({ data, dataHero, dataImgGalery, dataFAQ }: any
         {/* Program Donasi */}
         <div className="program-donasi">
           <Center>
-            <Badge color="teal" size="xl">
+            <Badge color="green" size="xl">
               <h3>Program Donasi</h3>
             </Badge>
           </Center>
@@ -130,7 +130,7 @@ export default function HomePage({ data, dataHero, dataImgGalery, dataFAQ }: any
           {/* Kegiatan */}
           <div className="kegiatan" style={{ marginTop: 17, marginLeft: 10, marginRight: 10 }}>
             <Center sx={{ marginBottom: 50 }}>
-              <Badge color="teal" size="xl">
+              <Badge color="green" size="xl">
                 <h3>Kegiatan</h3>
               </Badge>
             </Center>
@@ -168,7 +168,7 @@ export default function HomePage({ data, dataHero, dataImgGalery, dataFAQ }: any
           {/* Berita & Artikel */}
           <div className={classes.beritaArtikel}>
             <Center sx={{ marginBottom: 50 }}>
-              <Badge color="teal" size="xl">
+              <Badge color="green" size="xl">
                 <h3>Berita dan Artikel</h3>
               </Badge>
             </Center>

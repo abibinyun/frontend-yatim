@@ -45,7 +45,7 @@ export default function CardGalery({ data, title }: any) {
   return (
     <>
       <Center sx={{ marginBottom: 50, marginTop: 100 }}>
-        <Badge color="teal" size="xl">
+        <Badge color="green" size="xl">
           <h2>{title}</h2>
         </Badge>
       </Center>

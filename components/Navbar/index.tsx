@@ -24,6 +24,7 @@ const useStyles = createStyles((theme) => ({
   root: {
     position: 'sticky',
     zIndex: 10,
+    marginTop: -20
   },
 
   dropdown: {

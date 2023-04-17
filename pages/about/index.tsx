@@ -13,7 +13,7 @@ export default function About({ dataHero }: any) {
 
 export async function getServerSideProps() {
   const fetchHero = await fetch(
-    `http://localhost:1337/api/home-pages?filters[id][$eq]=5&populate=*`
+    `http://strapi.yathim.or.id/api/home-pages?filters[id][$eq]=5&populate=*`
   );
   const dataHero = await fetchHero.json();
   if (!dataHero) {

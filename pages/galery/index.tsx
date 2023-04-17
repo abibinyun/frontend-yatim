@@ -1,3 +1,4 @@
+import { rem } from '@mantine/core';
 import { HeroComp } from '../../components/Hero';
 import CardGalery from '../../customComp/cardGalery';
 
@@ -10,7 +11,7 @@ export default function GaleryPage({ data, dataHero }: any) {
   return (
     <>
       <div style={{ marginTop: -200 }}>
-        <HeroComp data={dataHero} seeCardDonasi={false} withButton={false} />
+        <HeroComp data={dataHero} seeCardDonasi={false} withButton={false} dataMargin={rem(200)} />
       </div>
       <CardGalery data={kurban} title="Kurban" />
       <CardGalery data={santunan} title="Santunan" />
@@ -22,7 +23,7 @@ export async function getServerSideProps() {
   const res = await fetch(`https://strapi.yathim.or.id/api/galeries?populate=*`);
   const data = await res.json();
   const fetchHero = await fetch(
-    `http://localhost:1337/api/home-pages?filters[id][$eq]=3&populate=*`
+    `http://strapi.yathim.or.id/api/home-pages?filters[id][$eq]=3&populate=*`
   );
   const dataHero = await fetchHero.json();
   if (!data || !dataHero) {
