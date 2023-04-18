@@ -1,17 +1,23 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 
-export default function BlogId() {
+export default function BlogId({data}:any) {
   const router = useRouter();
-  const { blogId } = router.query;
-  return <div>Blog Dynamic Route: {blogId}</div>;
+  const { blogDetail } = router.query;
+  return (
+      <div>
+        <div style={{ marginTop:200 }}>
+          Blog Dynamic Route: {blogDetail}
+        </div>
+      </div>
+  );
 }
 
 export async function getServerSideProps(context: { params: any }) {
   const { params } = context;
-  const { donasiDetail } = params;
+  const { blogDetail } = params;
   const res = await fetch(
-    `https://strapi.yathim.or.id/api/donasis?filters[slugTitle][$eq]=${donasiDetail}&populate=*`
+    `http://localhost:1337/api/beritas?filters[slugTitle][$eq]=${blogDetail}&populate=*`
   );
   const data = await res.json();
   return {

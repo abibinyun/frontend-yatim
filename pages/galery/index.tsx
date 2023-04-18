@@ -2,31 +2,26 @@ import { rem } from '@mantine/core';
 import { HeroComp } from '../../components/Hero';
 import CardGalery from '../../customComp/cardGalery';
 
-export default function GaleryPage({ data, dataHero }: any) {
-  // console.log(data)
-  const map = data.map((item, idx) => item)
-  const map1 = map.map(item => item.attributes)
-  console.log(map1)
-  // const rawDtKurban = data[0].attributes.img_kurban.data;
-  // const kurban = rawDtKurban.map((item: { attributes: any }) => item.attributes);
-  // const rawDtSantunan = data[0].attributes.img_santunan.data;
-  // const santunan = rawDtSantunan.map((item: { attributes: any }) => item.attributes);
+export default function GaleryPage({ data, dataHero, dataT }: any) {
+  const map = data.map((item: any, idx: any) => item)
+  const map1 = map.map((item: { attributes: { img: { data: any; }; }; }, idx: any) => item.attributes.img.data)
+  const map2 = map1.map((item: any[], idx: any) => (item.map((item: { attributes: { url: any; }; }, idx: any) => item.attributes.url)))
 
   return (
     <>
-      {/* <div style={{ marginTop: -200 }}>
-        <HeroComp data={dataHero} seeCardDonasi={false} withButton={false} dataMargin={rem(200)} />
+      <div style={{ marginTop: -200 }}>
+        <HeroComp data={dataHero} seeCardDonasi={false} withButton={false} />
       </div>
-      <CardGalery data={kurban} title="Kurban" />
-      <CardGalery data={santunan} title="Santunan" /> */}
-      tes
+      <CardGalery data={map2} title="Santunan" />
     </>
   );
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(`http://localhost:1337/api/galeries?populate=*`);
-  const data = await res.json();
+  const resGalery = await fetch(`http://localhost:1337/api/galeries?fields[0]=title&populate[img][fields][0]=url`);
+  const data = await resGalery.json();
+  const resTitleGalery = await fetch(`http://localhost:1337/api/galeries?fields[0]=title`)
+  const dataTitle = await resTitleGalery.json()
   const fetchHero = await fetch(
     `http://strapi.yathim.or.id/api/home-pages?filters[id][$eq]=3&populate=*`
   );
@@ -40,6 +35,7 @@ export async function getServerSideProps() {
     props: {
       data: data.data,
       dataHero,
+      dataT: dataTitle ,
     },
   };
 }

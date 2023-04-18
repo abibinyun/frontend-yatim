@@ -57,8 +57,8 @@ interface FooterCenteredProps {
 export function FooterComp({ links }: FooterCenteredProps) {
   const { classes } = useStyles();
   const router = useRouter();
-  const items = links.map((link) => (
-    <Link href={link.link}>
+  const items = links.map((link, idx) => (
+    <Link key={idx} href={link.link}>
       <Badge color="green" size="x">
         <p>{link.label}</p>
       </Badge>
