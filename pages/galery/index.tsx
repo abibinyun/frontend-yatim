@@ -23,13 +23,13 @@ export default function GaleryPage({ data, dataHero, dataT }: any) {
 
 export async function getServerSideProps() {
   const resGalery = await fetch(
-    `http://strapi.yathim.or.id/api/galeries?fields[0]=title&populate[img][fields][0]=url`
+    `https://strapi.yathim.or.id/api/galeries?fields[0]=title&populate[img][fields][0]=url`
   );
   const data = await resGalery.json();
-  const resTitleGalery = await fetch(`http://strapi.yathim.or.id/api/galeries?fields[0]=title`);
+  const resTitleGalery = await fetch(`https://strapi.yathim.or.id/api/galeries?fields[0]=title`);
   const dataTitle = await resTitleGalery.json();
   const fetchHero = await fetch(
-    `http://strapi.yathim.or.id/api/home-pages?filters[id][$eq]=3&populate=*`
+    `https://strapi.yathim.or.id/api/home-pages?filters[id][$eq]=3&populate=*`
   );
   const dataHero = await fetchHero.json();
   if (!data || !dataHero) {

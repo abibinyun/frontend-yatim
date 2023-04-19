@@ -15,14 +15,7 @@ const nextConfig = {
   /* config options here */
   images: {
     // loader: 'akamai',
-    remotePatterns: [
-      {
-        protocol: 'http',
-        hostname: 'strapi.yathim.or.id',
-        port: '',
-        pathname: '',
-      },
-    ],
+    domains: ['assets.acme.com'],
   },
 };
 

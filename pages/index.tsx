@@ -128,11 +128,11 @@ export default function HomePage({ data, dataHero, dataGalery, dataFAQ }: any) {
         <Center className={classes.wrapper}>
           {/* Kegiatan */}
           <div className="kegiatan" style={{ marginTop: 17, marginLeft: 10, marginRight: 10 }}>
-            <Center sx={{ marginBottom: 50 }}>
+            {/* <Center sx={{ marginBottom: 50 }}>
               <Badge color="green" size="xl">
                 <h3>Kegiatan</h3>
               </Badge>
-            </Center>
+            </Center> */}
 
             {/* <div>
               <CarArComp
@@ -148,7 +148,7 @@ export default function HomePage({ data, dataHero, dataGalery, dataFAQ }: any) {
               />
             </div> */}
 
-            <Center>
+            {/* <Center>
               <Link href="/galery">
                 <Button
                   className={classes.control}
@@ -160,17 +160,17 @@ export default function HomePage({ data, dataHero, dataGalery, dataFAQ }: any) {
                   Lihat semua kegiatan
                 </Button>
               </Link>
-            </Center>
-            <Space h="md" />
+            </Center> */}
+            {/* <Space h="md" />
           </div>
-          <Space w="md" />
+          <Space w="md" /> */}
           {/* Berita & Artikel */}
-          <div className={classes.beritaArtikel}>
+          {/* <div className={classes.beritaArtikel}>
             <Center sx={{ marginBottom: 50 }}>
               <Badge color="green" size="xl">
                 <h3>Berita dan Artikel</h3>
               </Badge>
-            </Center>
+            </Center> */}
 
             {/* <div>
               <CarArComp
@@ -187,7 +187,7 @@ export default function HomePage({ data, dataHero, dataGalery, dataFAQ }: any) {
               />
             </div> */}
 
-            <Center>
+            {/* <Center>
               <Link href="/blog">
                 <Button
                   className={classes.control}
@@ -200,11 +200,11 @@ export default function HomePage({ data, dataHero, dataGalery, dataFAQ }: any) {
                   Lihat semua berita dan artikel
                 </Button>
               </Link>
-            </Center>
+            </Center> */}
           </div>
         </Center>
         {/* FAQ component */}
-        <FaqComp data={mapFAQ} />
+        {/* <FaqComp data={mapFAQ} /> */}
       </div>
     </>
   );
@@ -220,7 +220,7 @@ export async function getServerSideProps() {
   // const resImgGalery = await fetch(`https://strapi.yathim.or.id/api/galeries?populate=*`);
   // const dataImgGalery = await resImgGalery.json();
   const resGalery = await fetch(
-    `http://strapi.yathim.or.id/api/galeries?fields[0]=title&populate[img][fields][0]=url`
+    `https://strapi.yathim.or.id/api/galeries?fields[0]=title&populate[img][fields][0]=url`
   );
   const dataGalery = await resGalery.json();
   const fetchFAQ = await fetch(`https://strapi.yathim.or.id/api/faqs?populate=*`);

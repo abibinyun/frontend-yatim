@@ -1,10 +1,40 @@
-import { AspectRatio, Container, Paper, Text, TypographyStylesProvider } from '@mantine/core';
+import {
+  ActionIcon,
+  AspectRatio,
+  Button,
+  Center,
+  Container,
+  CopyButton,
+  Flex,
+  Input,
+  Paper,
+  Popover,
+  Text,
+  Title,
+  Tooltip,
+} from '@mantine/core';
+import { IconCheck, IconCopy, IconShare } from '@tabler/icons-react';
 import Image from 'next/legacy/image';
 import React from 'react';
 import CardDonasi from '../../customComp/cardDonasi';
 import { useRouter } from 'next/router';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import Head from 'next/head';
+import Link from 'next/link';
+
+function CopyBtn({ value }) {
+  return (
+    <CopyButton value={value} timeout={2000}>
+      {({ copied, copy }) => (
+        <Tooltip label={copied ? 'Copied' : 'Copy'} withArrow position="right">
+          <ActionIcon color={copied ? 'teal' : 'gray'} onClick={copy}>
+            {copied ? <IconCheck size="1rem" /> : <IconCopy size="1rem" />}
+          </ActionIcon>
+        </Tooltip>
+      )}
+    </CopyButton>
+  );
+}
 
 export default function DonasiDetail({ data }) {
   const { data: datas } = data;
@@ -54,9 +84,9 @@ export default function DonasiDetail({ data }) {
       />
       <article>
         <Container>
-          <div style={{ justifyContent: 'flex-start', marginBottom: 50 }}>
-            <h1>{attributes.headline}</h1>
-          </div>
+          <Center style={{ marginBottom: 80, marginTop: 80 }}>
+            <Title>{attributes.headline}</Title>
+          </Center>
           <AspectRatio ratio={1080 / 720} maw={900} mx="auto" mb={80}>
             <Image
               alt="donasi-anak-yatim"
@@ -64,17 +94,44 @@ export default function DonasiDetail({ data }) {
               layout="fill"
               objectFit="contain"
               unoptimized={true}
-              style={{ borderRadius: '10px' }}
             />
           </AspectRatio>
-          <h3>{attributes.title}</h3>
+          <Text>
+            <h1>{attributes.title}</h1>
+          </Text>
           <Paper shadow="md" radius="lg" p="xl">
-            <ReactMarkdown>{attributes.description}</ReactMarkdown>
+            <Text>
+              <ReactMarkdown>{attributes.description}</ReactMarkdown>
+            </Text>
           </Paper>
           <div style={{ marginTop: 50 }}>
-            <h3>Berbagi Kebaikan</h3>
+            <Text>
+              <h3>Berbagi Kebaikan</h3>
+            </Text>
             <CardDonasi />
           </div>
+          <Flex justify={'flex-end'}>
+            <Paper shadow="xl" radius="lg" p="xl" w={170} mt={10}>
+              <Center>
+                <Popover width={200} position="top" withArrow shadow="md">
+                  <Popover.Target>
+                    <Button
+                      radius={12}
+                      size="md"
+                      variant="gradient"
+                      gradient={{ from: 'teal', to: 'lime', deg: 105 }}
+                    >
+                      <IconShare style={{ marginRight: '10' }} /> Bagikan
+                    </Button>
+                  </Popover.Target>
+                  <Popover.Dropdown style={{ display: 'flex' }}>
+                    <Input value={`https://yathim.or.id${router.asPath}`} />
+                    <CopyBtn value={`https://yathim.or.id${router.asPath}`} />
+                  </Popover.Dropdown>
+                </Popover>
+              </Center>
+            </Paper>
+          </Flex>
         </Container>
       </article>
     </>

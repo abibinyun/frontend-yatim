@@ -74,7 +74,7 @@ const useStyle = createStyles((theme) => ({
 export default function About({ dataHero }: any) {
   const { classes } = useStyle();
   const myLoader = ({ src, width }: any) => {
-    return `http://strapi.yathim.or.id${src}?w=${width}`;
+    return `https://strapi.yathim.or.id${src}?w=${width}`;
   };
   return (
     <>
@@ -169,7 +169,7 @@ Pada saat berdiri Yayasan ini seluruh dunia khususnya Indonesia sedang mengalami
 
 export async function getServerSideProps() {
   const fetchHero = await fetch(
-    `http://strapi.yathim.or.id/api/home-pages?filters[id][$eq]=5&populate=*`
+    `https://strapi.yathim.or.id/api/home-pages?filters[id][$eq]=5&populate=*`
   );
   const dataHero = await fetchHero.json();
   if (!dataHero) {

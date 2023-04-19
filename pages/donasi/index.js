@@ -24,7 +24,7 @@ export default function Donasi({ data, dataHero }) {
         </Badge>
       </Center>
       <div className={classes.card}>
-        <CustomCard data={data} height={250} width={400} />
+        <CustomCard data={data} height={350} width={400} />
       </div>
     </>
   );
@@ -36,7 +36,7 @@ export async function getServerSideProps() {
   );
   const data = await res.json();
   const fetchHero = await fetch(
-    `http://strapi.yathim.or.id/api/home-pages?filters[id][$eq]=2&populate=*`
+    `https://strapi.yathim.or.id/api/home-pages?filters[id][$eq]=2&populate=*`
   );
   const dataHero = await fetchHero.json();
   if (!data || !dataHero) {

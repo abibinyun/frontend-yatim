@@ -11,7 +11,7 @@ export default function BlogId({ data }: any) {
   const router = useRouter();
   const { blogDetail } = router.query;
   const myLoader = ({ src, width }: any) => {
-    return `http://strapi.yathim.or.id${src}?w=${width}`;
+    return `https://strapi.yathim.or.id${src}?w=${width}`;
   };
   return (
     <div style={{ marginTop: 50 }}>
@@ -24,7 +24,9 @@ export default function BlogId({ data }: any) {
         </div>
       </Center>
       <Center>
+        <Text>
         <h2>{headline}</h2>
+        </Text>
       </Center>
       <Container>
         <Center>
@@ -43,7 +45,7 @@ export async function getServerSideProps(context: { params: any }) {
   const { params } = context;
   const { blogDetail } = params;
   const res = await fetch(
-    `http://strapi.yathim.or.id/api/beritas?filters[slugTitle][$eq]=${blogDetail}&populate=*`
+    `https://strapi.yathim.or.id/api/beritas?filters[slugTitle][$eq]=${blogDetail}&populate=*`
   );
   const data = await res.json();
   return {

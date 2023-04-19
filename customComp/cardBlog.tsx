@@ -22,7 +22,7 @@ const useStyles = createStyles((theme) => ({
 export default function BlogCard({ data }: any) {
   const { classes } = useStyles();
   const myLoader = ({ src, width }: any) => {
-    return `http://strapi.yathim.or.id${src}?w=${width}`;
+    return `https://strapi.yathim.or.id${src}?w=${width}`;
   };
   const cards = data.map((article: any, idx: any) => (
     <Card key={idx} p="md" radius="md" className={classes.card}>
@@ -60,10 +60,10 @@ export default function BlogCard({ data }: any) {
 
 export async function getServerSideProps() {
   const fetchHero = await fetch(
-    `http://strapi.yathim.or.id/api/home-pages?filters[id][$eq]=4&populate=*`
+    `https://strapi.yathim.or.id/api/home-pages?filters[id][$eq]=4&populate=*`
   );
   const dataHero = await fetchHero.json();
-  const fetchBerita = await fetch(`http://strapi.yathim.or.id/api/beritas?populate=*`);
+  const fetchBerita = await fetch(`https://strapi.yathim.or.id/api/beritas?populate=*`);
   const dataBerita = await fetchBerita.json();
   if (!dataHero || !dataBerita) {
     return {

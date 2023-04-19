@@ -42,7 +42,7 @@ export default function CardGalery({ data, title }: any) {
   const theme = useMantineTheme();
   const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
   const myLoader = ({ src, width }: any) => {
-    return `http://strapi.yathim.or.id${src}?w=${width}`;
+    return `https://strapi.yathim.or.id${src}?w=${width}`;
   };
   const render0 = data.map((item: any[]) =>
     item.map((item: any, idx: React.Key | null | undefined) => (
