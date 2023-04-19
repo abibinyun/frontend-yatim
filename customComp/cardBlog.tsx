@@ -22,18 +22,18 @@ const useStyles = createStyles((theme) => ({
 export default function BlogCard({ data }: any) {
   const { classes } = useStyles();
   const myLoader = ({ src, width }: any) => {
-    return `http://localhost:1337${src}?w=${width}`;
+    return `http://strapi.yathim.or.id${src}?w=${width}`;
   };
   const cards = data.map((article: any, idx: any) => (
-    <Card key={idx} p="md" radius="md" component="a" href="#" className={classes.card}>
+    <Card key={idx} p="md" radius="md" className={classes.card}>
       <AspectRatio ratio={1920 / 1080}>
         <Link href={`blog/${article.attributes.slugTitle}`}>
-            <Image
-              loader={myLoader}
-              src={article.attributes.thumbnail.data.attributes.url}
-              width={400}
-              height={200}
-            />
+          <Image
+            loader={myLoader}
+            src={article.attributes.thumbnail.data.attributes.url}
+            width={400}
+            height={200}
+          />
         </Link>
       </AspectRatio>
       <Text color="dimmed" size="xs" transform="uppercase" weight={700} mt="md">
@@ -63,7 +63,7 @@ export async function getServerSideProps() {
     `http://strapi.yathim.or.id/api/home-pages?filters[id][$eq]=4&populate=*`
   );
   const dataHero = await fetchHero.json();
-  const fetchBerita = await fetch(`http://localhost:1337/api/beritas?populate=*`);
+  const fetchBerita = await fetch(`http://strapi.yathim.or.id/api/beritas?populate=*`);
   const dataBerita = await fetchBerita.json();
   if (!dataHero || !dataBerita) {
     return {

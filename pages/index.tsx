@@ -55,12 +55,11 @@ const statsData = [
   },
 ];
 
-export default function HomePage({ data, dataHero, dataImgGalery, dataFAQ }: any) {
+export default function HomePage({ data, dataHero, dataGalery, dataFAQ }: any) {
   const { imageHero, headline, title } = dataHero.data[0].attributes;
   const { data: FAQdata } = dataFAQ;
-  const rawDtKurban = dataImgGalery.data[0].attributes.img_kurban.data;
-  const datas = rawDtKurban.map((item: { attributes: any }) => item.attributes);
-  const datar = datas.map((item: { url: any }) => item.url);
+  console.log('galery', dataGalery);
+
   const imgHero = imageHero.data.attributes.url;
   const mapFAQ = FAQdata.map((item: { attributes: any }) => item.attributes);
   const { classes } = useStyle();
@@ -135,19 +134,19 @@ export default function HomePage({ data, dataHero, dataImgGalery, dataFAQ }: any
               </Badge>
             </Center>
 
-            <div>
+            {/* <div>
               <CarArComp
                 height={400}
                 controlOffSet={'xs'}
                 orientation={'vertical'}
                 slideGap={'xl'}
                 slideSize={'50%'}
-                data={datar}
+                data={dataGalery}
                 mWidth={rem(400)}
                 mHeight={rem(400)}
                 loop={true}
               />
-            </div>
+            </div> */}
 
             <Center>
               <Link href="/galery">
@@ -173,20 +172,20 @@ export default function HomePage({ data, dataHero, dataImgGalery, dataFAQ }: any
               </Badge>
             </Center>
 
-            <div>
+            {/* <div>
               <CarArComp
                 height={440}
                 controlOffSet={'xs'}
                 orientation={'horizontal'}
                 slideGap={'xl'}
                 slideSize={'10%'}
-                data={datar}
+                data={map2}
                 mWidth={rem(280)}
                 mHeight={rem(400)}
                 loop={true}
                 seeButton={true}
               />
-            </div>
+            </div> */}
 
             <Center>
               <Link href="/blog">
@@ -218,12 +217,16 @@ export async function getServerSideProps() {
   const dataDonasi = await fetchDonasi.json();
   const fetchHero = await fetch(`https://strapi.yathim.or.id/api/home-pages?populate=*`);
   const dataHero = await fetchHero.json();
-  const resImgGalery = await fetch(`https://strapi.yathim.or.id/api/galeries?populate=*`);
-  const dataImgGalery = await resImgGalery.json();
+  // const resImgGalery = await fetch(`https://strapi.yathim.or.id/api/galeries?populate=*`);
+  // const dataImgGalery = await resImgGalery.json();
+  const resGalery = await fetch(
+    `http://strapi.yathim.or.id/api/galeries?fields[0]=title&populate[img][fields][0]=url`
+  );
+  const dataGalery = await resGalery.json();
   const fetchFAQ = await fetch(`https://strapi.yathim.or.id/api/faqs?populate=*`);
   const dataFAQ = await fetchFAQ.json();
-
-  if (!dataDonasi || !dataHero || !dataImgGalery || !dataFAQ) {
+  console.log(dataGalery);
+  if (!dataDonasi || !dataHero || !dataGalery || !dataFAQ) {
     return {
       notFound: true,
     };
@@ -232,7 +235,7 @@ export async function getServerSideProps() {
     props: {
       data: dataDonasi.data,
       dataHero,
-      dataImgGalery,
+      dataGalery,
       dataFAQ,
     },
   };

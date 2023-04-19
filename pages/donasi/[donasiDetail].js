@@ -42,51 +42,7 @@ export default function DonasiDetail({ data }) {
           content={`https://strapi.yathim.or.id${attributes.thumbnail.data.attributes.url}`}
         />
       </Head>
-      {/* <Head>
-        <title>
-          {attributes.title} | {attributes.headline} | Yathim.or.id | Yayasan Taman Harapan Insan
-          Mulia`
-        </title>
-        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-        <link rel="shortcut icon" href="/favicon.svg" />
-        <meta name="type" property="og:type" content="article" />
-        <meta name="title" property="og:title" content={attributes.title} />
-        <meta
-          name="url"
-          property="og:url"
-          content={`https://api.yathim.or.id/donasi/${attributes.slugTitle}`}
-        />
-        <meta
-          name="image"
-          property="og:image"
-          content={`http://strapi.yathim.or.id${attributes.thumbnail.data.attributes.url}`}
-        />
-        <meta property="og:image:width" content="400" />
-        <meta property="og:image:height" content="300" />
-        <meta property="og:image:alt" content={attributes.headline} />
-        <meta
-          name="description"
-          property="og:description"
-          content={attributes.description.substring(0, 100)}
-        />
-        <meta name="author" property="article:author" content={attributes.title} />
-        <meta
-          name="published_time"
-          property="article:published_time"
-          content="2023-04-12T09:02:00.000+07:00"
-        />
-        <meta
-          name="modified_time"
-          property="article:modified_time"
-          content="2023-04-13T09:06:00.000+07:00"
-        />
-        <meta name="section" property="article:section" content={attributes.headline} />
-        <meta name="tag" property="article:tag" content={attributes.title} />
-        <meta name="tag" property="article:tag" content="anak yatim" />
-        <meta name="tag" property="article:tag" content="santunan anak yatim" />
-        <meta name="tag" property="article:tag" content="doa anak yatim" />
-        <meta name="tag" property="article:tag" content="manfaat santunan anak yatim" />
-      </Head> */}
+
       <link
         itemProp="thumbnailUrl"
         href={`https://strapi.yathim.or.id${attributes.thumbnail.data.attributes.url}`}
@@ -113,9 +69,6 @@ export default function DonasiDetail({ data }) {
           </AspectRatio>
           <h3>{attributes.title}</h3>
           <Paper shadow="md" radius="lg" p="xl">
-            {/* <TypographyStylesProvider>
-            <div dangerouslySetInnerHTML={{ __html: `${attributes.description}` }} />
-          </TypographyStylesProvider> */}
             <ReactMarkdown>{attributes.description}</ReactMarkdown>
           </Paper>
           <div style={{ marginTop: 50 }}>

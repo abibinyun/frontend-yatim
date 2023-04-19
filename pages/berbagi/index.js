@@ -5,16 +5,16 @@ import CardDonasi from '../../customComp/cardDonasi';
 import Autoplay from 'embla-carousel-autoplay';
 
 export default function berbagi({ dataImgGalery }) {
-  const rawDtKurban = dataImgGalery.data[0].attributes.img_kurban.data;
-  const datas = rawDtKurban.map((item) => item.attributes);
-  const datar = datas.map((item) => item.url);
-  const autoplay = useRef(Autoplay({ delay: 1000 }));
-  const plugins = [autoplay.current];
-  const onMouseEnter = autoplay.current.stop;
-  const onMouseLeave = autoplay.current.reset;
+  // const rawDtKurban = dataImgGalery.data[0].attributes.img_kurban.data;
+  // const datas = rawDtKurban.map((item) => item.attributes);
+  // const datar = datas.map((item) => item.url);
+  // const autoplay = useRef(Autoplay({ delay: 1000 }));
+  // const plugins = [autoplay.current];
+  // const onMouseEnter = autoplay.current.stop;
+  // const onMouseLeave = autoplay.current.reset;
   return (
     <div>
-      <div style={{ marginLeft: 20, marginRight: 20 }}>
+      {/* <div style={{ marginLeft: 20, marginRight: 20 }}>
         <CarArComp
           height={440}
           controlOffSet={'xs'}
@@ -29,7 +29,7 @@ export default function berbagi({ dataImgGalery }) {
           mHeight={rem(500)}
           loop={true}
         />
-      </div>
+      </div> */}
       <Space h={30} />
       <div style={{ marginLeft: 20, marginRight: 20 }}>
         <Paper shadow="md" radius="xl" p="xl">

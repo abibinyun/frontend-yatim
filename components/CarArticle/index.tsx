@@ -49,7 +49,11 @@ function Card({ image, title, category, mWidth, mHeight, seeButton }: CardProps)
       shadow="md"
       p="xl"
       radius="md"
-      sx={{ backgroundImage: `url(${image})`, width: `${mWidth}`, height: `${mHeight}` }}
+      sx={{
+        backgroundImage: `url(https://strapi.yathim.or.id${image})`,
+        width: `${mWidth}`,
+        height: `${mHeight}`,
+      }}
       className={classes.card}
     >
       <div>
@@ -81,20 +85,51 @@ export default function CarArComp({
   seeButton,
   mHeight,
 }: any) {
-  const change = data.map((item: any) => ({
-    ...item,
-    image: `https://strapi.yathim.or.id${item}`,
-  }));
+  console.log('data', data);
+  const map = data.data.map((item: any, idx: any) => item);
+  const map1 = map.map(
+    (item: { attributes: { img: { data: any } } }, idx: any) => item.attributes.img.data
+  );
+  const map2 = map1.map((item: any[], idx: any) =>
+    item.map((item: { attributes: { url: any } }, idx: any) => item.attributes.url)
+  );
+  // const change = data.map((item: any) => ({
+  //   ...item,
+  //   image: `https://strapi.yathim.or.id${item}`,
+  // }));
+
   const autoplay = useRef(Autoplay({ delay: 3000 }));
   const theme = useMantineTheme();
   const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
-  const slides = change.map(
-    (item: JSX.IntrinsicAttributes & CardProps, idx: Key | null | undefined) => (
+  const render = map2.map((item: any[]) =>
+    item.map((item: any, idx: React.Key | null | undefined) => (
       <Carousel.Slide key={idx}>
         <Card {...item} mWidth={mWidth} seeButton={seeButton} mHeight={mHeight} />
       </Carousel.Slide>
-    )
+    ))
   );
+  // const slides = map2.map(
+  //   (item: JSX.IntrinsicAttributes & CardProps, idx: Key | null | undefined) => (
+  //     <Carousel.Slide key={idx}>
+  //       <Card {...item} mWidth={mWidth} seeButton={seeButton} mHeight={mHeight} />
+  //     </Carousel.Slide>
+  //   )
+  // );
+  // const map2 = map1.map((item: any[], idx: any) =>
+  //   item.map((item: { attributes: { url: any } }, idx: any) => (
+  //     <Carousel.Slide key={idx}>
+  //       <Card
+  //         image={item.attributes.url}
+  //         title={''}
+  //         category={''}
+  //         {...item}
+  //         mWidth={mWidth}
+  //         seeButton={seeButton}
+  //         mHeight={mHeight}
+  //       />
+  //     </Carousel.Slide>
+  //   ))
+  // );
 
   return (
     <Carousel
@@ -111,7 +146,7 @@ export default function CarArComp({
       maw={1280}
       loop={loop}
     >
-      {slides}
+      {render}
     </Carousel>
   );
 }

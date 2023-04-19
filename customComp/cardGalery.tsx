@@ -18,7 +18,7 @@ const useStyles = createStyles((theme) => ({
       marginRight: 40,
     },
     [theme.fn.smallerThan('499')]: {
-      display:'none'
+      display: 'none',
     },
   },
   card: {
@@ -42,19 +42,19 @@ export default function CardGalery({ data, title }: any) {
   const theme = useMantineTheme();
   const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
   const myLoader = ({ src, width }: any) => {
-    return `http://localhost:1337${src}?w=${width}`;
+    return `http://strapi.yathim.or.id${src}?w=${width}`;
   };
   const render0 = data.map((item: any[]) =>
     item.map((item: any, idx: React.Key | null | undefined) => (
-        <Image
-          key={idx}
-          priority={true}
-          loader={myLoader}
-          src={`${item}`}
-          height={300}
-          width={350}
-          className={classes.img}
-        />
+      <Image
+        key={idx}
+        priority={true}
+        loader={myLoader}
+        src={`${item}`}
+        height={300}
+        width={350}
+        className={classes.img}
+      />
     ))
   );
 
@@ -76,8 +76,7 @@ export default function CardGalery({ data, title }: any) {
   );
   return (
     <>
-      <Center sx={{ marginBottom: 50, marginTop: 100 }}>
-      </Center>
+      {/* <Center sx={{ marginBottom: 50, marginTop: 100 }}></Center> */}
       <div className={classes.div}>
         <Carousel
           withIndicators
@@ -96,14 +95,7 @@ export default function CardGalery({ data, title }: any) {
           {render}
         </Carousel>
       </div>
-      <Flex
-        mih={50}
-        gap="xs"
-        justify="center"
-        align="center"
-        direction="row"
-        wrap="wrap"
-      >
+      <Flex mih={50} gap="xs" justify="center" align="center" direction="row" wrap="wrap">
         {render0}
       </Flex>
     </>
