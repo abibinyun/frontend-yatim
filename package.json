@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "node server.js -p 3005",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
+    "start": "production node server.js",
     "analyze": "ANALYZE=true next build",
     "typecheck": "tsc --noEmit",
     "export": "next build && next export",
