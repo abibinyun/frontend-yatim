@@ -20,7 +20,6 @@ import CardDonasi from '../../customComp/cardDonasi';
 import { useRouter } from 'next/router';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import Head from 'next/head';
-import Link from 'next/link';
 
 function CopyBtn({ value }) {
   return (
@@ -39,50 +38,40 @@ function CopyBtn({ value }) {
 export default function DonasiDetail({ data }) {
   const { data: datas } = data;
   const { attributes } = datas[0];
+  const { title, headline, slugTitle, slugHeadline, description, thumbnail } = attributes;
+  const { url } = thumbnail.data.attributes.formats.thumbnail;
   const router = useRouter();
+  console.log(attributes);
   return (
     <>
-      <Head>
-        <title>{` ${attributes.title} | Yathim.or.id | Yayasan Taman Harapan Insan Mulia`}</title>
-        <meta property="og:url" content={`https://strapi.yathim.or.id/${attributes.slugTitle}`} />
-        <meta property="og:type" content="article" />
-        <meta
-          property="og:title"
-          content={` ${attributes.title} | Yathim.or.id | Yayasan Taman Harapan Insan Mulia`}
-        />
-        <meta property="og:description" content={attributes.description.substring(0, 100)} />
-        <meta
-          property="og:image"
-          content={`https://strapi.yathim.or.id${attributes.thumbnail.data.attributes.url}`}
-        />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta property="twitter:domain" content="yathim.or.id" />
-        <meta
-          property="twitter:url"
-          content={`https://strapi.yathim.or.id/donasi/${attributes.slugTitle}`}
-        />
-        <meta
-          name="twitter:title"
-          content={` ${attributes.title} | Yathim.or.id | Yayasan Taman Harapan Insan Mulia`}
-        />
-        <meta name="twitter:description" content={attributes.description.substring(0, 100)} />
-        <meta
-          name="twitter:image"
-          content={`https://strapi.yathim.or.id${attributes.thumbnail.data.attributes.url}`}
-        />
-      </Head>
-
-      <link
-        itemProp="thumbnailUrl"
-        href={`https://strapi.yathim.or.id${attributes.thumbnail.data.attributes.url}`}
-      />
-      <span itemProp="thumbnail" itemScope itemType="http://schema.org/ImageObject" />
-      <link
-        itemProp="url"
-        href={`https://strapi.yathim.or.id${attributes.thumbnail.data.attributes.url}`}
-      />
       <article>
+        <Head>
+          <title>{` ${title} | ${headline} | Yathim.or.id | Yayasan Taman Harapan Insan Mulia`}</title>
+          <meta property="og:url" content={`https://yathim.or.id/donasi/${slugTitle}`} />
+          <meta property="og:type" content="website" />
+          <meta
+            property="og:title"
+            content={` ${title} | ${headline} | Yathim.or.id | Yayasan Taman Harapan Insan Mulia`}
+          />
+          <meta property="og:description" content={`${description.substring(0, 100)}`} />
+          <meta property="og:image" content={`https://strapi.yathim.or.id${url}`} />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta property="twitter:domain" content="yathim.or.id" />
+          <meta
+            property="twitter:url"
+            content={`https://strapi.yathim.or.id/donasi/${slugTitle}`}
+          />
+          <meta
+            name="twitter:title"
+            content={` ${title} | ${headline} | Yathim.or.id | Yayasan Taman Harapan Insan Mulia`}
+          />
+          <meta name="twitter:description" content={`${description.substring(0, 100)}`} />
+          <meta name="twitter:image" content={`https://strapi.yathim.or.id${url}`} />
+        </Head>
+
+        <link itemProp="thumbnailUrl" href={`https://strapi.yathim.or.id${url}`} />
+        <span itemProp="thumbnail" itemScope itemType="http://schema.org/ImageObject" />
+        <link itemProp="url" href={`https://strapi.yathim.or.id${url}`} />
         <Container>
           <Center style={{ marginBottom: 80, marginTop: 80 }}>
             <Title>{attributes.headline}</Title>
@@ -111,13 +100,13 @@ export default function DonasiDetail({ data }) {
             <CardDonasi />
           </div>
           <Flex justify={'flex-end'}>
-            <Paper shadow="xl" radius="lg" p="xl" w={170} mt={10}>
+            <Paper shadow="xl" radius="lg" p="xl" w={150} mt={10}>
               <Center>
                 <Popover width={200} position="top" withArrow shadow="md">
                   <Popover.Target>
                     <Button
                       radius={12}
-                      size="md"
+                      size="sm"
                       variant="gradient"
                       gradient={{ from: 'teal', to: 'lime', deg: 105 }}
                     >

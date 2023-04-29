@@ -1,7 +1,25 @@
-import { Card, Text, ActionIcon, Badge, Group, createStyles, rem, em, Button } from '@mantine/core';
+import {
+  Card,
+  Text,
+  ActionIcon,
+  Badge,
+  Group,
+  createStyles,
+  rem,
+  em,
+  Button,
+  Paper,
+  Center,
+  Popover,
+  Input,
+  CopyButton,
+  Tooltip,
+  Flex,
+} from '@mantine/core';
 import Link from 'next/link';
 import Image from 'next/legacy/image';
-import { WhatsappShareButton, FacebookShareButton, FacebookIcon, WhatsappIcon } from 'react-share';
+import { IconCheck, IconCopy, IconShare } from '@tabler/icons-react';
+import router from 'next/router';
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -42,7 +60,7 @@ const useStyles = createStyles((theme) => ({
     display: 'block',
     marginTop: theme.spacing.md,
     marginBottom: rem(5),
-    fontSize: 22
+    fontSize: 22,
   },
 
   action: {
@@ -55,7 +73,23 @@ const useStyles = createStyles((theme) => ({
   footer: {
     marginTop: 'auto',
     justifyContent: 'center',
+    // width:'70%',
+    display: 'flex',
   },
+  btn1: {
+    borderTopLeftRadius:20,
+    borderBottomLeftRadius:20,
+    borderBottomRightRadius:0,
+    borderTopRightRadius:0,
+    marginRight:-20
+  },
+  btn2: {
+    borderTopLeftRadius:0,
+    borderBottomLeftRadius:0,
+    borderBottomRightRadius:20,
+    borderTopRightRadius:20,
+    // marginLeft:-20
+  }
 }));
 
 interface ArticleCardProps {
@@ -71,6 +105,20 @@ interface ArticleCardProps {
   slugTitle: string;
   height: any;
   width: any;
+}
+
+function CopyBtn({ value }: any) {
+  return (
+    <CopyButton value={value} timeout={2000}>
+      {({ copied, copy }) => (
+        <Tooltip label={copied ? 'Copied' : 'Copy'} withArrow position="right">
+          <ActionIcon color={copied ? 'teal' : 'gray'} onClick={copy}>
+            {copied ? <IconCheck size="1rem" /> : <IconCopy size="1rem" />}
+          </ActionIcon>
+        </Tooltip>
+      )}
+    </CopyButton>
+  );
 }
 
 export function CardComp({
@@ -100,7 +148,10 @@ export function CardComp({
         </Link>
       </Card.Section>
 
-      <Link {...linkProps} style={{ textDecoration: 'none', color: 'inherit', fontWeight:'inherit' }}>
+      <Link
+        {...linkProps}
+        style={{ textDecoration: 'none', color: 'inherit', fontWeight: 'inherit' }}
+      >
         <Text className={classes.title} fw={600}>
           {title}
         </Text>
@@ -110,13 +161,26 @@ export function CardComp({
         {description}
       </Text>
 
-      <Group position="apart" className={classes.footer}>
-        <Link href={link} style={{ width: '100%' }}>
-          <Button color="green" style={{ width: '100%', height: 50, fontSize: 23 }}>
-            Donasi Sekarang
-          </Button>
-        </Link>
-      </Group>
+      {/* <Group position="apart" className={classes.footer}> */}
+        <div className={classes.footer} style={{ marginLeft: 10, marginRight: 10 }}>
+          <Link href={link}>
+            <Button className={classes.btn1} color="green" style={{  height: 50, fontSize: 23 }}>
+              Donasi Sekarang
+            </Button>
+          </Link>
+          <Popover width={200} position="top" withArrow shadow="md">
+            <Popover.Target>
+              <Button className={classes.btn2} color="green" style={{ height: 50, fontSize: 23 }}>
+                <IconShare />
+              </Button>
+            </Popover.Target>
+            <Popover.Dropdown style={{ display: 'flex' }}>
+              <Input value={`https://yathim.or.id/${link}`} />
+              <CopyBtn value={`https://yathim.or.id/${link}`} />
+            </Popover.Dropdown>
+          </Popover>
+        </div>
+      {/* </Group> */}
     </Card>
   );
 }

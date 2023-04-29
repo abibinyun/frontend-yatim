@@ -37,15 +37,6 @@ const useStyles = createStyles((theme) => ({
     fontWeight: 900,
     lineHeight: 1.1,
 
-    // [theme.fn.smallerThan('sm')]: {
-    //   fontSize: rem(40),
-    //   lineHeight: 1.2,
-    // },
-
-    // [theme.fn.smallerThan('xs')]: {
-      //   fontSize: rem(28),
-      //   lineHeight: 1.3,
-      // },
       [`@media (min-width: ${em(777)})`]: {
         padding:0
       },
@@ -94,8 +85,17 @@ const useStyles = createStyles((theme) => ({
     [theme.fn.smallerThan('sm')]: {
       width: '100%',
     },
+    [`@media (max-width: ${em(291)})`]: {
+      width:'100%',
+      fontSize:17
+    },
     [`@media (max-width: ${em(281)})`]: {
       width:'100%',
+      fontSize:18
+    },
+    [`@media (max-width: ${em(275)})`]: {
+      width:'100%',
+      fontSize:16
     },
     
   },
@@ -189,7 +189,7 @@ export function HeroComp(props: {
                 size="xl"
                 radius="xl"
                 className={classes.control}
-                style={{ marginRight: -20 }}
+                // style={{ marginRight: -20 }}
               >
                 {txtButton}
               </Button>

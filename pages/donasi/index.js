@@ -1,18 +1,12 @@
 import React from 'react';
 import CustomCard from '../../customComp/customCard';
 import { HeroComp } from '../../components/Hero';
-import { Badge, Center, createStyles, em, rem } from '@mantine/core';
+import { Badge, Button, Center, Space, rem } from '@mantine/core';
+import { useRouter } from 'next/router';
 
-const useStyle = createStyles((theme) => ({
-  // card: {
-  //   [`@media (max-width: ${em(500)})`]: {
-  //     width: '50%',
-  //   },
-  // },
-}));
-
-export default function Donasi({ data, dataHero }) {
-  const { classes } = useStyle();
+export default function Donasi({ data, dataHero, page }) {
+  const router = useRouter();
+  console.log('data : ', data);
   return (
     <>
       <div style={{ marginTop: -200 }}>
@@ -23,18 +17,37 @@ export default function Donasi({ data, dataHero }) {
           <h2>Program Donasi</h2>
         </Badge>
       </Center>
-      <div className={classes.card}>
-        <CustomCard data={data} height={350} width={400} />
+      <div>
+        <CustomCard data={data.data} height={350} width={400} />
       </div>
+      <Center>
+        <Button
+          onClick={() => router.push(`/donasi?page=${page - 1}`)}
+          disabled={page === 1}
+          color="green"
+        >
+          prev
+        </Button>
+        <Space w={100} mt={100} />
+        <Button
+          onClick={() => router.push(`/donasi?page=${page + 1}`)}
+          disabled={page === data.meta.pagination.pageCount}
+          color="green"
+        >
+          next
+        </Button>
+      </Center>
     </>
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ query: { page = 1 } }) {
   const res = await fetch(
-    `https://strapi.yathim.or.id/api/donasis?pagination[page]=1&pagination[pageSize]=10&populate=*`
+    `${process.env.API_URL}/donasis?pagination[page]=${page}&pagination[pageSize]=6&pagination&populate=*`
   );
   const data = await res.json();
+  const count = await fetch(`${process.env.API_URL}/donasis?populate=*`);
+  const dataCount = await count.json();
   const fetchHero = await fetch(
     `https://strapi.yathim.or.id/api/home-pages?filters[id][$eq]=2&populate=*`
   );
@@ -46,8 +59,10 @@ export async function getServerSideProps() {
   }
   return {
     props: {
-      data: data.data,
+      data,
       dataHero,
+      page: +page,
+      dataCount,
     },
   };
 }

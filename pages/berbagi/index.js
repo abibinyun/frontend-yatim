@@ -33,16 +33,16 @@ export default function berbagi({ dataImgGalery }) {
       <Space h={30} />
       <div style={{ marginLeft: 20, marginRight: 20 }}>
         <Paper shadow="md" radius="xl" p="xl">
-          <Text>Paper is the most basic ui component</Text>
           <Text>
-            Use it to create cards, dropdowns, modals and other components that require background
-            with shadow Use it to create cards, dropdowns, modals and other components that require
-            background with shadowUse it to create cards, dropdowns, modals and other components
-            that require background with shadowUse it to create cards, dropdowns, modals and other
-            components that require background with shadowUse it to create cards, dropdowns, modals
-            and other components that require background with shadowUse it to create cards,
-            dropdowns, modals and other components that require background with shadowUse it to
-            create cards, dropdowns, modals and other components that require background with shadow
+            "Barang siapa mengerjakan kebaikan seberat zarah pun, niscaya dia akan melihat
+            balasannya." - QS. Az-Zalzalah: 7 te
+          </Text>
+          <Text>
+            Donasi adalah bagian dari sedekah, yakni pemberian secara sukarela untuk Allah atas
+            sebagian harta yang dimiliki. Seseorang yang tidak memenuhi syarat untuk berzakat pun
+            boleh untuk melakukan donasi. Karena Berbuat baik adalah kewajiban antar sesama manusia.
+            dan untuk itulah kami YATHIM FOUNDATION membuat Program DONASI sebagai bentuk Penyaluran
+            untuk para sahabat yang ingin menyisihkan sebagian rezeki nya agar lebih mudah.
           </Text>
         </Paper>
       </div>

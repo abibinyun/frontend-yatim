@@ -79,8 +79,8 @@ interface ContactIconsListProps {
 
 const MOCKDATA = [
   { title: 'Email', description: 'care@yathim.or.id', icon: IconAt },
-  { title: 'Phone', description: '021-7438344', icon: IconPhone },
-  { title: 'Address', description: 'Pamulang - Tangerang selatan', icon: IconMapPin },
+  { title: 'Phone', description: '021-74779746', icon: IconPhone },
+  { title: 'Address', description: 'Gedung LEMTARA - Jl Pajajaran RT 04/03 No 37A, Bambu Apus, Kec. Pamulang, Kota Tangerang Selatan, Banten 15415', icon: IconMapPin },
   { title: 'Working hours', description: '8 a.m. – 6 p.m.', icon: IconSun },
 ];
 

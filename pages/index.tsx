@@ -38,20 +38,20 @@ const useStyle = createStyles((theme) => ({
 
 const statsData = [
   {
-    stats: '17.123',
+    stats: '2.340',
     title: 'Tersalurkan',
     description:
       'Yathim.or.id telah menyalurkan semua hasil yang diperoleh kepada yang membutuhkan',
   },
   {
-    stats: '1.123',
+    stats: '38',
     title: 'Relawan',
     description: 'Kami juga telah bekerja sama dengan relawan untuk menyebarkan kebaikan',
   },
   {
-    stats: '123',
+    stats: '1',
     title: 'Cabang',
-    description: 'Tersebar di segala penjuru',
+    description: 'Menjangkau seluruh Indonesia',
   },
 ];
 
@@ -67,14 +67,14 @@ export default function HomePage({ data, dataHero, dataGalery, dataFAQ }: any) {
   return (
     <>
       <Head>
-        <meta property="og:url" content={`https://strapi.yathim.or.id`} />
+        <meta property="og:url" content={`https://yathim.or.id`} />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Yathim.or.id | Yayasan Taman Harapan Insan Mulia" />
         <meta property="og:description" content={`${headline}|${title}`} />
         <meta property="og:image" content={`https://strapi.yathim.or.id${imgHero}`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content="yathim.or.id" />
-        <meta property="twitter:url" content={`https://strapi.yathim.or.id`} />
+        <meta property="twitter:url" content={`https://yathim.or.id`} />
         <meta name="twitter:title" content="Yathim.or.id | Yayasan Taman Harapan Insan Mulia" />
         <meta name="twitter:description" content={`${headline}|${title}`} />
         <meta name="twitter:image" content={`https://strapi.yathim.or.id${imgHero}`} />

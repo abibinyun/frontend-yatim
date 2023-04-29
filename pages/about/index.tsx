@@ -1,7 +1,7 @@
 import React from 'react';
 import { HeroComp } from '../../components/Hero';
 import { ContactUs } from '../../components/ContactComp';
-import { Card, Center, Paper, Text, createStyles, em } from '@mantine/core';
+import { Card, Center, Paper, Space, Text, createStyles, em } from '@mantine/core';
 import Image from 'next/legacy/image';
 
 const useStyle = createStyles((theme) => ({
@@ -69,6 +69,22 @@ const useStyle = createStyles((theme) => ({
       width: '100%',
     },
   },
+  divContactus: {
+    // width:'100%',
+    [`@media (max-width:${em(1349)})`]: {
+      display: 'block',
+      marginRight: 30,
+      marginLeft:30,
+    },
+  },
+  iframe: {
+    // boxShadow: '3px 3px 20px 0.5px' ,
+    [`@media (max-width:${em(1349)})`]: {
+      display: 'inline-block',
+      width:'100%'
+    },
+  }
+  
 }));
 
 export default function About({ dataHero }: any) {
@@ -146,19 +162,49 @@ export default function About({ dataHero }: any) {
             <Center style={{ marginBottom: 100 }}>
               <Paper shadow="xl" radius="md" p="xl">
                 <Text>
-                Dengan berdasar pada situasi dan kondisi saat melanda nya wabah pandemi corona 19 yang seluruh dunia terpapar dan khususnya Indonesia membuat KAMI, beberapa sahabat terpanggil untuk ikut meringankan beban Pemerintah terhadap masyarakat indonesia umumnya dan khususnya yatim dan dhuafa yang belum tersentuh oleh tangan Pemerintah. <br/><br/>
-Alhamdulillah pada akhirnya terbentuklah satu lembaga nirlaba yang kami beri nama YAYASAN TAMAN HARAPAN INSAN MULIA ( YATHIM ) merupakan wadah sosial yang bertujuan sebagai sarana mediasi, menerima, maupun menyalurkan untuk para yatim dan dhuafa yang membutuhkan umumnya masyarakat luas serta khususnya masyarakat sekitar.<br/><br/>
-Tujuan didirikan YATHIM
-Yayasan didirikan sebagai tempat yang diumpamakan seperti Taman yang didalamnya terdapat keindahan, keriangan dan kesenangan, dimana dengan wadah inilah sahabat atau teman yang satu pandangan serta memiliki tujuan utama yaitu berbagi kepada seluruh masyarakat. <br/><br/>
-Pada saat berdiri Yayasan ini seluruh dunia khususnya Indonesia sedang mengalami wabah pandemi atau sering disebut COVID 19, sehingga keberadaan kami Yayasan Taman Harapan Insan Mulia bagi masyarakat sekitar khususnya dan umumnya masyarakat Indonesia, bisa sedikitnya meringankan beban mereka sekaligus membantu pemerintah dalam hal Sosial dan Keagamaan dimana masih banyak masyarakat yang belum tersentuh oleh pemerintah.
+                  Dengan berdasar pada situasi dan kondisi saat melanda nya wabah pandemi corona 19
+                  yang seluruh dunia terpapar dan khususnya Indonesia membuat KAMI, beberapa sahabat
+                  terpanggil untuk ikut meringankan beban Pemerintah terhadap masyarakat indonesia
+                  umumnya dan khususnya yatim dan dhuafa yang belum tersentuh oleh tangan
+                  Pemerintah. <br />
+                  <br />
+                  Alhamdulillah pada akhirnya terbentuklah satu lembaga nirlaba yang kami beri nama
+                  YAYASAN TAMAN HARAPAN INSAN MULIA ( YATHIM ) merupakan wadah sosial yang bertujuan
+                  sebagai sarana mediasi, menerima, maupun menyalurkan untuk para yatim dan dhuafa
+                  yang membutuhkan umumnya masyarakat luas serta khususnya masyarakat sekitar.
+                  <br />
+                  <br />
+                  Tujuan didirikan YATHIM Yayasan didirikan sebagai tempat yang diumpamakan seperti
+                  Taman yang didalamnya terdapat keindahan, keriangan dan kesenangan, dimana dengan
+                  wadah inilah sahabat atau teman yang satu pandangan serta memiliki tujuan utama
+                  yaitu berbagi kepada seluruh masyarakat. <br />
+                  <br />
+                  Pada saat berdiri Yayasan ini seluruh dunia khususnya Indonesia sedang mengalami
+                  wabah pandemi atau sering disebut COVID 19, sehingga keberadaan kami Yayasan Taman
+                  Harapan Insan Mulia bagi masyarakat sekitar khususnya dan umumnya masyarakat
+                  Indonesia, bisa sedikitnya meringankan beban mereka sekaligus membantu pemerintah
+                  dalam hal Sosial dan Keagamaan dimana masih banyak masyarakat yang belum tersentuh
+                  oleh pemerintah.
                 </Text>
               </Paper>
             </Center>
           </div>
         </Center>
 
-        <Center>
-          <div style={{ width: '80%' }}>
+        <Center className={classes.divContactus} style={{ marginLeft: 20, marginRight:20 }}>
+          <div>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15862.004921116593!2d106.7399481!3d-6.3290379!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69efbbc083fdf9%3A0xf00e12ffabb870cc!2sLEMTARA!5e0!3m2!1sen!2sid!4v1682598505578!5m2!1sen!2sid" 
+              width="400"
+              height="400"
+              style={{ borderRadius:20, border:'none' }}
+              allowFullScreen={true}
+              loading="lazy"
+              className={classes.iframe}
+            ></iframe>
+          </div>
+          <Space w={30} />
+          <div>
             <ContactUs />
           </div>
         </Center>
