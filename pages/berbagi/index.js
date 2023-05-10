@@ -10,7 +10,7 @@ export default function berbagi() {
         <Paper shadow="md" radius="xl" p="xl">
           <Text>
             "Barang siapa mengerjakan kebaikan seberat zarah pun, niscaya dia akan melihat
-            balasannya." - QS. Az-Zalzalah: 7 te
+            balasannya." - QS. Az-Zalzalah:7
           </Text>
           <Text>
             Donasi adalah bagian dari sedekah, yakni pemberian secara sukarela untuk Allah atas
