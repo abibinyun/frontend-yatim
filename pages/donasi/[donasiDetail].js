@@ -41,7 +41,6 @@ export default function DonasiDetail({ data }) {
   const { title, headline, slugTitle, description, thumbnail } = attributes;
   const { url } = thumbnail.data.attributes.formats.thumbnail;
   const router = useRouter();
-  console.log(attributes);
   return (
     <>
       <article>

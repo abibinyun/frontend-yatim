@@ -84,7 +84,6 @@ export default function CarArComp({
   seeButton,
   mHeight,
 }: any) {
-  console.log('data', data);
   const map = data.data.map((item: any, idx: any) => item);
   const map1 = map.map(
     (item: { attributes: { img: { data: any } } }, idx: any) => item.attributes.img.data

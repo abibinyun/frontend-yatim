@@ -5,7 +5,6 @@ import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import React from 'react';
 
 export default function BlogId({ data }: any) {
-  console.log(data);
   const { title, headline, description, thumbnail } = data.data[0].attributes;
   const { url } = thumbnail.data.attributes;
   const router = useRouter();

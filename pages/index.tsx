@@ -57,11 +57,10 @@ const statsData = [
 
 export default function HomePage({ data, dataHero, dataGalery, dataFAQ }: any) {
   const { imageHero, headline, title } = dataHero.data[0].attributes;
-  const { data: FAQdata } = dataFAQ;
-  console.log('galery', dataGalery);
+  // const { data: FAQdata } = dataFAQ;
 
   const imgHero = imageHero.data.attributes.url;
-  const mapFAQ = FAQdata.map((item: { attributes: any }) => item.attributes);
+  // const mapFAQ = FAQdata.map((item: { attributes: any }) => item.attributes);
   const { classes } = useStyle();
 
   return (
@@ -223,7 +222,6 @@ export async function getServerSideProps() {
   const dataGalery = await resGalery.json();
   const fetchFAQ = await fetch(`https://strapi.yathim.or.id/api/faqs?populate=*`);
   const dataFAQ = await fetchFAQ.json();
-  console.log(dataGalery);
   if (!dataDonasi || !dataHero || !dataGalery || !dataFAQ) {
     return {
       notFound: true,

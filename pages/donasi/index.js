@@ -6,7 +6,6 @@ import { useRouter } from 'next/router';
 
 export default function Donasi({ data, dataHero, page }) {
   const router = useRouter();
-  console.log('data : ', data);
   return (
     <>
       <div style={{ marginTop: -200 }}>
