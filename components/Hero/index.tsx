@@ -189,7 +189,6 @@ export function HeroComp(props: {
                 size="xl"
                 radius="xl"
                 className={classes.control}
-                // style={{ marginRight: -20 }}
               >
                 {txtButton}
               </Button>

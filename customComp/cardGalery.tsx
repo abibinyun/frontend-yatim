@@ -1,5 +1,5 @@
 import { Carousel } from '@mantine/carousel';
-import { Badge, Center, Flex, SimpleGrid, createStyles, rem, useMantineTheme } from '@mantine/core';
+import { Center, Flex, createStyles, rem, useMantineTheme } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import Autoplay from 'embla-carousel-autoplay';
 import Image from 'next/legacy/image';
@@ -76,7 +76,6 @@ export default function CardGalery({ data, title }: any) {
   );
   return (
     <>
-      {/* <Center sx={{ marginBottom: 50, marginTop: 100 }}></Center> */}
       <div className={classes.div}>
         <Carousel
           withIndicators

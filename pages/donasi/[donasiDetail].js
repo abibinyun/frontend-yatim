@@ -38,7 +38,7 @@ function CopyBtn({ value }) {
 export default function DonasiDetail({ data }) {
   const { data: datas } = data;
   const { attributes } = datas[0];
-  const { title, headline, slugTitle, slugHeadline, description, thumbnail } = attributes;
+  const { title, headline, slugTitle, description, thumbnail } = attributes;
   const { url } = thumbnail.data.attributes.formats.thumbnail;
   const router = useRouter();
   console.log(attributes);

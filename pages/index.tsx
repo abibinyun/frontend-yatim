@@ -1,10 +1,10 @@
 import { Center, Space, Button, createStyles, rem, Badge } from '@mantine/core';
 import Link from 'next/link';
-import { FaqComp } from '../components/FAQ';
+// import { FaqComp } from '../components/FAQ';
 import { FeaturesComp } from '../components/Featured';
 import { HeroComp } from '../components/Hero';
 import CustomCard from '../customComp/customCard';
-import CarArComp from '../components/CarArticle';
+// import CarArComp from '../components/CarArticle';
 import { StatsComp } from '../components/Stats';
 import Head from 'next/head';
 
@@ -217,8 +217,6 @@ export async function getServerSideProps() {
   const dataDonasi = await fetchDonasi.json();
   const fetchHero = await fetch(`https://strapi.yathim.or.id/api/home-pages?populate=*`);
   const dataHero = await fetchHero.json();
-  // const resImgGalery = await fetch(`https://strapi.yathim.or.id/api/galeries?populate=*`);
-  // const dataImgGalery = await resImgGalery.json();
   const resGalery = await fetch(
     `https://strapi.yathim.or.id/api/galeries?fields[0]=title&populate[img][fields][0]=url`
   );

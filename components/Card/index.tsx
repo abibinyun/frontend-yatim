@@ -2,24 +2,18 @@ import {
   Card,
   Text,
   ActionIcon,
-  Badge,
-  Group,
   createStyles,
   rem,
   em,
   Button,
-  Paper,
-  Center,
   Popover,
   Input,
   CopyButton,
   Tooltip,
-  Flex,
 } from '@mantine/core';
 import Link from 'next/link';
 import Image from 'next/legacy/image';
 import { IconCheck, IconCopy, IconShare } from '@tabler/icons-react';
-import router from 'next/router';
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -88,7 +82,6 @@ const useStyles = createStyles((theme) => ({
     borderBottomLeftRadius:0,
     borderBottomRightRadius:20,
     borderTopRightRadius:20,
-    // marginLeft:-20
   }
 }));
 
@@ -161,7 +154,6 @@ export function CardComp({
         {description}
       </Text>
 
-      {/* <Group position="apart" className={classes.footer}> */}
         <div className={classes.footer} style={{ marginLeft: 10, marginRight: 10 }}>
           <Link href={link}>
             <Button className={classes.btn1} color="green" style={{  height: 50, fontSize: 23 }}>
@@ -180,7 +172,6 @@ export function CardComp({
             </Popover.Dropdown>
           </Popover>
         </div>
-      {/* </Group> */}
     </Card>
   );
 }

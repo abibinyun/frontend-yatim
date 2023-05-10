@@ -1,12 +1,11 @@
 import { Carousel } from '@mantine/carousel';
 import { useMediaQuery } from '@mantine/hooks';
 import { createStyles, Paper, Text, Title, Button, useMantineTheme, rem } from '@mantine/core';
-import { Key, useRef } from 'react';
+import { useRef } from 'react';
 import Autoplay from 'embla-carousel-autoplay';
 
 const useStyles = createStyles((theme) => ({
   card: {
-    // height: rem(440),
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -93,10 +92,6 @@ export default function CarArComp({
   const map2 = map1.map((item: any[], idx: any) =>
     item.map((item: { attributes: { url: any } }, idx: any) => item.attributes.url)
   );
-  // const change = data.map((item: any) => ({
-  //   ...item,
-  //   image: `https://strapi.yathim.or.id${item}`,
-  // }));
 
   const autoplay = useRef(Autoplay({ delay: 3000 }));
   const theme = useMantineTheme();
@@ -108,28 +103,6 @@ export default function CarArComp({
       </Carousel.Slide>
     ))
   );
-  // const slides = map2.map(
-  //   (item: JSX.IntrinsicAttributes & CardProps, idx: Key | null | undefined) => (
-  //     <Carousel.Slide key={idx}>
-  //       <Card {...item} mWidth={mWidth} seeButton={seeButton} mHeight={mHeight} />
-  //     </Carousel.Slide>
-  //   )
-  // );
-  // const map2 = map1.map((item: any[], idx: any) =>
-  //   item.map((item: { attributes: { url: any } }, idx: any) => (
-  //     <Carousel.Slide key={idx}>
-  //       <Card
-  //         image={item.attributes.url}
-  //         title={''}
-  //         category={''}
-  //         {...item}
-  //         mWidth={mWidth}
-  //         seeButton={seeButton}
-  //         mHeight={mHeight}
-  //       />
-  //     </Carousel.Slide>
-  //   ))
-  // );
 
   return (
     <Carousel

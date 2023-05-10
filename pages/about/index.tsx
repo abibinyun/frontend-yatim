@@ -70,21 +70,18 @@ const useStyle = createStyles((theme) => ({
     },
   },
   divContactus: {
-    // width:'100%',
     [`@media (max-width:${em(1349)})`]: {
       display: 'block',
       marginRight: 30,
-      marginLeft:30,
+      marginLeft: 30,
     },
   },
   iframe: {
-    // boxShadow: '3px 3px 20px 0.5px' ,
     [`@media (max-width:${em(1349)})`]: {
       display: 'inline-block',
-      width:'100%'
+      width: '100%',
     },
-  }
-  
+  },
 }));
 
 export default function About({ dataHero }: any) {
@@ -132,22 +129,22 @@ export default function About({ dataHero }: any) {
             <Center>
               <Card shadow="lg" padding="xl" className={classes.containerCard}>
                 <div className={classes.containerText} style={{ marginRight: 50, marginLeft: 0 }}>
-                  {/* <Text weight={800} className={classes.title} >
-                  Official Website YATHIM.OR.ID
-                </Text> */}
                   <Text color="dimmed" className={classes.description} style={{ marginBottom: 20 }}>
-                    Yayasan Taman Harapan Insan Mulia (YATHIM) Adalah lembaga nirlaba milik umat
-                    atau masyarakat, yang dapat mengangkat harkat sosial kemanusiaan kaum dhuafa.
-                    Dengan berzakat, infaq, sodaqoh, wakaf serta dana-dana yang dihalalkan oleh
-                    syari’at dan legal dari perorangan, kelompok masyarakat, perusahaan maupun
-                    lembaga lainnya.
+                    Taman Pendidikan Al-Qur'an (TPQ) Insan Mulia merupakan program pendidikan
+                    Yayasan Taman Harapan Insan Mulia yang diketuai langsung oleh Saudara Maulana
+                    Ishak. Dan Penanggung Jawab TPQ Insan Mulia adalah Ibu Suprihatin selaku ketua
+                    Yayasan Taman Harapan Insan Mulia. TPQ Insan Mulia beralamat di Jl. Haji Jamat,
+                    Gang Rais RT 03 RW 05 Kel. Buaran Kec. Serpong, Tangerang Selatan. TPQ Insan
+                    Mulia sudah mulai berjalan pada tahun 2020 dan baru diresmikan oleh Ketua IPQ
+                    (Ikatan Pendidik Al-Qur'an) Tangsel oleh Bapak Rosli. S. P.d pada tanggal 13
+                    februari 2022. Dan kini TPQ Insan Mulia sudah memiliki surat izin operasional.
                   </Text>
                 </div>
                 <Card.Section>
                   <Center>
                     <Image
                       loader={myLoader}
-                      src="/uploads/IMG_20220807_WA_00411_1_768x576_0cd8c55830.jpg"
+                      src="/uploads/png_20230510_102139_0000_075838fe23.png"
                       height={450}
                       width={700}
                       alt="No way!"
@@ -162,42 +159,86 @@ export default function About({ dataHero }: any) {
             <Center style={{ marginBottom: 100 }}>
               <Paper shadow="xl" radius="md" p="xl">
                 <Text>
-                  Dengan berdasar pada situasi dan kondisi saat melanda nya wabah pandemi corona 19
-                  yang seluruh dunia terpapar dan khususnya Indonesia membuat KAMI, beberapa sahabat
-                  terpanggil untuk ikut meringankan beban Pemerintah terhadap masyarakat indonesia
-                  umumnya dan khususnya yatim dan dhuafa yang belum tersentuh oleh tangan
-                  Pemerintah. <br />
+                  <Center>
+                    <h3>√ Misi & Visi TPQ Insan Mulia</h3>
+                  </Center>
+                  <Paper shadow="xl" radius="md" p="xl">
+                    <Text>
+                      <h4>• Misi</h4>
+                      Mewujudkan generasi islam yang cinta Al-Qur'an, teguh keimanan, dan berakhlak
+                      mulia
+                      <h4>• Visi</h4>
+                      1. Memahami cara baca Al-Qur'an sesuai dengan ilmu tajwid
+                      <br />
+                      2. Membiasakan untuk senantiasa menghafalkan Al-Qur'an, berdzikir, dan
+                      bershalawat
+                      <br />
+                      3. Menanamkan akhlak yang mulia dalam berinteraksi dengan orang tua, teman,
+                      dan masyarakat. <br />
+                      4. Menerapkan ajaran-ajaran islam berlandaskan Al-Qur'an dan Hadits di
+                      kehidupan sehari-hari sehingga dapat menjadi generasi yang qur'ani. <br />
+                      <br />
+                    </Text>
+                  </Paper>
                   <br />
-                  Alhamdulillah pada akhirnya terbentuklah satu lembaga nirlaba yang kami beri nama
-                  YAYASAN TAMAN HARAPAN INSAN MULIA ( YATHIM ) merupakan wadah sosial yang bertujuan
-                  sebagai sarana mediasi, menerima, maupun menyalurkan untuk para yatim dan dhuafa
-                  yang membutuhkan umumnya masyarakat luas serta khususnya masyarakat sekitar.
+                  <br />
+                  Proses belajar mengajar di TPQ Insan Mulia menggunakan metode Ilman Wa Ruuhan
+                  (IWR). Setelah tuntas materi Jilid 1 maka akan ada evaluasi untuk kenaikan Jilid
+                  berikutnya, hingga sampai ke Jilid 6. Kemudian setelah lulus jilid 6 akan
+                  dievaluasi kembali untuk naik ke tingkat Al-Qur'an. Di dalam pengajarannya TPQ
+                  Insan Mulia dibagi menjadi dua kelas. Untuk anak-anak usia 5-8 tahun akan
+                  diarahkan ke dalam kelas Annas bin Malik. Untuk anak-anak usia 9 tahun ke atas
+                  akan diarahkan ke dalam kelas Uwais Al-Qorni. TPQ Insan Mulia mempunyai 4 program
+                  pembelajaran : <br />
+                  <Paper shadow="xl" radius="md" p="xl">
+                    <Text>
+                      1. Pembelajaran TPQ Reguler <br />
+                      Senin-Kamis <br />
+                      - Kelas Annas bin Malik : 16.00 -17.15 WIB
+                      <br />
+                      - Kelas Uwais Al-Qorni : 18.30 - 20.00 WIB
+                      <br />
+                      2. Bimbel Malam
+                      <br />
+                      Jumat & Ahad : 18.30-20.00 WIB <br />
+                      3. Calistung <br />
+                      Sabtu & Ahad : 16.00-17.15 WIB <br />
+                      4. Majelis Ta'lim Ummahatus Shalihah (dikhususkan untuk Orangtua/Dewasa){' '}
+                      <br />
+                      Dilaksanakan setiap hari Sabtu, 18.30 - 20.15 WIB. <br /><br />
+                      Tenaga kependidikan di TPQ Insan Mulia terdapat 4 pendidik : <br />
+                      <Paper shadow="xl" radius="md" p="xl">
+                        <Text>
+                          1. Ust. Maulana Ishak <br />
+                          2. Ustdz. Juwita Rista Pratiwi <br />
+                          3. Ustdz. Husnul Aulia <br />
+                          4. Ustdz. Soimah <br />
+                        </Text>
+                      </Paper>
+                      <br />
+                      Adapun Jumlah Santri atau Peserta didik TPQ Insan Mulia berjumlah 35 santri.
+                      Kebanyakan berasal dari warga sekitar. Untuk saat ini TPQ Insan Mulia masih
+                      menyewa Ruko 1 lantai sebagai sarana dan prasarana kegiatan belajar dan
+                      mengajar.
+                      <br />
+                      <br />
+                    </Text>
+                  </Paper>
                   <br />
                   <br />
-                  Tujuan didirikan YATHIM Yayasan didirikan sebagai tempat yang diumpamakan seperti
-                  Taman yang didalamnya terdapat keindahan, keriangan dan kesenangan, dimana dengan
-                  wadah inilah sahabat atau teman yang satu pandangan serta memiliki tujuan utama
-                  yaitu berbagi kepada seluruh masyarakat. <br />
-                  <br />
-                  Pada saat berdiri Yayasan ini seluruh dunia khususnya Indonesia sedang mengalami
-                  wabah pandemi atau sering disebut COVID 19, sehingga keberadaan kami Yayasan Taman
-                  Harapan Insan Mulia bagi masyarakat sekitar khususnya dan umumnya masyarakat
-                  Indonesia, bisa sedikitnya meringankan beban mereka sekaligus membantu pemerintah
-                  dalam hal Sosial dan Keagamaan dimana masih banyak masyarakat yang belum tersentuh
-                  oleh pemerintah.
                 </Text>
               </Paper>
             </Center>
           </div>
         </Center>
 
-        <Center className={classes.divContactus} style={{ marginLeft: 20, marginRight:20 }}>
+        <Center className={classes.divContactus} style={{ marginLeft: 20, marginRight: 20 }}>
           <div>
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15862.004921116593!2d106.7399481!3d-6.3290379!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69efbbc083fdf9%3A0xf00e12ffabb870cc!2sLEMTARA!5e0!3m2!1sen!2sid!4v1682598505578!5m2!1sen!2sid" 
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15862.004921116593!2d106.7399481!3d-6.3290379!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69efbbc083fdf9%3A0xf00e12ffabb870cc!2sLEMTARA!5e0!3m2!1sen!2sid!4v1682598505578!5m2!1sen!2sid"
               width="400"
               height="400"
-              style={{ borderRadius:20, border:'none' }}
+              style={{ borderRadius: 20, border: 'none' }}
               allowFullScreen={true}
               loading="lazy"
               className={classes.iframe}

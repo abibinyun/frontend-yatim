@@ -4,9 +4,6 @@ const useStyles = createStyles((theme) => ({
   root: {
     display: 'flex',
     backgroundImage: theme.fn.gradient({ from: 'teal', to: 'lime', deg: 105 }),
-    // backgroundImage: `linear-gradient(-60deg, ${theme.colors[theme.primaryColor][2]} 20%, ${
-    //   theme.colors[theme.primaryColor][7]
-    // } 100%)`,
     padding: `calc(${theme.spacing.xl} * 1.5)`,
     borderRadius: theme.radius.md,
 

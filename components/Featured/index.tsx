@@ -48,7 +48,6 @@ const useStyles = createStyles((theme) => ({
     margin: 'auto',
 
     '&::after': {
-      // content: '""',
       display: 'block',
       backgroundColor: theme.fn.primaryColor(),
       width: rem(45),
@@ -99,12 +98,6 @@ export function FeaturesComp() {
 
   return (
     <Container size="lg" py="xl">
-      {/* <Group position="center">
-        <Badge variant="filled" color='green' size="lg">
-          Best company ever
-        </Badge>
-      </Group> */}
-
       <Title order={2} className={classes.title} ta="center" mt="sm" color='green'>
         Kebahagiaan untuk semua
       </Title>

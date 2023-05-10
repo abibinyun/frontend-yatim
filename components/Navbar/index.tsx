@@ -167,16 +167,13 @@ export function NavbarComp({ links }: HeaderResponsiveProps) {
               src="/favicon.svg"
               height={150}
               width={250}
-              // layout="fill"
               alt="logo yathim.or.id"
             />
           </div>
         </Link>
-        {/* <Center> */}
         <Group spacing={5} className={classes.links}>
           {items}
         </Group>
-        {/* </Center> */}
         <div className={classes.togleBurger}>
           <div className={classes.togle}></div>
           <Space w="md" />
