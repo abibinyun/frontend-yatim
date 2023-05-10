@@ -1,7 +1,7 @@
 import Head from 'next/head';
-import { Notifications } from '@mantine/notifications';
 import { NavbarComp } from '../components/Navbar';
 import { FooterComp } from '../components/Footer';
+import ToastComp from '../components/Toast';
 
 export default function App({ Component, pageProps }: any) {
   const tester = [
@@ -34,7 +34,9 @@ export default function App({ Component, pageProps }: any) {
         </Head>
       <NavbarComp links={tester} />
       <Component {...pageProps} />
-      <Notifications />
+      <div>
+                <ToastComp/>
+          </div>
       <FooterComp links={tester} />
     </>
   );

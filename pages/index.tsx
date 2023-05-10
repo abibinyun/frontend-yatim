@@ -63,6 +63,17 @@ export default function HomePage({ data, dataHero, dataGalery, dataFAQ }: any) {
   // const mapFAQ = FAQdata.map((item: { attributes: any }) => item.attributes);
   const { classes } = useStyle();
 
+  const dataToast = [
+    {
+      nama: 'abi',
+      pesan: 'semangat'
+    },
+    {
+      nama: 'manda',
+      pesan: 'ayooo semangat'
+    },
+  ]
+
   return (
     <>
       <Head>
@@ -163,8 +174,8 @@ export default function HomePage({ data, dataHero, dataGalery, dataFAQ }: any) {
             {/* <Space h="md" />
           </div>
           <Space w="md" /> */}
-          {/* Berita & Artikel */}
-          {/* <div className={classes.beritaArtikel}>
+            {/* Berita & Artikel */}
+            {/* <div className={classes.beritaArtikel}>
             <Center sx={{ marginBottom: 50 }}>
               <Badge color="green" size="xl">
                 <h3>Berita dan Artikel</h3>
