@@ -99,7 +99,7 @@ export function CardDonasi() {
           <div style={{ marginTop: 15 }}>
             <Button color="green" type="submit">
               {' '}
-              Donasi !{' '}
+              Donasi{' '}
             </Button>
           </div>
         </form>
