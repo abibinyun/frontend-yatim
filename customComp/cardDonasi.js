@@ -26,7 +26,12 @@ export function CardDonasi() {
       message: '',
     },
     validate: {
-      amount: (value) => (value.length === 0 ? 'tidak boleh kosong' : null),
+      amount: (value) =>
+        value.length === 0
+          ? 'tidak boleh kosong'
+          : value < 10000
+          ? 'minimum donasi Rp. 10.000'
+          : null,
       message: (value) => (value.length === 0 ? 'tidak boleh kosong' : null),
     },
   });

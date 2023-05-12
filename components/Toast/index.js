@@ -81,7 +81,7 @@ export default function ToastComp() {
         console.log(i);
       }, 8000 * i);
     }
-  });
+  }, []);
 
   return (
     <div>
