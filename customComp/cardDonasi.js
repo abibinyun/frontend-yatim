@@ -1,14 +1,57 @@
-import { Card, Button, SegmentedControl, NumberInput, Textarea, createStyles } from '@mantine/core';
+import {
+  Card,
+  Button,
+  SegmentedControl,
+  NumberInput,
+  Textarea,
+  createStyles,
+  Flex,
+  Space,
+  Popover,
+  Input,
+  CopyButton,
+  Tooltip,
+  ActionIcon,
+} from '@mantine/core';
 import { useState } from 'react';
 import { useForm } from '@mantine/form';
 import { useFocusWithin } from '@mantine/hooks';
 import { useRouter } from 'next/router';
+import { IconCheck, IconCopy } from '@tabler/icons-react';
+import Swal from 'sweetalert2';
 
 const useStyles = createStyles((theme) => ({
   img: {
     color: theme.colors[theme.primaryColor][4],
   },
 }));
+
+function withAllert() {
+  setTimeout(() => {
+    Swal.fire({
+      icon: 'success',
+      title: 'Terimakasih🙏',
+      text: 'Mohon konfirmasi jika sudah melakukan transfer ke nomor dibawah ini',
+      footer:
+        '<a href="https://wa.me/62811102890" target="_blank" style={{ textDecoration: "none" }} >Konfirmasi Transfer</a>',
+    });
+  }, 100);
+  return <IconCheck size="1rem" />;
+}
+
+function CopyBtn({ value }) {
+  return (
+    <CopyButton value={value} timeout={2000}>
+      {({ copied, copy }) => (
+        <Tooltip label={copied ? 'Copied' : 'Copy'} withArrow position="right">
+          <ActionIcon color={copied ? 'teal' : 'gray'} onClick={copy}>
+            {copied ? withAllert() : <IconCopy size="1rem" />}
+          </ActionIcon>
+        </Tooltip>
+      )}
+    </CopyButton>
+  );
+}
 
 export function CardDonasi() {
   const { classes } = useStyles();
@@ -56,7 +99,7 @@ export function CardDonasi() {
 
   return (
     <>
-      <Card shadow="lg" padding="lg" radius="md" withBorder style={{ height: 400, color: 'green' }}>
+      <Card shadow="lg" padding="lg" radius="md" withBorder style={{ height: 450, color: 'green' }}>
         <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
           {!focused || !form.values.amount ? (
             <Card.Section>
@@ -102,10 +145,74 @@ export function CardDonasi() {
             />
           </div>
           <div style={{ marginTop: 15 }}>
-            <Button color="green" type="submit">
+            {/* HAPUS POPOVER BUTTON DONASI DI BAWAH, JIKA PAYMENT GATEWAY SUDAH BISA DIGUNAKAN */}
+
+            <Button
+              color="green"
+              type="submit"
+              onClick={() => {
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Saat ini sedang dalam perbaikan',
+                  text: 'Klik tombol dibawah untuk Manual Transfer',
+                });
+              }}
+            >
               {' '}
               Donasi{' '}
             </Button>
+
+            {/* <Button color="green" type="submit">
+              {' '}
+              Donasi{' '}
+            </Button> */}
+
+            <Space h={'20px'} />
+            <Popover width="300px" position="top" withArrow shadow="md">
+              <Popover.Target>
+                <Button size="xs" color="gray">
+                  <p>Klik disini untuk Manual Transfer</p>
+                </Button>
+              </Popover.Target>
+              <Popover.Dropdown>
+                <div style={{ fontSize: 15, padding: 'auto' }}>
+                  <p>AMANAH ZISWAF melalui rekening{<br />} Yayasan Taman Harapan Insan Mulia</p>
+                </div>
+                <Flex direction={'column'} justify={'center'}>
+                  <div>
+                    <label htmlFor="">BRI</label>
+                    <Flex>
+                      <Input value={`0919-0103-4216-531`} disabled />
+                      <CopyBtn value={`0919-0103-4216-531`} />
+                    </Flex>
+                  </div>
+                  <Space h={'10px'} />
+                  <div>
+                    <label htmlFor="">Mandiri</label>
+                    <Flex>
+                      <Input value={`1640003525443`} disabled />
+                      <CopyBtn value={`1640003525443`} />
+                    </Flex>
+                  </div>
+                  <Space h={'10px'} />
+                  <div>
+                    <label htmlFor="">BSI</label>
+                    <Flex>
+                      <Input value={`7232168247`} disabled />
+                      <CopyBtn value={`7232168247`} />
+                    </Flex>
+                  </div>
+                  <Space h={'10px'} />
+                  <div>
+                    <label htmlFor="">BCA</label>
+                    <Flex>
+                      <Input value={`4731682873`} disabled />
+                      <CopyBtn value={`4731682873`} />
+                    </Flex>
+                  </div>
+                </Flex>
+              </Popover.Dropdown>
+            </Popover>
           </div>
         </form>
       </Card>
