@@ -114,7 +114,7 @@ const useStyles = createStyles((theme) => ({
   card: {
     width: 300,
     zIndex: 5,
-    marginTop: -550,
+    marginTop: -650,
     marginBottom: 200,
     marginLeft: 1100,
     [`@media (max-width: ${em(1420)})`]: {

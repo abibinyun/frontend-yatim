@@ -12,13 +12,19 @@ import {
   CopyButton,
   Tooltip,
   ActionIcon,
+  Select,
+  Group,
+  Avatar,
+  Text,
 } from '@mantine/core';
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
 import { useForm } from '@mantine/form';
 import { useFocusWithin } from '@mantine/hooks';
 import { useRouter } from 'next/router';
 import { IconCheck, IconCopy } from '@tabler/icons-react';
 import Swal from 'sweetalert2';
+import ModalComp from '../components/Modal';
+import Link from 'next/link';
 
 const useStyles = createStyles((theme) => ({
   img: {
@@ -53,20 +59,42 @@ function CopyBtn({ value }) {
   );
 }
 
+const SelectItem = forwardRef(({ image, label, description, ...others }) => (
+  <div {...others}>
+    <Group noWrap>
+      <Avatar src={image} size="lg" />
+      <div>
+        <Text size="sm">{label}</Text>
+        <Text size="xs" opacity={0.65}>
+          {description}
+        </Text>
+      </div>
+    </Group>
+  </div>
+));
+
 export function CardDonasi() {
   const { classes } = useStyles();
   const [value, setValue] = useState('');
   const [valueInput, setValueInput] = useState('');
   const { ref, focused } = useFocusWithin();
-  const uniqId = new Date().valueOf();
-  const orderId = `Yathim-${uniqId}`;
+  const date = new Date();
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  const uniqId = `${day}${month}${year}`;
+  const randomNumber = Math.floor(Math.random() * (999 - 100 + 1) + 100);
+  const orderId = `Yathim-${uniqId}-${randomNumber}`;
   const router = useRouter();
   const params = router.query;
 
   const form = useForm({
     initialValues: {
       amount: '',
+      bank: '',
+      noReq: '',
       message: '',
+      nama: '',
     },
     validate: {
       amount: (value) =>
@@ -76,30 +104,49 @@ export function CardDonasi() {
           ? 'minimum donasi Rp. 10.000'
           : null,
       message: (value) => (value.length === 0 ? 'tidak boleh kosong' : null),
+      noReq: (value) => (value.length === 0 ? 'silahkan pilih metode pembayaran' : null),
     },
   });
 
+  // handle submit untuk button DONASI
   async function handleSubmit() {
-    const response = await fetch('/api/pay', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        amount: form.values.amount,
-        order_id: orderId,
-        message: form.values.message,
-        params,
-      }),
-    });
-    const data = await response.json();
+    // api untuk MIDTRANS
+    // ===
+    // const response = await fetch('/api/pay', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     amount: form.values.amount,
+    //     order_id: orderId,
+    //     message: form.values.message,
+    //     params,
+    //   }),
+    // });
+    // const data = await response.json();
     // router.push(data.redirect_url);
-    window.open(data.redirect_url, '_blank');
+    // window.open(data.redirect_url, '_blank');
+    // ===
+    const data = {
+      ...form.values,
+      id: `INV-${uniqId}-${randomNumber}`,
+    };
+    localStorage.setItem('dataForm', JSON.stringify({ data }));
+    router.push(
+      {
+        pathname: `invoice/INV-${uniqId}-${randomNumber}`,
+        // query: form.values,
+      },
+      `invoice/INV-${uniqId}-${randomNumber}`
+    );
+    // }
+    console.log('value submit button : ', form.values);
   }
 
   return (
     <>
-      <Card shadow="lg" padding="lg" radius="md" withBorder style={{ height: 450, color: 'green' }}>
+      <Card shadow="lg" padding="lg" radius="md" withBorder style={{ color: 'green' }}>
         <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
           {!focused || !form.values.amount ? (
             <Card.Section>
@@ -135,6 +182,59 @@ export function CardDonasi() {
               />
             </div>
           </div>
+          <Space h={'20px'} />
+          {/* <Flex justify={'flex-end'}> */}
+          <div>
+            {/* <ModalComp /> */}
+            <Select
+              data={[
+                {
+                  image: '/asset/logo/bri.png',
+                  label: 'Transfer Bank BRI',
+                  value: 91901034216531,
+                },
+                {
+                  image: '/asset/logo/mandiri.png',
+                  label: 'Transfer Bank Mandiri',
+                  value: 1640003525443,
+                },
+                {
+                  image: '/asset/logo/bca.png',
+                  label: 'Transfer Bank BCA',
+                  value: 4731682873,
+                },
+                {
+                  image: '/asset/logo/bsi.png',
+                  label: 'Transfer Bank Syariah Indonesia',
+                  value: 7232168247,
+                },
+              ]}
+              itemComponent={SelectItem}
+              placeholder="Pilih Metode Pembayaran"
+              label="Metode Pembayaran"
+              description="Transfer Bank (Verifikasi Manual 1 x 24 jam)"
+              variant="filled"
+              radius="md"
+              size="sm"
+              dropdownComponent="div"
+              withAsterisk
+              {...form.getInputProps('noReq')}
+            />
+          </div>
+          {/* </Flex> */}
+          <Space h={10} />
+          <div>
+            <Input.Wrapper label="Nama">
+              <Input
+                // icon={<IconAt />}
+
+                placeholder="masukan nama"
+                radius="md"
+                size="sm"
+                {...form.getInputProps('nama')}
+              />
+            </Input.Wrapper>
+          </div>
           <div style={{ marginTop: 20 }}>
             <Textarea
               placeholder="sampaikan salam serta doa"
@@ -145,74 +245,33 @@ export function CardDonasi() {
             />
           </div>
           <div style={{ marginTop: 15 }}>
-            {/* HAPUS POPOVER BUTTON DONASI DI BAWAH, JIKA PAYMENT GATEWAY SUDAH BISA DIGUNAKAN */}
-
             <Button
               color="green"
               type="submit"
               onClick={() => {
-                Swal.fire({
-                  icon: 'error',
-                  title: 'Saat ini sedang dalam perbaikan',
-                  text: 'Klik tombol dibawah untuk Manual Transfer',
-                });
+                // Swal.fire({
+                //   icon: 'error',
+                //   title: 'Saat ini sedang dalam perbaikan',
+                //   text: 'Klik tombol dibawah untuk Manual Transfer',
+                // });
+                form.values.noReq === 91901034216531
+                  ? form.setValues({ bank: 'BRI' })
+                  : form.values.noReq === 1640003525443
+                  ? form.setValues({ bank: 'Mandiri' })
+                  : form.values.noReq === 4731682873
+                  ? form.setValues({ bank: 'BCA' })
+                  : form.values.noReq === 7232168247
+                  ? form.setValues({ bank: 'Bank Syariah Indonesia' })
+                  : null;
               }}
             >
-              {' '}
-              Donasi{' '}
+              Donasi
             </Button>
 
             {/* <Button color="green" type="submit">
               {' '}
               Donasi{' '}
             </Button> */}
-
-            <Space h={'20px'} />
-            <Popover width="300px" position="top" withArrow shadow="md">
-              <Popover.Target>
-                <Button size="xs" color="gray">
-                  <p>Klik disini untuk Manual Transfer</p>
-                </Button>
-              </Popover.Target>
-              <Popover.Dropdown>
-                <div style={{ fontSize: 15, padding: 'auto' }}>
-                  <p>AMANAH ZISWAF melalui rekening{<br />} Yayasan Taman Harapan Insan Mulia</p>
-                </div>
-                <Flex direction={'column'} justify={'center'}>
-                  <div>
-                    <label htmlFor="">BRI</label>
-                    <Flex>
-                      <Input value={`0919-0103-4216-531`} disabled />
-                      <CopyBtn value={`0919-0103-4216-531`} />
-                    </Flex>
-                  </div>
-                  <Space h={'10px'} />
-                  <div>
-                    <label htmlFor="">Mandiri</label>
-                    <Flex>
-                      <Input value={`1640003525443`} disabled />
-                      <CopyBtn value={`1640003525443`} />
-                    </Flex>
-                  </div>
-                  <Space h={'10px'} />
-                  <div>
-                    <label htmlFor="">BSI</label>
-                    <Flex>
-                      <Input value={`7232168247`} disabled />
-                      <CopyBtn value={`7232168247`} />
-                    </Flex>
-                  </div>
-                  <Space h={'10px'} />
-                  <div>
-                    <label htmlFor="">BCA</label>
-                    <Flex>
-                      <Input value={`4731682873`} disabled />
-                      <CopyBtn value={`4731682873`} />
-                    </Flex>
-                  </div>
-                </Flex>
-              </Popover.Dropdown>
-            </Popover>
           </div>
         </form>
       </Card>
