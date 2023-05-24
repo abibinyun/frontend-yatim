@@ -23,6 +23,7 @@ import { useFocusWithin } from '@mantine/hooks';
 import { useRouter } from 'next/router';
 import { IconCheck, IconCopy } from '@tabler/icons-react';
 import Swal from 'sweetalert2';
+import moment from 'moment/moment';
 import ModalComp from '../components/Modal';
 import Link from 'next/link';
 
@@ -59,8 +60,8 @@ function CopyBtn({ value }) {
   );
 }
 
-const SelectItem = forwardRef(({ image, label, description, ...others }) => (
-  <div {...others}>
+const SelectItem = forwardRef(({ image, label, description, ...others }, ref) => (
+  <div ref={ref} {...others}>
     <Group noWrap>
       <Avatar src={image} size="lg" />
       <div>
@@ -87,6 +88,8 @@ export function CardDonasi() {
   const orderId = `Yathim-${uniqId}-${randomNumber}`;
   const router = useRouter();
   const params = router.query;
+  let tomorrow = moment().add(1, 'day').format('DD MMM YYYY - hh:mm');
+  console.log('tomorrow : ', tomorrow);
 
   const form = useForm({
     initialValues: {
@@ -131,12 +134,13 @@ export function CardDonasi() {
     const data = {
       ...form.values,
       id: `INV-${uniqId}-${randomNumber}`,
+      time: `${tomorrow}`,
     };
-    localStorage.setItem('dataForm', JSON.stringify({ data }));
+    localStorage.setItem('dataForm', JSON.stringify(data));
     router.push(
       {
         pathname: `invoice/INV-${uniqId}-${randomNumber}`,
-        // query: form.values,
+        // query: data,
       },
       `invoice/INV-${uniqId}-${randomNumber}`
     );
@@ -255,13 +259,13 @@ export function CardDonasi() {
                 //   text: 'Klik tombol dibawah untuk Manual Transfer',
                 // });
                 form.values.noReq === 91901034216531
-                  ? form.setValues({ bank: 'BRI' })
+                  ? form.setValues({ bank: 'bri' })
                   : form.values.noReq === 1640003525443
-                  ? form.setValues({ bank: 'Mandiri' })
+                  ? form.setValues({ bank: 'mandiri' })
                   : form.values.noReq === 4731682873
-                  ? form.setValues({ bank: 'BCA' })
+                  ? form.setValues({ bank: 'bca' })
                   : form.values.noReq === 7232168247
-                  ? form.setValues({ bank: 'Bank Syariah Indonesia' })
+                  ? form.setValues({ bank: 'bsi' })
                   : null;
               }}
             >
