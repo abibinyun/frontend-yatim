@@ -147,8 +147,8 @@ export default function Invoice() {
     setLoading(false);
   }, []);
 
-  if (isLoading) return <h1>Loading...</h1>;
-  if (!dataLocal) return <h1>No profile data</h1>;
+  // if (isLoading) return <h1>Loading...</h1>;
+  // if (!dataLocal) return <h1>No profile data</h1>;
 
   console.log('datalocal', dataLocal);
 
@@ -159,7 +159,7 @@ export default function Invoice() {
         <Card shadow="lg" m={'0'}>
           <Center>
             <Text weight={500} size="lg" mt="md">
-              INVOICE
+              {dataLocal.id}
             </Text>
           </Center>
           <Center>
