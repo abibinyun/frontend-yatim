@@ -88,7 +88,7 @@ export function CardDonasi() {
   const orderId = `Yathim-${uniqId}-${randomNumber}`;
   const router = useRouter();
   const params = router.query;
-  let tomorrow = moment().add(1, 'day').format('DD MMM YYYY - hh:mm');
+  let tomorrow = moment().add(1, 'day').format('DD MMM YYYY - hh:mm A');
   console.log('tomorrow : ', tomorrow);
 
   const form = useForm({
