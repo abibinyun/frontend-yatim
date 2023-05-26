@@ -1,15 +1,26 @@
-import { ActionIcon, Avatar, CopyButton, Tooltip, createStyles, em } from '@mantine/core';
+import {
+  Accordion,
+  ActionIcon,
+  Avatar,
+  CopyButton,
+  Tooltip,
+  createStyles,
+  em,
+} from '@mantine/core';
 import { FormatRupiah } from '@arismun/format-rupiah';
 import {
   IconAddressBook,
   IconCheck,
   IconCopy,
   IconMoneybag,
-  IconRotateClockwise,
+  Icon24Hours,
+  IconMessage2,
+  IconPlus,
 } from '@tabler/icons-react';
 import React, { useEffect, useState } from 'react';
 import { Box, Card, Center, Container, Flex, Space, Text } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
+import Link from 'next/link';
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -124,7 +135,7 @@ export default function Invoice() {
   const [dataLocal, setDataLocal] = useState({});
   const [isLoading, setLoading] = useState(false);
   const { classes, cx } = useStyles();
-  const largeScreen = useMediaQuery('(min-width: 505em)');
+  const bank = dataLocal.bank;
 
   useEffect(() => {
     setLoading(true);
@@ -152,8 +163,10 @@ export default function Invoice() {
             </Text>
           </Center>
           <Center>
-            <Text mt="xs" color="dark" size="sm">
-              Terimakasih {dataLocal.nama} atas Donasi yang akan anda berikan pada program :
+            <Text m={10} color="dark" size="sm">
+              Terimakasih{' '}
+              <span style={{ color: 'green', fontWeight: 'bold' }}>{dataLocal.nama}</span> atas
+              Donasi yang akan anda berikan pada program
             </Text>
           </Center>
           <Center>
@@ -281,8 +294,8 @@ export default function Invoice() {
           </Box>
           <Space h={25} />
           {/* KONFIRMASI TRANSFER TEXT */}
-          <Flex justify={'center'} align={'center'}>
-            <Text w={360} size={'xs'}>
+          <Flex justify={'center'} align={'center'} m={10}>
+            <Text w={360} size={'sm'}>
               Harap transfer sesuai nominal diatas (sampai 3 digit terakhir) agar dapat
               terkonfirmasi otomatis dan kebaikan ini dapat kami teruskan.
             </Text>
@@ -297,27 +310,132 @@ export default function Invoice() {
                 'rgba(0, 0, 0, 0.02) 2px 2px 2px 2px, rgba(27, 31, 35, 0.15) 2px 2px 1px 1px',
               // padding: ' 10px 50px 10px 50px',
               overflow: 'auto',
+              backgroundColor: 'rgba(167, 255, 143, 2)',
             }}
             w={360}
           >
             {/* <Flex justify={'space-between'} align={'center'}> */}
             <div className={classes.flexCon}>
               <div className={classes.iconBox}>
-                <IconRotateClockwise opacity="50%" size="3.125rem" />
+                <IconMessage2 opacity="50%" size="3.125rem" />
+              </div>
+              <Flex direction={'column'}>
+                <Link
+                  style={{ textDecoration: 'none' }}
+                  href={'https://wa.me/62811102890'}
+                  target="blank"
+                >
+                  <div>
+                    <Center>
+                      <Text size={'md'} fw={400}>
+                        Klik disini untuk
+                      </Text>
+                    </Center>
+                  </div>
+                  <div>
+                    <Center>
+                      <Text size={'md'} fw={500}>
+                        Konfirmasi Pembayaran
+                      </Text>
+                    </Center>
+                  </div>
+                </Link>
+              </Flex>
+              <div>
+                {/* <Text size={'lg'} fw={500}>
+                  {dataLocal.time}
+                </Text> */}
+              </div>
+            </div>
+            {/* </Flex> */}
+          </Box>
+          <Space h={20} />
+          {/* BOX 5 */}
+          <Box
+            className={classes.card}
+            style={{
+              borderRadius: 20,
+              boxShadow:
+                'rgba(0, 0, 0, 0.02) 2px 2px 2px 2px, rgba(27, 31, 35, 0.15) 2px 2px 1px 1px',
+              // padding: ' 10px 50px 10px 50px',
+              overflow: 'auto',
+            }}
+            w={360}
+          >
+            {/* <Flex justify={'space-between'} align={'center'}> */}
+            <div className={classes.flexCon}>
+              <div className={classes.iconBox}>
+                <Icon24Hours opacity="50%" size="3.125rem" />
               </div>
               <div>
-                <Text size={'lg'} fw={500}>
+                <Text size={'md'} fw={500}>
                   Transfer sebelum :
                 </Text>
               </div>
               <div>
-                <Text size={'lg'} fw={500}>
+                <Text size={'md'} fw={500}>
                   {dataLocal.time}
                 </Text>
               </div>
             </div>
             {/* </Flex> */}
           </Box>
+          <Space h={50} />
+          {/* ACCORDION ITEM */}
+          {/* <Box
+            className={classes.card}
+            style={{
+              borderRadius: 20,
+              boxShadow:
+                'rgba(0, 0, 0, 0.02) 2px 2px 2px 2px, rgba(27, 31, 35, 0.15) 2px 2px 1px 1px',
+              // padding: ' 10px 50px 10px 50px',
+              overflow: 'auto',
+            }}
+            w={360}
+          >
+            <Center>
+              <Text size={'lg'} fw={500}>
+                {' '}
+                Intruksi Pembayaran{' '}
+              </Text>
+            </Center>
+            <Accordion
+            // defaultValue="item-1"
+            >
+              <Accordion.Item value="item-1">
+                <Accordion.Control>{`${bank} Mobile`}</Accordion.Control>
+                <Accordion.Panel>
+                  <ol>
+                    <li> Buka BCA mobile.</li>
+                    <li> Masukkan Kode Akses.</li>
+                    <li> Pilih menu m-Transfer.</li>
+                    <li> Klik Antar Rekening di Daftar Transfer.</li>
+                    <li> Daftarkan Nomor Rekening Tujuan.</li>
+                    <li> Kembali ke menu Transfer.</li>
+                    <li> Klik Antar Rekening di Transfer.</li>
+                    <li>
+                      {' '}
+                      Pilih Daftar Rekening :{' '}
+                      <span style={{ color: 'blue' }}>{dataLocal.noReq}</span>.
+                    </li>
+                    <li>
+                      {' '}
+                      Masukkan nominal transfer BCA :{' '}
+                      <span style={{ color: 'blue' }}>{dataLocal.amount}</span>.
+                    </li>
+                    <li> Klik Send.</li>
+                    <li> Masukkan PIN Mobile BCA.</li>
+                    <li> Tunggu transfer BCA berhasil.</li>
+                  </ol>
+                </Accordion.Panel>
+              </Accordion.Item>
+
+              <Accordion.Item value="item-2">
+                <Accordion.Control>{`ATM ${bank}`}</Accordion.Control>
+                <Accordion.Panel>panel-2</Accordion.Panel>
+              </Accordion.Item>
+            </Accordion>
+          </Box> */}
         </Card>
       </Flex>
       {/* </Container> */}
