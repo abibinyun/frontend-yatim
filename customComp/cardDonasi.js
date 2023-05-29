@@ -17,6 +17,7 @@ import {
   Avatar,
   Text,
 } from '@mantine/core';
+import { sendContactForm } from '../lib/api';
 import { forwardRef, useState } from 'react';
 import { useForm } from '@mantine/form';
 import { useFocusWithin } from '@mantine/hooks';
@@ -136,6 +137,18 @@ export function CardDonasi() {
       id: `INV-${uniqId}-${randomNumber}`,
       time: `${tomorrow}`,
     };
+    try {
+      await sendContactForm(data);
+    } catch (error) {
+      console.log(error.message);
+    }
+    // const dataEmail = await response.json();
+
+    // console.log('data email', dataEmail);
+
+    // router.push(data.redirect_url);
+    // window.open(data.redirect_url, '_blank');
+
     localStorage.setItem('dataForm', JSON.stringify(data));
     router.push(
       {
