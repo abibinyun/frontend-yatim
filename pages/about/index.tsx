@@ -86,6 +86,7 @@ const useStyle = createStyles((theme) => ({
 
 export default function About({ dataHero }: any) {
   const { classes } = useStyle();
+  const idPage = 'Berbagi Kebaikan';
   const myLoader = ({ src, width }: any) => {
     return `https://strapi.yathim.or.id${src}?w=${width}`;
   };
@@ -93,7 +94,7 @@ export default function About({ dataHero }: any) {
     <>
       <div>
         <div style={{ marginTop: -200 }}>
-          <HeroComp data={dataHero} seeCardDonasi={false} withButton={false} />
+          <HeroComp data={dataHero} seeCardDonasi={false} withButton={false} idPage={idPage} />
         </div>
 
         <Center>
@@ -205,7 +206,8 @@ export default function About({ dataHero }: any) {
                       Sabtu & Ahad : 16.00-17.15 WIB <br />
                       4. Majelis Ta'lim Ummahatus Shalihah (dikhususkan untuk Orangtua/Dewasa){' '}
                       <br />
-                      Dilaksanakan setiap hari Sabtu, 18.30 - 20.15 WIB. <br /><br />
+                      Dilaksanakan setiap hari Sabtu, 18.30 - 20.15 WIB. <br />
+                      <br />
                       Tenaga kependidikan di TPQ Insan Mulia terdapat 4 pendidik : <br />
                       <Paper shadow="xl" radius="md" p="xl">
                         <Text>
