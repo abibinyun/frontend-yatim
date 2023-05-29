@@ -3,6 +3,7 @@ import { Paper, Space, Text, rem } from '@mantine/core';
 import CardDonasi from '../../customComp/cardDonasi';
 
 export default function berbagi() {
+  const idPage = 'Berbagi Kebaikan';
   return (
     <div>
       <Space h={30} />
@@ -23,7 +24,7 @@ export default function berbagi() {
       </div>
       <Space h={50} />
       <div id="card-donasi" style={{ marginLeft: 20, marginRight: 20, paddingTop: 10 }}>
-        <CardDonasi />
+        <CardDonasi subject={idPage} />
       </div>
     </div>
   );
