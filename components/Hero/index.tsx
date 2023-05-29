@@ -37,31 +37,31 @@ const useStyles = createStyles((theme) => ({
     fontWeight: 900,
     lineHeight: 1.1,
 
-      [`@media (min-width: ${em(777)})`]: {
-        padding:0
-      },
-      [`@media (max-width: ${em(600)})`]: {
-        fontSize: rem(30),
-        lineHeight: 1.3,
-        padding:0
-      },
-      [`@media (max-width: ${em(415)})`]: {
-        fontSize: rem(26),
-        lineHeight: 1.3,
-      },
-      [`@media (max-width: ${em(391)})`]: {
-        fontSize: rem(25),
-        lineHeight: 1.3,
-      },
+    [`@media (min-width: ${em(777)})`]: {
+      padding: 0,
+    },
+    [`@media (max-width: ${em(600)})`]: {
+      fontSize: rem(30),
+      lineHeight: 1.3,
+      padding: 0,
+    },
+    [`@media (max-width: ${em(415)})`]: {
+      fontSize: rem(26),
+      lineHeight: 1.3,
+    },
+    [`@media (max-width: ${em(391)})`]: {
+      fontSize: rem(25),
+      lineHeight: 1.3,
+    },
     [`@media (max-width: ${em(376)})`]: {
       fontSize: rem(25),
       lineHeight: 1.3,
-      padding:0
+      padding: 0,
     },
     [`@media (max-width: ${em(340)})`]: {
       fontSize: rem(20),
       lineHeight: 1.3,
-      padding:0
+      padding: 0,
     },
     [`@media (max-width: ${em(281)})`]: {
       fontSize: rem(20),
@@ -86,18 +86,17 @@ const useStyles = createStyles((theme) => ({
       width: '100%',
     },
     [`@media (max-width: ${em(291)})`]: {
-      width:'100%',
-      fontSize:17
+      width: '100%',
+      fontSize: 17,
     },
     [`@media (max-width: ${em(281)})`]: {
-      width:'100%',
-      fontSize:18
+      width: '100%',
+      fontSize: 18,
     },
     [`@media (max-width: ${em(275)})`]: {
-      width:'100%',
-      fontSize:16
+      width: '100%',
+      fontSize: 16,
     },
-    
   },
 
   card2: {
@@ -158,6 +157,7 @@ export function HeroComp(props: {
     }[];
   };
   seeCardDonasi: any;
+  idPage: any;
 }) {
   const { classes } = useStyles();
   const { title, headline, txtButton, imageHero, showcase } = props.data.data[0].attributes;
@@ -199,10 +199,10 @@ export function HeroComp(props: {
       {props.seeCardDonasi && (
         <>
           <div className={classes.card}>
-            <CardDonasi />
+            <CardDonasi subject={props.idPage} />
           </div>
           <div className={classes.card2}>
-            <CardDonasi />
+            <CardDonasi subject={props.idPage} />
           </div>
         </>
       )}

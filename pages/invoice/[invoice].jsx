@@ -171,127 +171,131 @@ export default function Invoice() {
           </Center>
           <Center>
             <Text mt="xs" color="dark" size="md" tt="uppercase" fw={700}>
-              Berbagi kebaikan
+              {dataLocal.subject}
             </Text>
           </Center>
           <Space h={20} />
-
           {/* BOX 1 */}
-          <Box
-            className={classes.card}
-            style={{
-              borderRadius: 20,
-              boxShadow:
-                'rgba(0, 0, 0, 0.02) 2px 2px 2px 2px, rgba(27, 31, 35, 0.15) 2px 2px 1px 1px',
+          <Center>
+            <Box
+              className={classes.card}
+              style={{
+                borderRadius: 20,
+                boxShadow:
+                  'rgba(0, 0, 0, 0.02) 2px 2px 2px 2px, rgba(27, 31, 35, 0.15) 2px 2px 1px 1px',
 
-              // padding: ' 10px 50px 10px 50px',
-              overflow: 'auto',
-            }}
-            w={360}
-          >
-            <div className={classes.flexCon}>
-              <div className={classes.iconBox}>
-                <IconAddressBook opacity="50%" size="3.125rem" />
-              </div>
-              <div className={classes.itemBox}>
-                <Text color="dark" size="md" fw={500} className={classes.itemTitle}>
-                  Data detail
-                </Text>
-                <div className={classes.divItem}>
-                  <div className={classes.itemText}>
-                    {/* <label> */}
-                    <Text>Nama </Text>
-                    {/* </label> */}
-                    <Space w={20} />
-                    {/* <Text>:&nbsp;</Text> */}
-                    <Text fw={500}>{dataLocal.nama}</Text>
-                  </div>
-                  <div className={classes.itemText}>
-                    {/* <label> */}
-                    <Text>Donasi </Text>
-                    {/* </label> */}
-                    <Space w={20} />
-                    {/* <Text>:&nbsp;</Text> */}
-                    <Text fw={500}>
-                      <FormatRupiah value={dataLocal.amount} />
-                    </Text>
-                  </div>
+                // padding: ' 10px 50px 10px 50px',
+                overflow: 'auto',
+              }}
+              w={360}
+            >
+              <div className={classes.flexCon}>
+                <div className={classes.iconBox}>
+                  <IconAddressBook opacity="50%" size="3.125rem" />
                 </div>
-              </div>
-            </div>
-          </Box>
-
-          <Space h={20} />
-          {/* BOX 2 */}
-          <Box
-            className={classes.card}
-            style={{
-              borderRadius: 20,
-              boxShadow:
-                'rgba(0, 0, 0, 0.02) 2px 2px 2px 2px, rgba(27, 31, 35, 0.15) 2px 2px 1px 1px',
-              // padding: ' 10px 50px 10px 50px',
-              overflow: 'auto',
-            }}
-            w={360}
-          >
-            {/* <Flex justify={'center'} align={'center'}> */}
-            <div className={classes.flexCon}>
-              <div className={classes.iconBox}>
-                <Avatar size={'xl'} src={`/asset/logo/${dataLocal.bank}.png`} />
-              </div>
-              <Space w={20} />
-              <div className={classes.itemBox}>
-                <div className={classes.divItem}>
-                  <div className={classes.itemText}>
-                    <div>
-                      <Text fw={500}>{dataLocal.noReq}</Text>
-                      <Space h={10} />
-                      <Text size={'xs'}>YAYASAN TAMAN HARAPAN INSAN MULIA</Text>
+                <div className={classes.itemBox}>
+                  <Text color="dark" size="md" fw={500} className={classes.itemTitle}>
+                    Data detail
+                  </Text>
+                  <div className={classes.divItem}>
+                    <div className={classes.itemText}>
+                      {/* <label> */}
+                      <Text>Nama </Text>
+                      {/* </label> */}
+                      <Space w={20} />
+                      {/* <Text>:&nbsp;</Text> */}
+                      <Text fw={500}>{dataLocal.nama}</Text>
                     </div>
-                    <Flex justify={'flex-end'} align={'center'}>
-                      <CopyBtn value={dataLocal.noReq} /> <Text size={'xs'}>Copy</Text>
-                    </Flex>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* </Flex> */}
-          </Box>
-          <Space h={20} />
-          {/* BOX 3 */}
-          <Box
-            className={classes.card}
-            style={{
-              borderRadius: 20,
-              boxShadow:
-                'rgba(0, 0, 0, 0.02) 2px 2px 2px 2px, rgba(27, 31, 35, 0.15) 2px 2px 1px 1px',
-              // padding: ' 10px 50px 10px 50px',
-              overflow: 'auto',
-            }}
-            w={360}
-          >
-            {/* <Flex justify={'space-between'} align={'center'}> */}
-            <div className={classes.flexCon}>
-              <div className={classes.iconBox}>
-                <IconMoneybag opacity="50%" size="3.125rem" />
-              </div>
-              <div className={classes.itemBox}>
-                <div className={classes.divItem}>
-                  <div className={classes.itemText}>
-                    <div>
-                      <Text size={'lg'} fw={500}>
+                    <div className={classes.itemText}>
+                      {/* <label> */}
+                      <Text>Donasi </Text>
+                      {/* </label> */}
+                      <Space w={20} />
+                      {/* <Text>:&nbsp;</Text> */}
+                      <Text fw={500}>
                         <FormatRupiah value={dataLocal.amount} />
                       </Text>
                     </div>
-                    <Flex justify={'flex-end'} align={'center'}>
-                      <CopyBtn value={dataLocal.amount} /> <Text size={'xs'}>Copy</Text>
-                    </Flex>
                   </div>
                 </div>
               </div>
-            </div>
-            {/* </Flex> */}
-          </Box>
+            </Box>
+          </Center>
+          <Space h={20} />
+          {/* BOX 2 */}
+          <Center>
+            <Box
+              className={classes.card}
+              style={{
+                borderRadius: 20,
+                boxShadow:
+                  'rgba(0, 0, 0, 0.02) 2px 2px 2px 2px, rgba(27, 31, 35, 0.15) 2px 2px 1px 1px',
+                // padding: ' 10px 50px 10px 50px',
+                overflow: 'auto',
+              }}
+              w={360}
+            >
+              {/* <Flex justify={'center'} align={'center'}> */}
+              <div className={classes.flexCon}>
+                <div className={classes.iconBox}>
+                  <Avatar size={'xl'} src={`/asset/logo/${dataLocal.bank}.png`} />
+                </div>
+                <Space w={20} />
+                <div className={classes.itemBox}>
+                  <div className={classes.divItem}>
+                    <div className={classes.itemText}>
+                      <div>
+                        <Text fw={500}>{dataLocal.noReq}</Text>
+                        <Space h={10} />
+                        <Text size={'xs'}>YAYASAN TAMAN HARAPAN INSAN MULIA</Text>
+                      </div>
+                      <Flex justify={'flex-end'} align={'center'}>
+                        <CopyBtn value={dataLocal.noReq} /> <Text size={'xs'}>Copy</Text>
+                      </Flex>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* </Flex> */}
+            </Box>
+          </Center>
+          <Space h={20} />
+          {/* BOX 3 */}
+          <Center>
+            <Box
+              className={classes.card}
+              style={{
+                borderRadius: 20,
+                boxShadow:
+                  'rgba(0, 0, 0, 0.02) 2px 2px 2px 2px, rgba(27, 31, 35, 0.15) 2px 2px 1px 1px',
+                // padding: ' 10px 50px 10px 50px',
+                overflow: 'auto',
+              }}
+              w={360}
+            >
+              {/* <Flex justify={'space-between'} align={'center'}> */}
+              <div className={classes.flexCon}>
+                <div className={classes.iconBox}>
+                  <IconMoneybag opacity="50%" size="3.125rem" />
+                </div>
+                <div className={classes.itemBox}>
+                  <div className={classes.divItem}>
+                    <div className={classes.itemText}>
+                      <div>
+                        <Text size={'lg'} fw={500}>
+                          <FormatRupiah value={dataLocal.amount} />
+                        </Text>
+                      </div>
+                      <Flex justify={'flex-end'} align={'center'}>
+                        <CopyBtn value={dataLocal.amount} /> <Text size={'xs'}>Copy</Text>
+                      </Flex>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* </Flex> */}
+            </Box>
+          </Center>
           <Space h={25} />
           {/* KONFIRMASI TRANSFER TEXT */}
           <Flex justify={'center'} align={'center'} m={10}>
@@ -302,84 +306,88 @@ export default function Invoice() {
           </Flex>
           <Space h={25} />
           {/* BOX 4 */}
-          <Box
-            className={classes.card}
-            style={{
-              borderRadius: 20,
-              boxShadow:
-                'rgba(0, 0, 0, 0.02) 2px 2px 2px 2px, rgba(27, 31, 35, 0.15) 2px 2px 1px 1px',
-              // padding: ' 10px 50px 10px 50px',
-              overflow: 'auto',
-              backgroundColor: 'rgba(167, 255, 143, 2)',
-            }}
-            w={360}
-          >
-            {/* <Flex justify={'space-between'} align={'center'}> */}
-            <div className={classes.flexCon}>
-              <div className={classes.iconBox}>
-                <IconMessage2 opacity="50%" size="3.125rem" />
-              </div>
-              <Flex direction={'column'}>
-                <Link
-                  style={{ textDecoration: 'none' }}
-                  href={'https://wa.me/6282210127321'}
-                  target="blank"
-                >
-                  <div>
-                    <Center>
-                      <Text size={'md'} fw={400}>
-                        Klik disini untuk
-                      </Text>
-                    </Center>
-                  </div>
-                  <div>
-                    <Center>
-                      <Text size={'md'} fw={500}>
-                        Konfirmasi Pembayaran
-                      </Text>
-                    </Center>
-                  </div>
-                </Link>
-              </Flex>
-              <div>
-                {/* <Text size={'lg'} fw={500}>
+          <Center>
+            <Box
+              className={classes.card}
+              style={{
+                borderRadius: 20,
+                boxShadow:
+                  'rgba(0, 0, 0, 0.02) 2px 2px 2px 2px, rgba(27, 31, 35, 0.15) 2px 2px 1px 1px',
+                // padding: ' 10px 50px 10px 50px',
+                overflow: 'auto',
+                backgroundColor: 'rgba(167, 255, 143, 2)',
+              }}
+              w={360}
+            >
+              {/* <Flex justify={'space-between'} align={'center'}> */}
+              <div className={classes.flexCon}>
+                <div className={classes.iconBox}>
+                  <IconMessage2 opacity="50%" size="3.125rem" />
+                </div>
+                <Flex direction={'column'}>
+                  <Link
+                    style={{ textDecoration: 'none' }}
+                    href={'https://wa.me/6282210127321'}
+                    target="blank"
+                  >
+                    <div>
+                      <Center>
+                        <Text size={'md'} fw={400}>
+                          Klik disini untuk
+                        </Text>
+                      </Center>
+                    </div>
+                    <div>
+                      <Center>
+                        <Text size={'md'} fw={500}>
+                          Konfirmasi Pembayaran
+                        </Text>
+                      </Center>
+                    </div>
+                  </Link>
+                </Flex>
+                <div>
+                  {/* <Text size={'lg'} fw={500}>
                   {dataLocal.time}
                 </Text> */}
+                </div>
               </div>
-            </div>
-            {/* </Flex> */}
-          </Box>
+              {/* </Flex> */}
+            </Box>
+          </Center>
           <Space h={20} />
           {/* BOX 5 */}
-          <Box
-            className={classes.card}
-            style={{
-              borderRadius: 20,
-              boxShadow:
-                'rgba(0, 0, 0, 0.02) 2px 2px 2px 2px, rgba(27, 31, 35, 0.15) 2px 2px 1px 1px',
-              // padding: ' 10px 50px 10px 50px',
-              overflow: 'auto',
-            }}
-            w={360}
-          >
-            {/* <Flex justify={'space-between'} align={'center'}> */}
-            <div className={classes.flexCon}>
-              <div className={classes.iconBox}>
-                <Icon24Hours opacity="50%" size="3.125rem" />
+          <Center>
+            <Box
+              className={classes.card}
+              style={{
+                borderRadius: 20,
+                boxShadow:
+                  'rgba(0, 0, 0, 0.02) 2px 2px 2px 2px, rgba(27, 31, 35, 0.15) 2px 2px 1px 1px',
+                // padding: ' 10px 50px 10px 50px',
+                overflow: 'auto',
+              }}
+              w={360}
+            >
+              {/* <Flex justify={'space-between'} align={'center'}> */}
+              <div className={classes.flexCon}>
+                <div className={classes.iconBox}>
+                  <Icon24Hours opacity="50%" size="3.125rem" />
+                </div>
+                <div>
+                  <Text size={'md'} fw={500}>
+                    Transfer sebelum :
+                  </Text>
+                </div>
+                <div>
+                  <Text size={'md'} fw={500}>
+                    {dataLocal.time}
+                  </Text>
+                </div>
               </div>
-              <div>
-                <Text size={'md'} fw={500}>
-                  Transfer sebelum :
-                </Text>
-              </div>
-              <div>
-                <Text size={'md'} fw={500}>
-                  {dataLocal.time}
-                </Text>
-              </div>
-            </div>
-            {/* </Flex> */}
-          </Box>
+              {/* </Flex> */}
+            </Box>
+          </Center>
           <Space h={50} />
           {/* ACCORDION ITEM */}
           {/* <Box

@@ -96,7 +96,7 @@ export default function DonasiDetail({ data }) {
             <Text>
               <h3>Berbagi Kebaikan</h3>
             </Text>
-            <CardDonasi />
+            <CardDonasi subject={title} />
           </div>
           <Flex justify={'flex-end'}>
             <Paper shadow="xl" radius="lg" p="xl" w={150} mt={10}>

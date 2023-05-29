@@ -5,9 +5,7 @@ import {
   NumberInput,
   Textarea,
   createStyles,
-  Flex,
   Space,
-  Popover,
   Input,
   CopyButton,
   Tooltip,
@@ -25,8 +23,6 @@ import { useRouter } from 'next/router';
 import { IconCheck, IconCopy } from '@tabler/icons-react';
 import Swal from 'sweetalert2';
 import moment from 'moment/moment';
-import ModalComp from '../components/Modal';
-import Link from 'next/link';
 
 const useStyles = createStyles((theme) => ({
   img: {
@@ -75,7 +71,7 @@ const SelectItem = forwardRef(({ image, label, description, ...others }, ref) =>
   </div>
 ));
 
-export function CardDonasi() {
+export function CardDonasi({ subject }) {
   const { classes } = useStyles();
   const [value, setValue] = useState('');
   const [valueInput, setValueInput] = useState('');
@@ -90,7 +86,6 @@ export function CardDonasi() {
   const router = useRouter();
   const params = router.query;
   let tomorrow = moment().add(1, 'day').format('DD MMM YYYY - hh:mm A');
-  console.log('tomorrow : ', tomorrow);
 
   const form = useForm({
     initialValues: {
@@ -132,33 +127,37 @@ export function CardDonasi() {
     // router.push(data.redirect_url);
     // window.open(data.redirect_url, '_blank');
     // ===
+    console.log('subject : ', subject);
     const data = {
       ...form.values,
       id: `INV-${uniqId}-${randomNumber}`,
       time: `${tomorrow}`,
+      subject,
     };
-    try {
-      await sendContactForm(data);
-    } catch (error) {
-      console.log(error.message);
-    }
-    // const dataEmail = await response.json();
 
-    // console.log('data email', dataEmail);
+    await sendContactForm(data).then(() => {
+      localStorage.setItem('dataForm', JSON.stringify(data));
+      router.push(
+        {
+          pathname: `/invoice/INV-${uniqId}-${randomNumber}`,
+          // query: data,
+        },
+        `/invoice/INV-${uniqId}-${randomNumber}`
+      );
+      // }
+      console.log('value submit button : ', form.values);
+    });
 
-    // router.push(data.redirect_url);
-    // window.open(data.redirect_url, '_blank');
-
-    localStorage.setItem('dataForm', JSON.stringify(data));
-    router.push(
-      {
-        pathname: `/invoice/INV-${uniqId}-${randomNumber}`,
-        // query: data,
-      },
-      `/invoice/INV-${uniqId}-${randomNumber}`
-    );
-    // }
-    console.log('value submit button : ', form.values);
+    // localStorage.setItem('dataForm', JSON.stringify(data));
+    // router.push(
+    //   {
+    //     pathname: `/invoice/INV-${uniqId}-${randomNumber}`,
+    //     // query: data,
+    //   },
+    //   `/invoice/INV-${uniqId}-${randomNumber}`
+    // );
+    // // }
+    // console.log('value submit button : ', form.values);
   }
 
   return (
@@ -266,11 +265,6 @@ export function CardDonasi() {
               color="green"
               type="submit"
               onClick={() => {
-                // Swal.fire({
-                //   icon: 'error',
-                //   title: 'Saat ini sedang dalam perbaikan',
-                //   text: 'Klik tombol dibawah untuk Manual Transfer',
-                // });
                 form.values.noReq === 91901034216531
                   ? form.setValues({ bank: 'bri' })
                   : form.values.noReq === 1640003525443

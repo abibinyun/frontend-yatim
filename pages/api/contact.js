@@ -1,10 +1,12 @@
 import { transporter, mailOptions } from '../../config/nodemailer';
 
 const CONTACT_MESSAGE_FIELDS = {
-  name: 'Name',
-  email: 'Email',
-  subject: 'Subject',
-  message: 'Message',
+  nama: 'Atas nama',
+  amount: 'Nominal',
+  bank: 'Bank',
+  message: 'Pesan',
+  noReq: 'No Rekening',
+  time: 'Waktu Berakhir',
 };
 
 const generateEmailContent = (data) => {
@@ -14,39 +16,38 @@ const generateEmailContent = (data) => {
   );
 
   const htmlData = Object.entries(data).reduce(
-    (str, [key, val]) => (str += `<h1>${CONTACT_MESSAGE_FIELDS[key]}</h1><p>${val}</p>`),
+    (str, [key, val]) => (str += `<h2>${CONTACT_MESSAGE_FIELDS[key]}</h2><p>${val}</p>`),
     ''
   );
 
   return {
     text: stringData,
-    html,
+    html: htmlData,
   };
 };
 
 const handler = async (req, res) => {
   if (req.method === 'POST') {
     const data = req.body;
+    const { nama, bank, noReq, amount, message, time } = data;
+    const data2 = { nama, bank, noReq, amount, message, time };
     console.log('data api :', data);
-    if (!data.amount || !data.bank) {
+    if (!data2) {
       return res.status(400).json({ message: 'Bad request' });
     }
-
     try {
       await transporter.sendMail({
         ...mailOptions,
-        ...generateEmailContent(data),
-        subject: data,
-        text: ' this is a testing email',
-        html: '<h1>Title testing</h1><p>tester body</p>',
+        ...generateEmailContent(data2),
+        subject: `Donasi dari ${data.nama} - ${data.subject} - ${data.id}`,
       });
     } catch (error) {
-      console.log(error);
+      console.log('error contact.js bagian catch :', error);
       return res.status(400).json({ message: error.message });
     }
   }
 
-  return res.status(400).json({ message: 'Bad request' });
+  return res.status(200).json({ message: 'okkay' });
 };
 
 export default handler;

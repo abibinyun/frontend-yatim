@@ -62,17 +62,18 @@ export default function HomePage({ data, dataHero, dataGalery, dataFAQ }: any) {
   const imgHero = imageHero.data.attributes.url;
   // const mapFAQ = FAQdata.map((item: { attributes: any }) => item.attributes);
   const { classes } = useStyle();
+  const idPage = 'Berbagi Kebaikan';
 
   const dataToast = [
     {
       nama: 'abi',
-      pesan: 'semangat'
+      pesan: 'semangat',
     },
     {
       nama: 'manda',
-      pesan: 'ayooo semangat'
+      pesan: 'ayooo semangat',
     },
-  ]
+  ];
 
   return (
     <>
@@ -96,7 +97,7 @@ export default function HomePage({ data, dataHero, dataGalery, dataFAQ }: any) {
         <link itemProp="url" href={`https://strapi.yathim.or.id${imgHero}`} />
         {/* Hero Component */}
         <div>
-          <HeroComp data={dataHero} seeCardDonasi={true} withButton={true} />
+          <HeroComp data={dataHero} seeCardDonasi={true} withButton={true} idPage={idPage} />
           <Space h={100} />
         </div>
         {/* Featured Component */}
