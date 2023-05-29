@@ -322,7 +322,7 @@ export default function Invoice() {
               <Flex direction={'column'}>
                 <Link
                   style={{ textDecoration: 'none' }}
-                  href={'https://wa.me/62811102890'}
+                  href={'https://wa.me/6282210127321'}
                   target="blank"
                 >
                   <div>

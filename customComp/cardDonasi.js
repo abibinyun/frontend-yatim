@@ -139,10 +139,10 @@ export function CardDonasi() {
     localStorage.setItem('dataForm', JSON.stringify(data));
     router.push(
       {
-        pathname: `invoice/INV-${uniqId}-${randomNumber}`,
+        pathname: `/invoice/INV-${uniqId}-${randomNumber}`,
         // query: data,
       },
-      `invoice/INV-${uniqId}-${randomNumber}`
+      `/invoice/INV-${uniqId}-${randomNumber}`
     );
     // }
     console.log('value submit button : ', form.values);
