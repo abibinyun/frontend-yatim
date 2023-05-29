@@ -3,6 +3,7 @@ import { HeroComp } from '../../components/Hero';
 import CardGalery from '../../customComp/cardGalery';
 
 export default function GaleryPage({ data, dataHero, dataT }: any) {
+  const idPage = 'Berbagi Kebaikan';
   const map = data.map((item: any, idx: any) => item);
   const map1 = map.map(
     (item: { attributes: { img: { data: any } } }, idx: any) => item.attributes.img.data
@@ -14,7 +15,7 @@ export default function GaleryPage({ data, dataHero, dataT }: any) {
   return (
     <>
       <div style={{ marginTop: -200 }}>
-        <HeroComp data={dataHero} seeCardDonasi={false} withButton={false} />
+        <HeroComp data={dataHero} seeCardDonasi={false} withButton={false} idPage={idPage} />
       </div>
       <CardGalery data={map2} title="Santunan" />
     </>

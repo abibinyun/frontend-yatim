@@ -6,10 +6,17 @@ import { useRouter } from 'next/router';
 
 export default function Donasi({ data, dataHero, page }) {
   const router = useRouter();
+  const idPage = 'Berbagi Kebaikan';
   return (
     <>
       <div style={{ marginTop: -200 }}>
-        <HeroComp data={dataHero} seeCardDonasi={false} withButton={false} dataMargin={rem(150)} />
+        <HeroComp
+          data={dataHero}
+          seeCardDonasi={false}
+          withButton={false}
+          dataMargin={rem(150)}
+          idPage={idPage}
+        />
       </div>
       <Center sx={{ marginTop: 50 }}>
         <Badge color="teal" size="xl">

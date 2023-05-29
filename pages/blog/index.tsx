@@ -1,14 +1,15 @@
 import React from 'react';
 import { HeroComp } from '../../components/Hero';
-import BlogCard from '../../customComp/cardBlog'
+import BlogCard from '../../customComp/cardBlog';
 
 export default function Blog({ dataHero, dataBerita }: any) {
+  const idPage = 'Berbagi Kebaikan';
   const { data } = dataBerita;
   const mapData = data.map((item: any) => item);
   return (
     <div>
       <div style={{ marginTop: -200 }}>
-        <HeroComp data={dataHero} seeCardDonasi={false} withButton={false} />
+        <HeroComp data={dataHero} seeCardDonasi={false} withButton={false} idPage={idPage} />
       </div>
 
       <div>
