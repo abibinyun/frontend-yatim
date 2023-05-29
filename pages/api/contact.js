@@ -31,7 +31,6 @@ const handler = async (req, res) => {
     const data = req.body;
     const { nama, bank, noReq, amount, message, time } = data;
     const data2 = { nama, bank, noReq, amount, message, time };
-    console.log('data api :', data);
     if (!data2) {
       return res.status(400).json({ message: 'Bad request' });
     }
@@ -42,7 +41,6 @@ const handler = async (req, res) => {
         subject: `Donasi dari ${data.nama} - ${data.subject} - ${data.id}`,
       });
     } catch (error) {
-      console.log('error contact.js bagian catch :', error);
       return res.status(400).json({ message: error.message });
     }
   }

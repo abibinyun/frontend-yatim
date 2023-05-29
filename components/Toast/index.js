@@ -78,7 +78,6 @@ export default function ToastComp() {
             transition: Zoom,
           }
         );
-        console.log(i);
       }, 8000 * i);
     }
   }, []);

@@ -127,7 +127,6 @@ export function CardDonasi({ subject }) {
     // router.push(data.redirect_url);
     // window.open(data.redirect_url, '_blank');
     // ===
-    console.log('subject : ', subject);
     const data = {
       ...form.values,
       id: `INV-${uniqId}-${randomNumber}`,
@@ -144,20 +143,7 @@ export function CardDonasi({ subject }) {
         },
         `/invoice/INV-${uniqId}-${randomNumber}`
       );
-      // }
-      console.log('value submit button : ', form.values);
     });
-
-    // localStorage.setItem('dataForm', JSON.stringify(data));
-    // router.push(
-    //   {
-    //     pathname: `/invoice/INV-${uniqId}-${randomNumber}`,
-    //     // query: data,
-    //   },
-    //   `/invoice/INV-${uniqId}-${randomNumber}`
-    // );
-    // // }
-    // console.log('value submit button : ', form.values);
   }
 
   return (

@@ -141,16 +141,10 @@ export default function Invoice() {
     setLoading(true);
     const data = localStorage.getItem('dataForm');
     if (data !== null) {
-      console.log('data local : ', data);
       setDataLocal(JSON.parse(data));
     }
     setLoading(false);
   }, []);
-
-  // if (isLoading) return <h1>Loading...</h1>;
-  // if (!dataLocal) return <h1>No profile data</h1>;
-
-  console.log('datalocal', dataLocal);
 
   return (
     <div>
