@@ -106,7 +106,7 @@ export function CardDonasi({ subject }) {
     <>
       <Box maw={'100%'} mah={'100%'} pos="relative">
         <LoadingOverlay
-          loaderProps={{ size: 'lg', color: 'green', variant: 'bars' }}
+          loaderProps={{ size: 'lg', color: 'green', variant: 'dots' }}
           visible={loading}
           overlayBlur={1}
         />
