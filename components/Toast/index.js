@@ -29,31 +29,6 @@ const data = [
     pesan: 'Verified - 3 jam yang lalu',
     donasi: 'baru saja donasi di - Donasi anak yathim',
   },
-  {
-    nama: 'Kiki akbar',
-    pesan: 'Verified - 3 jam yang lalu',
-    donasi: 'baru saja donasi di - Santunan yatim dan dhuafa',
-  },
-  {
-    nama: 'Iwan',
-    pesan: 'Verified - 1 hari yang lalu',
-    donasi: 'baru saja donasi di - Donasi anak yathim',
-  },
-  {
-    nama: 'Orang biasa',
-    pesan: 'Verified - 1 hari yang lalu',
-    donasi: 'baru saja donasi di - Bantuan kaum difabel dan ABK',
-  },
-  {
-    nama: 'Mahluk tuhan',
-    pesan: 'Verified - 2 hari yang lalu',
-    donasi: 'baru saja donasi di - Bantuan kaum difabel dan ABK',
-  },
-  {
-    nama: 'tak mau disebutkan',
-    pesan: 'Verified - 2 hari yang lalu',
-    donasi: 'baru saja donasi di - Santunan yatim dan dhuafa',
-  },
 ];
 
 export default function ToastComp() {

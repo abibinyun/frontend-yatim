@@ -1,12 +1,4 @@
-import {
-  Accordion,
-  ActionIcon,
-  Avatar,
-  CopyButton,
-  Tooltip,
-  createStyles,
-  em,
-} from '@mantine/core';
+import { ActionIcon, Avatar, CopyButton, Tooltip, createStyles, em } from '@mantine/core';
 import { FormatRupiah } from '@arismun/format-rupiah';
 import {
   IconAddressBook,
@@ -15,11 +7,9 @@ import {
   IconMoneybag,
   Icon24Hours,
   IconMessage2,
-  IconPlus,
 } from '@tabler/icons-react';
 import React, { useEffect, useState } from 'react';
-import { Box, Card, Center, Container, Flex, Space, Text } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
+import { Box, Card, Center, Flex, Space, Text } from '@mantine/core';
 import Link from 'next/link';
 
 const useStyles = createStyles((theme) => ({
@@ -69,7 +59,6 @@ const useStyles = createStyles((theme) => ({
     [`@media (max-width: ${em(505)})`]: {
       display: 'flex',
       flexDirection: 'column',
-      // padding: ' 10px 50px 10px 50px',
     },
   },
   iconBox: {
@@ -99,22 +88,13 @@ const useStyles = createStyles((theme) => ({
   itemText: {
     display: 'flex',
     justifyContent: 'space-between',
-    [`@media (max-width: ${em(505)})`]: {
-      // justifyContent: 'space-between',
-    },
+    [`@media (max-width: ${em(505)})`]: {},
     [`@media (max-width: ${em(281)})`]: {
       display: 'inline-block',
       flexDirection: 'column',
       justifyContent: 'center',
     },
-    // [`@media (max-width: ${em(450)})`]: {
-    //   justifyContent: 'space-between',
-    // },
   },
-  // span: {
-  //   textIndent: '5px',
-  //   display: 'block',
-  // },
 }));
 
 function CopyBtn({ value }) {
@@ -133,17 +113,13 @@ function CopyBtn({ value }) {
 
 export default function Invoice() {
   const [dataLocal, setDataLocal] = useState({});
-  const [isLoading, setLoading] = useState(false);
   const { classes, cx } = useStyles();
-  const bank = dataLocal.bank;
 
   useEffect(() => {
-    setLoading(true);
     const data = localStorage.getItem('dataForm');
     if (data !== null) {
       setDataLocal(JSON.parse(data));
     }
-    setLoading(false);
   }, []);
 
   return (
@@ -177,8 +153,6 @@ export default function Invoice() {
                 borderRadius: 20,
                 boxShadow:
                   'rgba(0, 0, 0, 0.02) 2px 2px 2px 2px, rgba(27, 31, 35, 0.15) 2px 2px 1px 1px',
-
-                // padding: ' 10px 50px 10px 50px',
                 overflow: 'auto',
               }}
               w={360}
@@ -193,19 +167,17 @@ export default function Invoice() {
                   </Text>
                   <div className={classes.divItem}>
                     <div className={classes.itemText}>
-                      {/* <label> */}
                       <Text>Nama </Text>
-                      {/* </label> */}
+
                       <Space w={20} />
-                      {/* <Text>:&nbsp;</Text> */}
+
                       <Text fw={500}>{dataLocal.nama}</Text>
                     </div>
                     <div className={classes.itemText}>
-                      {/* <label> */}
                       <Text>Donasi </Text>
-                      {/* </label> */}
+
                       <Space w={20} />
-                      {/* <Text>:&nbsp;</Text> */}
+
                       <Text fw={500}>
                         <FormatRupiah value={dataLocal.amount} />
                       </Text>
@@ -224,12 +196,11 @@ export default function Invoice() {
                 borderRadius: 20,
                 boxShadow:
                   'rgba(0, 0, 0, 0.02) 2px 2px 2px 2px, rgba(27, 31, 35, 0.15) 2px 2px 1px 1px',
-                // padding: ' 10px 50px 10px 50px',
+
                 overflow: 'auto',
               }}
               w={360}
             >
-              {/* <Flex justify={'center'} align={'center'}> */}
               <div className={classes.flexCon}>
                 <div className={classes.iconBox}>
                   <Avatar size={'xl'} src={`/asset/logo/${dataLocal.bank}.png`} />
@@ -250,11 +221,9 @@ export default function Invoice() {
                   </div>
                 </div>
               </div>
-              {/* </Flex> */}
             </Box>
           </Center>
           <Space h={20} />
-          {/* BOX 3 */}
           <Center>
             <Box
               className={classes.card}
@@ -262,12 +231,11 @@ export default function Invoice() {
                 borderRadius: 20,
                 boxShadow:
                   'rgba(0, 0, 0, 0.02) 2px 2px 2px 2px, rgba(27, 31, 35, 0.15) 2px 2px 1px 1px',
-                // padding: ' 10px 50px 10px 50px',
+
                 overflow: 'auto',
               }}
               w={360}
             >
-              {/* <Flex justify={'space-between'} align={'center'}> */}
               <div className={classes.flexCon}>
                 <div className={classes.iconBox}>
                   <IconMoneybag opacity="50%" size="3.125rem" />
@@ -287,7 +255,6 @@ export default function Invoice() {
                   </div>
                 </div>
               </div>
-              {/* </Flex> */}
             </Box>
           </Center>
           <Space h={25} />
@@ -307,13 +274,11 @@ export default function Invoice() {
                 borderRadius: 20,
                 boxShadow:
                   'rgba(0, 0, 0, 0.02) 2px 2px 2px 2px, rgba(27, 31, 35, 0.15) 2px 2px 1px 1px',
-                // padding: ' 10px 50px 10px 50px',
                 overflow: 'auto',
                 backgroundColor: 'rgba(167, 255, 143, 2)',
               }}
               w={360}
             >
-              {/* <Flex justify={'space-between'} align={'center'}> */}
               <div className={classes.flexCon}>
                 <div className={classes.iconBox}>
                   <IconMessage2 opacity="50%" size="3.125rem" />
@@ -340,13 +305,8 @@ export default function Invoice() {
                     </div>
                   </Link>
                 </Flex>
-                <div>
-                  {/* <Text size={'lg'} fw={500}>
-                  {dataLocal.time}
-                </Text> */}
-                </div>
+                <div></div>
               </div>
-              {/* </Flex> */}
             </Box>
           </Center>
           <Space h={20} />
@@ -358,12 +318,11 @@ export default function Invoice() {
                 borderRadius: 20,
                 boxShadow:
                   'rgba(0, 0, 0, 0.02) 2px 2px 2px 2px, rgba(27, 31, 35, 0.15) 2px 2px 1px 1px',
-                // padding: ' 10px 50px 10px 50px',
+
                 overflow: 'auto',
               }}
               w={360}
             >
-              {/* <Flex justify={'space-between'} align={'center'}> */}
               <div className={classes.flexCon}>
                 <div className={classes.iconBox}>
                   <Icon24Hours opacity="50%" size="3.125rem" />
@@ -379,7 +338,6 @@ export default function Invoice() {
                   </Text>
                 </div>
               </div>
-              {/* </Flex> */}
             </Box>
           </Center>
           <Space h={50} />

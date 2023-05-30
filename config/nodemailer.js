@@ -13,5 +13,7 @@ export const transporter = nodemailer.createTransport({
 
 export const mailOptions = {
   from: email,
+
+  //set above to send email to client
   to: email,
 };
