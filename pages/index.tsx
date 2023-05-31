@@ -61,7 +61,7 @@ export default function HomePage({ data, dataHero }: any) {
 
   return (
     <div>
-      <div>
+        <div>
         <Head>
           <meta property="og:url" content={`https://yathim.or.id`} />
           <meta property="og:type" content="website" />
@@ -119,9 +119,7 @@ export default function HomePage({ data, dataHero }: any) {
                 </Button>
               </Link>
             </Center>
-            <Space h="md" />
           </div>
-
           {/* <AppCounter /> */}
         </div>
       </div>
