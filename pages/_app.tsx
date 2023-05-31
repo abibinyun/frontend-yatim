@@ -38,7 +38,6 @@ const tester = [
 export default function App({ Component, pageProps }: any) {
   const [loading, setLoading] = useState(true);
   const [loadingFromCardDonasi] = useAtom(loadingAtom);
-  console.log('loading atom : ', loadingFromCardDonasi);
 
   const queryClient = new QueryClient()
 
