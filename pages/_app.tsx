@@ -60,8 +60,8 @@ export default function App({ Component, pageProps }: any) {
       ) : (
         <div>
           <Head>
+            <link rel="icon" href="./favicon.svg" />
             <title>Yathim.or.id | Yayasan Taman Harapan Insan Mulia</title>
-            <link rel="icon" type="image/png" href="./favicon.svg" />
           </Head>
           <NavbarComp links={tester} />
           <QueryClientProvider client={queryClient}>

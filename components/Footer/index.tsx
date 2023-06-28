@@ -79,6 +79,7 @@ export function FooterComp({ links }: FooterCenteredProps) {
             src="/favicon.svg"
             height={150}
             width={250}
+            priority={true}
             alt="logo yathim.or.id"
             onClick={(e) => logoClick(e)}
           />

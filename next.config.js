@@ -15,7 +15,7 @@ const nextConfig = {
   /* config options here */
   images: {
     // loader: 'akamai',
-    domains: ['assets.acme.com'],
+    domains: ['assets.acme.com', 'localhost'],
   },
 };
 

@@ -19,6 +19,7 @@ import moment from 'moment/moment';
 import { atom, useSetAtom } from 'jotai';
 import useMutateHook from '../hooks/useMutateHook';
 import postDonation from '../action/postDonation';
+import Image from 'next/legacy/image';
 
 const useStyles = createStyles((theme) => ({
   img: {
@@ -29,7 +30,9 @@ const useStyles = createStyles((theme) => ({
 const SelectItem = forwardRef(({ image, label, description, ...others }, ref) => (
   <div ref={ref} {...others}>
     <Group noWrap>
-      <Avatar src={image} size="lg" />
+      <Avatar size={'xl'} style={{ position: 'relative', width: '50px', height: '30px' }}>
+        <Image src={image} width={'90%'} height={'45%'} />
+      </Avatar>
       <div>
         <Text size="sm">{label}</Text>
         <Text size="xs" opacity={0.65}>
@@ -157,6 +160,11 @@ export function CardDonasi({ subject }) {
                   label: 'Transfer Bank Syariah Indonesia',
                   value: 7232168247,
                 },
+                {
+                  image: '/asset/logo/qris.png',
+                  label: 'Transfer QRIS',
+                  value: 'ID2021078541442',
+                },
               ]}
               itemComponent={SelectItem}
               placeholder="Pilih Metode Pembayaran"
@@ -203,6 +211,8 @@ export function CardDonasi({ subject }) {
                   ? form.setValues({ bank: 'bca' })
                   : form.values.noReq === 7232168247
                   ? form.setValues({ bank: 'bsi' })
+                  : form.values.noReq === 'ID2021078541442'
+                  ? form.setValues({ bank: 'qris' })
                   : null;
               }}
             >

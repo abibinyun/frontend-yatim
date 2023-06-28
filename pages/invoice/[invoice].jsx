@@ -11,6 +11,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import { Box, Card, Center, Flex, Space, Text } from '@mantine/core';
 import Link from 'next/link';
+import Image from 'next/legacy/image';
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -201,22 +202,69 @@ export default function Invoice() {
               }}
               w={360}
             >
+              {/* for user select payment qris */}
+              <Center>
+                {dataLocal.bank === 'qris' ? (
+                  <Flex direction={'column'}>
+                    <Link href={`/download/barcode.png`} target="_blank" passHref>
+                      <Image
+                        src={`/asset/logo/barcode1.png`}
+                        width={150}
+                        height={150}
+                        priority={true}
+                        alt="qris qr code yayasan taman harapan insan mulia"
+                      />
+                    </Link>
+                    <Flex justify={'center'}>
+                      {/* <Avatar size={'xl'} src={`/asset/logo/${dataLocal.bank}.png`} /> */}
+                      <Avatar
+                        size={'xl'}
+                        style={{ position: 'relative', width: '50px', height: '30px' }}
+                      >
+                        <Image
+                          src={`/asset/logo/${dataLocal.bank}.png`}
+                          width={'90%'}
+                          height={'45%'}
+                        />
+                      </Avatar>
+                    </Flex>
+                  </Flex>
+                ) : null}
+              </Center>
+              {/* payment other qris */}
               <div className={classes.flexCon}>
-                <div className={classes.iconBox}>
-                  <Avatar size={'xl'} src={`/asset/logo/${dataLocal.bank}.png`} />
-                </div>
+                {dataLocal.bank === 'qris' ? null : (
+                  <div className={classes.iconBox}>
+                    <Avatar
+                      size={'xl'}
+                      style={{ position: 'relative', width: '50px', height: '30px' }}
+                    >
+                      <Image
+                        src={`/asset/logo/${dataLocal.bank}.png`}
+                        width={'90%'}
+                        height={'45%'}
+                      />
+                    </Avatar>
+                    {/* <Avatar size={'xl'} src={`/asset/logo/${dataLocal.bank}.png`} /> */}
+                  </div>
+                )}
                 <Space w={20} />
                 <div className={classes.itemBox}>
                   <div className={classes.divItem}>
                     <div className={classes.itemText}>
                       <div>
-                        <Text fw={500}>{dataLocal.noReq}</Text>
-                        <Space h={10} />
-                        <Text size={'xs'}>YAYASAN TAMAN HARAPAN INSAN MULIA</Text>
+                        {dataLocal.bank === 'qris' ? null : (
+                          <>
+                            <Text fw={500}>{dataLocal.noReq}</Text>
+
+                            <Space h={10} />
+                            <Text size={'xs'}>YAYASAN TAMAN HARAPAN INSAN MULIA</Text>
+                            <Flex justify={'flex-end'} align={'center'}>
+                              <CopyBtn value={dataLocal.noReq} /> <Text size={'xs'}>Copy</Text>
+                            </Flex>
+                          </>
+                        )}
                       </div>
-                      <Flex justify={'flex-end'} align={'center'}>
-                        <CopyBtn value={dataLocal.noReq} /> <Text size={'xs'}>Copy</Text>
-                      </Flex>
                     </div>
                   </div>
                 </div>

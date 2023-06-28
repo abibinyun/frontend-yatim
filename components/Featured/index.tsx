@@ -28,7 +28,7 @@ const mockdata = [
   {
     title: 'MOTO',
     description:
-      'Menjadikan taman bagi kehidupan, bagi siapa saja yang membutuhkan',
+      'Menjadikan taman bagi kehidupan',
     icon: IconCookie,
   },
 ];
@@ -85,14 +85,16 @@ export function FeaturesComp() {
       <feature.icon size={rem(50)} stroke={2} color='green' />
       </Center>
       <Center>
-
       <Text fz="lg" fw={500} className={classes.cardTitle} mt="md">
         {feature.title}
       </Text>
       </Center>
+      <Center>
+
       <Text fz="sm" c="dimmed" mt="sm">
         {feature.description}
       </Text>
+      </Center>
     </Card>
   ));
 

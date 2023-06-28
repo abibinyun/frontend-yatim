@@ -167,6 +167,7 @@ export function NavbarComp({ links }: HeaderResponsiveProps) {
               src="/favicon.svg"
               height={150}
               width={250}
+              priority={true}
               alt="logo yathim.or.id"
             />
           </div>
