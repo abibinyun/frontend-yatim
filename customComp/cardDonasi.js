@@ -31,7 +31,7 @@ const SelectItem = forwardRef(({ image, label, description, ...others }, ref) =>
   <div ref={ref} {...others}>
     <Group noWrap>
       <Avatar size={'xl'} style={{ position: 'relative', width: '50px', height: '30px' }}>
-        <Image src={image} width={'90%'} height={'45%'} />
+        <Image src={image} width={'90%'} height={'40%'} />
       </Avatar>
       <div>
         <Text size="sm">{label}</Text>
