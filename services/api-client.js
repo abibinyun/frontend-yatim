@@ -2,7 +2,8 @@ import axios from 'axios';
 
 export const axiosInstance = axios.create({
   // baseURL: 'http://localhost:3005',
-  baseURL: 'https://yathim.or.id',
+  // baseURL: 'https://yathim.or.id',
+  baseURL: process.env.BASE_URL_AXIOS,
 });
 
 class APIClient {

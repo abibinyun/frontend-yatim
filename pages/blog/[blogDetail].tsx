@@ -1,4 +1,4 @@
-import { Center, Container, Paper, Text, Title } from '@mantine/core';
+import { AspectRatio, Center, Container, Paper, Text, Title } from '@mantine/core';
 import Image from 'next/legacy/image';
 import { useRouter } from 'next/router';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
@@ -9,18 +9,28 @@ export default function BlogId({ data }: any) {
   const { url } = thumbnail.data.attributes;
   const router = useRouter();
   const { blogDetail } = router.query;
-  const myLoader = ({ src, width }: any) => {
-    return `https://strapi.yathim.or.id${src}?w=${width}`;
+
+  const myLoader = ({ src , width, height}: any) => {
+    return `https://strapi.yathim.or.id${src}?w=${width}&h=${height}`;
   };
+
   return (
     <div style={{ marginTop: 50 }}>
       <Center style={{ marginBottom: 50 }}>
         <Title>{title}</Title>
       </Center>
       <Center>
-        <div>
-          <Image loader={myLoader} src={url} width={700} height={400} />
+        <div style={{width: '700px', height:'auto'}} >
+          <Image loader={myLoader} src={url}
+          width={200}
+          height={160}
+          sizes="(max-width: 768px) 100vw,
+          (max-width: 1200px) 50vw,
+          33vw"
+          style={{ height: '100%', width: '100%' }} 
+          />
         </div>
+          {/* </div> */}
       </Center>
       <Center>
         <Text>

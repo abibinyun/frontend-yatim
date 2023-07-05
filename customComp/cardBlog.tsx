@@ -21,21 +21,24 @@ const useStyles = createStyles((theme) => ({
 
 export default function BlogCard({ data }: any) {
   const { classes } = useStyles();
-  const myLoader = ({ src, width }: any) => {
-    return `https://strapi.yathim.or.id${src}?w=${width}`;
+  const myLoader = ({ src, width, height }: any) => {
+    return `https://strapi.yathim.or.id${src}?w=${width}&h=${height}`;
   };
   const cards = data.map((article: any, idx: any) => (
-    <Card key={idx} p="md" radius="md" className={classes.card}>
+    <Card key={idx} p="xs" radius="md" className={classes.card}>
       <AspectRatio ratio={1920 / 1080}>
         <Link href={`blog/${article.attributes.slugTitle}`}>
           <Image
             loader={myLoader}
             src={article.attributes.thumbnail.data.attributes.url}
-            width={400}
-            height={200}
+            width={550}
+            height={500}
           />
         </Link>
       </AspectRatio>
+
+      
+
       <Text color="dimmed" size="xs" transform="uppercase" weight={700} mt="md">
         {article.attributes.title}
       </Text>

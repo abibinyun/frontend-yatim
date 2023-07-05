@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import CustomCard from '../../customComp/customCard';
 import { HeroComp } from '../../components/Hero';
-import { Badge, Button, Center, Container, Space, rem } from '@mantine/core';
+import { Badge, Button, Center, Container, Space, rem, Text, Flex } from '@mantine/core';
 import { useRouter } from 'next/router';
 
 export default function Donasi({ data, dataHero, page }) {
   const [activeFilter, setActiveFilter] = useState({
-    new: '',
+    new: 'publishedAt%3Aasc',
   });
-  console.log('state : ', activeFilter.new);
+  const [btnActive, setBtnActive] = useState(false);
+
   const router = useRouter();
+  const pageCount = data.meta.pagination.pageCount;
   const idPage = 'Berbagi Kebaikan';
   const filter = {
     shortByNew: 'publishedAt%3Adesc',
@@ -31,25 +33,48 @@ export default function Donasi({ data, dataHero, page }) {
         </Badge>
       </Center>
       <Space h={30} />
+
       {/*start sort page  */}
+
       <Container>
-        <Button
-          onClick={() =>
-            router
-              .push(`/donasi?sort=${filter.shortByNew}`)
-              .then(setActiveFilter({ ...activeFilter, new: filter.shortByNew }))
-          }
-          // disabled={page === data.meta.pagination.pageCount}
-          color="green"
-        >
-          terbaru
-        </Button>
+        <Flex>
+          <Text style={{ fontWeight: 'bold', fontSize: '20px' }}>Filter : </Text>
+          <Space w={10} />
+          {/* terbaru */}
+
+          {btnActive ? (
+            <Button
+              onClick={() =>
+                router
+                  .push(`/donasi`)
+                  .then(setActiveFilter({ ...activeFilter, new: 'publishedAt%3Aasc' }))
+                  .then(setBtnActive(!btnActive))
+              }
+              color="green"
+            >
+              Terbaru
+            </Button>
+          ) : (
+            <Button
+              onClick={() =>
+                router
+                  .push(`/donasi?sort=${filter.shortByNew}`)
+                  .then(setActiveFilter({ ...activeFilter, new: filter.shortByNew }))
+                  .then(setBtnActive(!btnActive))
+              }
+              color="gray"
+            >
+              Terbaru
+            </Button>
+          )}
+          <Space w={10} />
+          {/* active  */}
+        </Flex>
       </Container>
       {/* end short page  */}
 
       {/* data content  */}
       <div>
-        {console.log('data dari donasi depan : ', data)}
         <CustomCard data={data.data} height={350} width={400} />
       </div>
       {/* end data content  */}
@@ -66,7 +91,8 @@ export default function Donasi({ data, dataHero, page }) {
         <Space w={100} mt={100} />
         <Button
           onClick={() => router.push(`/donasi?page=${page + 1}&sort=${activeFilter.new}`)}
-          disabled={page === data.meta.pagination.pageCount}
+          // disabled={page === data.meta.pagination.pageCount}
+          disabled={page === pageCount}
           color="green"
         >
           next
@@ -77,11 +103,10 @@ export default function Donasi({ data, dataHero, page }) {
   );
 }
 
-export async function getServerSideProps({ query: { page = 1, sort = null } }) {
+export async function getServerSideProps({ query: { page = 1, sort } }) {
   // export async function getServerSideProps(context) {
-  console.log(sort);
   const res = await fetch(
-    `${process.env.API_URL}/donasis?pagination[page]=${page}&pagination[pageSize]=6&pagination&populate=*&sort=${sort}`
+    `${process.env.API_URL}/donasis?pagination[page]=${page}&pagination[pageSize]=6&populate=*&sort=${sort}`
   );
   const data = await res.json();
   const count = await fetch(`${process.env.API_URL}/donasis?populate=*`);

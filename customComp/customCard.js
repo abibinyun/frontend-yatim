@@ -2,7 +2,6 @@ import React from 'react';
 import { CardComp } from '../components/Card';
 
 function CustomCard({ data: source, height, width }) {
-  console.log('data from donasi component : ', source);
   return (
     <div>
       <div
